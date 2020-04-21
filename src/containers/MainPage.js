@@ -2,15 +2,15 @@ import React from "react";
 
 import Header from "../components/Header";
 import RandomGame from "../components/RandomGame";
-import GameItem from "../components/GameItem";
+import GameItems from "../components/GameItems";
 import Footer from "../components/Footer";
 
 const MainPage = () => {
   return (
-    <section className="GameItem">
+    <section className="MainPage">
       <Header />
       <RandomGame />
-      <GameItem />
+      <GameItems />
       <Footer />
     </section>
   );

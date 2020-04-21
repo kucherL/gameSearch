@@ -9,9 +9,11 @@ const randomGame = () => {
   return (
     <section className="RandomGame">
       <PosterGame />
-      <Rating />
-      <TitleGame />
-      <DescriptionGame />
+      <div className="RandomGame__container">
+        <Rating />
+        <TitleGame />
+        <DescriptionGame />
+      </div>
     </section>
   );
 };

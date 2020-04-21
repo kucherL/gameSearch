@@ -1,7 +1,8 @@
 import React from "react";
 
 import PosterGame from "./ui/PosterGame";
-import Rating from "./ui/Rating";
+import ToRememberButton from "./ui/ToRememberButton";
+import AddUsersRating from "./AddUsersRating";
 import TitleGame from "./ui/TitleGame";
 import DescriptionGame from "./ui/DescriptionGame";
 
@@ -9,8 +10,12 @@ const gameItem = () => {
   return (
     <section className="GameItem">
       <PosterGame />
-      <TitleGame />
-      <DescriptionGame />
+      <div>
+        <ToRememberButton />
+        <AddUsersRating />
+        <TitleGame />
+        <DescriptionGame />
+      </div>
     </section>
   );
 };

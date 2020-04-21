@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+
+$first-background-color: #0f1a37;
+$second-background-color: #e31474;
+$third-background-color: #2a2f3d;
+$accent-color: rgb(0, 201, 238);
+$text-color: #e3e3e3;
+$border: 0 2px 2px rgba(0, 0, 0, 0.070), 0 0 10px rgba(0, 201, 238, 0.9);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+}
+
+a,
+button {
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  color: $text-color;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  color: $text-color;
+}
+
+.Logo {
+  width: 2rem;
+}
+
+.SubmitButton {
+  border: none;
+  background: $first-background-color;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.Header {
+  background-color: $second-background-color;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+
+  .Header__container-right {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .Header__container-right__items {
+      display: flex;
+      justify-content: space-around;
+      width: 70%;
+    }
+  }
+}
+
+.PosterGame {
+  width: 9rem;
+  height: auto;
+  margin: 1rem 1rem;
+}
+
+.TitleGame {
+  font-weight: bold;
+  margin-bottom: 1rem; 
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.DescriptionGame {
+  margin: 0 1rem;
+}
+
+.RandomGame {
+  background: linear-gradient($second-background-color, $first-background-color);
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  text-align: center;
+}
+
+.ArrowButton {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.GameItems {
+  background-color: $first-background-color;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+
+  .ArrowButton {
+    margin-bottom: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    background-color: $second-background-color;
+    transform: rotateZ(180deg);
+  }
+
+  .GameItems__container {
+    padding: 2rem 1rem;
+  }
+}
+
+.Pagination {
+
+  .ArrowButton:first-child {
+    transform: rotateZ(270deg);
+    margin-right: 1rem;
+  }
+
+  .ArrowButton:last-child {
+    transform: rotateZ(90deg);
+    margin-left: 1rem;
+  }
+}
+
+.ToRememberButton {
+  background-color: transparent;
+  border: none;
+  margin: 0 1rem;
+  color: $accent-color;
+
+  img {
+    width: 2rem;
+    height: auto;
+  }
+}
+
+.StarButton {
+  width: 1rem;
+  height: 1rem;
+  background-color: yellow;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.AddUserRating {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.GameItem {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-color: $accent-color;
+  box-shadow: $border;
+  border-radius: 3px;
+}
+
+.Footer {
+  background: linear-gradient($first-background-color, $second-background-color);
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+
+  .ArrowButton {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: 1rem;
+    border: none;
+    background-color: $first-background-color;
+  }
+
+  .Footer__container-middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 30%;
+  }
+}
+
+@media (min-width: 63rem) {
+  .Header {  
+    .Header__container-right {
+      justify-content: flex-end;
+
+      .Header__container-right__items {
+        width: 42%;
+      }
+    }
+  }
+
+  .RandomGame {
+    flex-direction: row;
+    justify-content: space-around;
+
+    .RandomGame__container {
+      text-align: left;
+      width: 50%;
+    }
+  }
+
+  .GameItems {
+    .GameItems__container {
+      grid-template-columns: 1fr 1fr 1fr;
+      justify-items: center;
+      align-items: center;
+      display: grid;
+      width: 100%;
+
+      .GameItem {
+        width: 90%;
+      }
+    }
+  }
+}
