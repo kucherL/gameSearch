@@ -58,15 +58,15 @@ p {
   padding: 1rem 1rem;
 
   .Header__container-right {
-    width: 70%;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-
+    justify-content: flex-end;
+    
     .Header__container-right__items {
       display: flex;
-      justify-content: space-around;
-      width: 70%;
+
+      .Header__container-right__item {
+        margin-right: 1rem;
+      }
     }
   }
 }
@@ -202,16 +202,6 @@ p {
 }
 
 @media (min-width: 63rem) {
-  .Header {  
-    .Header__container-right {
-      justify-content: flex-end;
-
-      .Header__container-right__items {
-        width: 42%;
-      }
-    }
-  }
-
   .RandomGame {
     flex-direction: row;
     justify-content: space-around;
