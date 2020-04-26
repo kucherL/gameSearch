@@ -7,6 +7,7 @@ import TitleGame from "./ui/TitleGame";
 import DescriptionGame from "./ui/DescriptionGame";
 
 const gameItem = () => {
+
   return (
     <section className="GameItem">
       <PosterGame />
