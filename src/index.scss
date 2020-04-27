@@ -35,6 +35,11 @@ p {
   color: $text-color;
 }
 
+.App {
+  background-color: $second-background-color;
+  height: 100vh;
+}
+
 .Logo {
   width: 2rem;
 }
@@ -104,7 +109,7 @@ p {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
-.GameItems {
+.SearchPage {
   background-color: $first-background-color;
   width: 100%;
   height: auto;
@@ -123,7 +128,16 @@ p {
     transform: rotateZ(180deg);
   }
 
-  .GameItems__container {
+  .GenresSearch {
+    display: flex;
+    flex-direction: column;
+
+    .GenresSearch__link:hover {
+      color: $second-background-color;
+    }
+  }
+
+  .SearchPage__container {
     padding: 2rem 1rem;
   }
 }
@@ -212,8 +226,8 @@ p {
     }
   }
 
-  .GameItems {
-    .GameItems__container {
+  .SearchPage {
+    .SearchPage__container {
       grid-template-columns: 1fr 1fr 1fr;
       justify-items: center;
       align-items: center;

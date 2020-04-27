@@ -1,6 +1,6 @@
 import React from "react";
 
-import ArrowButton from "./ui/ArrowButton";
+import ArrowButton from "../ui/ArrowButton";
 
 const pagination = (props) => (
   <div className="Pagination">

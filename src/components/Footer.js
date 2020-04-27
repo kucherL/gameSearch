@@ -7,13 +7,13 @@ const footer = () => (
     <ArrowButton />
     <ul className="Footer__container-middle">
       <li className="Footer__container-middle__item">
-        <a src="/">@</a>
+        <a href="/">@</a>
       </li>
       <li className="Footer__container-middle__item">
-        <a src="/">@</a>
+        <a href="/">@</a>
       </li>
       <li className="Footer__container-middle__item">
-        <a src="/">@</a>
+        <a href="/">@</a>
       </li>
     </ul>
     <div className="Footer__container-right">

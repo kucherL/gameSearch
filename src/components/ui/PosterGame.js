@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-const PosterGame = () => {
-  const [poster, setPoster] = useState("");
-
+const PosterGame = (props) => {
   return (
     <img
-      src={require("../../assets/Death_Stranding_Poster.jpg")}
-      alt="/"
+      src={props.coverRandomGame}
+      alt="poster"
       className="PosterGame"
     />
   );
