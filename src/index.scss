@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap");
 
 $first-background-color: #0f1a37;
 $second-background-color: #e31474;
 $third-background-color: #2a2f3d;
 $accent-color: rgb(0, 201, 238);
 $text-color: #e3e3e3;
-$border: 0 2px 2px rgba(0, 0, 0, 0.070), 0 0 10px rgba(0, 201, 238, 0.9);
+$border: 0 2px 2px rgba(0, 0, 0, 0.07), 0 0 10px rgba(0, 201, 238, 0.9);
 
 * {
   margin: 0;
@@ -14,7 +14,7 @@ $border: 0 2px 2px rgba(0, 0, 0, 0.070), 0 0 10px rgba(0, 201, 238, 0.9);
 }
 
 html {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 1rem;
 }
 
@@ -65,7 +65,7 @@ p {
   .Header__container-right {
     display: flex;
     justify-content: flex-end;
-    
+
     .Header__container-right__items {
       display: flex;
 
@@ -84,7 +84,7 @@ p {
 
 .TitleGame {
   font-weight: bold;
-  margin-bottom: 1rem; 
+  margin-bottom: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
 }
@@ -94,7 +94,10 @@ p {
 }
 
 .RandomGame {
-  background: linear-gradient($second-background-color, $first-background-color);
+  background: linear-gradient(
+    $second-background-color,
+    $first-background-color
+  );
   width: 100%;
   height: auto;
   display: flex;
@@ -103,6 +106,23 @@ p {
   justify-content: space-between;
   padding: 1rem 1rem;
   text-align: center;
+}
+
+.PreferenceGames {
+  background-color: $first-background-color;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 1rem;
+
+  .PreferenceGames__title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
 
 .ArrowButton {
@@ -143,7 +163,6 @@ p {
 }
 
 .Pagination {
-
   .ArrowButton:first-child {
     transform: rotateZ(270deg);
     margin-right: 1rem;
@@ -171,7 +190,18 @@ p {
   width: 1rem;
   height: 1rem;
   background-color: yellow;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
 }
 
 .AddUserRating {
@@ -191,7 +221,10 @@ p {
 }
 
 .Footer {
-  background: linear-gradient($first-background-color, $second-background-color);
+  background: linear-gradient(
+    $first-background-color,
+    $second-background-color
+  );
   width: 100%;
   height: auto;
   display: flex;
@@ -215,7 +248,11 @@ p {
   }
 }
 
-@media (min-width: 63rem) {
+@media (min-width: 56rem) {
+  .GameItem {
+    width: 90%;
+  }
+
   .RandomGame {
     flex-direction: row;
     justify-content: space-around;
@@ -226,6 +263,14 @@ p {
     }
   }
 
+  .PreferenceGames {
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+    width: 100%;
+  }
+
   .SearchPage {
     .SearchPage__container {
       grid-template-columns: 1fr 1fr 1fr;
@@ -233,10 +278,6 @@ p {
       align-items: center;
       display: grid;
       width: 100%;
-
-      .GameItem {
-        width: 90%;
-      }
     }
   }
 }

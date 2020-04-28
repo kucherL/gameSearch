@@ -6,15 +6,15 @@ import AddUsersRating from "./AddUsersRating";
 import TitleGame from "./ui/TitleGame";
 import DescriptionGame from "./ui/DescriptionGame";
 
-const gameItem = () => {
+const gameItem = (props) => {
 
   return (
     <section className="GameItem">
-      <PosterGame />
+      <PosterGame coverRandomGame={props.cover} />
       <div>
         <ToRememberButton />
         <AddUsersRating />
-        <TitleGame />
+        <TitleGame titleRandomGame={props.game} />
         <DescriptionGame />
       </div>
     </section>
