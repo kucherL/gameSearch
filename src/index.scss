@@ -19,7 +19,8 @@ html {
 }
 
 a,
-button {
+button,
+input {
   text-decoration: none;
   outline: none;
   cursor: pointer;
@@ -125,8 +126,18 @@ p {
   }
 }
 
-.ArrowButton {
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+.ArrowButton__container {
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  color: $text-color;
+  font-size: inherit;
+  cursor: pointer;
+
+  .ArrowButton {
+    display: inline-block;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
 }
 
 .SearchPage {
@@ -140,20 +151,108 @@ p {
   padding: 2rem 1rem;
 
   .ArrowButton {
-    margin-bottom: 2rem;
-    width: 1.5rem;
-    height: 1.5rem;
+    height: 0.7rem;
+    width: 0.7rem;
+    margin-left: 0.5rem;
     border: none;
     background-color: $second-background-color;
-    transform: rotateZ(180deg);
   }
 
-  .GenresSearch {
-    display: flex;
-    flex-direction: column;
+  .FilterPanel {
+    width: 80%;
 
-    .GenresSearch__link:hover {
-      color: $second-background-color;
+    .FilterPanel__item {
+      margin-bottom: 0.7rem;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        color: $text-color;
+      }
+
+      select {
+        margin-left: 1rem;
+      }
+
+      input[type="checkbox"] {
+        -webkit-appearance: none;
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background-color: $text-color;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+      }
+
+      input[type="checkbox"]:checked {
+        background: $accent-color;
+        border-color: $accent-color;
+        box-shadow: $border;
+      }
+
+      input[type="range"] {
+        margin-left: 1rem;
+        -webkit-appearance: none;
+        background-color: transparent;
+      }
+
+      input[type="range"]:focus {
+        outline: none;
+      }
+
+      input[type="range"]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 0.2rem;
+        cursor: pointer;
+        background: $second-background-color;
+        border: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        border: none;
+        height: 1rem;
+        width: 1rem;
+        border-radius: 50%;
+        background: $accent-color;
+        border-color: $accent-color;
+        box-shadow: $border;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -0.4rem;
+      }
+
+      .FilterPanel__item__search-bar {
+        background-color: transparent;
+        border: none;
+        border-color: $accent-color;
+        box-shadow: $border;
+        border-radius: 3px;
+        font-family: inherit;
+        padding: 0.2rem 0.5rem;
+        width: 100%;
+        background-image: url("./assets/icons8-search.svg");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 1.8rem;
+      }
+    }
+
+    .input-range {
+      flex-direction: row;
+    }
+
+    .ArrowButton {
+      transform: rotateZ(180deg);
+    }
+
+    .menu-open {
+      transition: 700ms;
+      transform: rotateZ(0deg);
+    }
+
+    .menu-closed {
+      transition: 700ms;
+      transform: rotateZ(180deg);
     }
   }
 
@@ -163,14 +262,64 @@ p {
 }
 
 .Pagination {
-  .ArrowButton:first-child {
-    transform: rotateZ(270deg);
-    margin-right: 1rem;
+  .ArrowButton__container:first-child {
+    .ArrowButton {
+      transform: rotateZ(270deg);
+      margin-right: 1rem;
+    }
   }
 
-  .ArrowButton:last-child {
-    transform: rotateZ(90deg);
-    margin-left: 1rem;
+  .ArrowButton__container:last-child {
+    .ArrowButton {
+      transform: rotateZ(90deg);
+      margin-left: 1rem;
+    }
+  }
+}
+
+.SingleGamePage {
+  background-color: $first-background-color;
+  width: 100%;
+  padding: 1rem;
+
+  .GameInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .PosterGame {
+      background-color: $second-background-color;
+      height: 10rem;
+    }
+
+    .GameInfo__bottom-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .Rating {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .Videos {
+    margin: 1rem auto;
+
+    .Videos__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem auto;
+      height: 25rem;
+      border-color: $accent-color;
+      box-shadow: $border;
+      border-radius: 3px;
+    }
+  }
+
+  .Summary {
+    margin-bottom: 1rem;
   }
 }
 
@@ -178,12 +327,7 @@ p {
   background-color: transparent;
   border: none;
   margin: 0 1rem;
-  color: $accent-color;
-
-  img {
-    width: 2rem;
-    height: auto;
-  }
+  color: $second-background-color;
 }
 
 .StarButton {
@@ -211,6 +355,8 @@ p {
 }
 
 .GameItem {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;

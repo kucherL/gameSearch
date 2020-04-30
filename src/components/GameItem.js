@@ -2,7 +2,7 @@ import React from "react";
 
 import PosterGame from "./ui/PosterGame";
 import ToRememberButton from "./ui/ToRememberButton";
-import AddUsersRating from "./AddUsersRating";
+import AddUsersRating from "./ui/AddUsersRating";
 import TitleGame from "./ui/TitleGame";
 import DescriptionGame from "./ui/DescriptionGame";
 
@@ -15,7 +15,7 @@ const gameItem = (props) => {
         <ToRememberButton />
         <AddUsersRating />
         <TitleGame titleRandomGame={props.game} />
-        <DescriptionGame />
+        <DescriptionGame summaryGame={props.summary} />
       </div>
     </section>
   );

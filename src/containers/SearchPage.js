@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 
 import { instance } from "../axios";
 
@@ -6,35 +6,38 @@ import FilterPanel from "../components/SearchPage/FilterPanel";
 import GameItem from "../components/GameItem";
 import Pagination from "../components/SearchPage/Pagination";
 
-const SearchPage = () => {
-  const [genres, setGenres] = useState([]);
+class SearchPage extends Component {
+  state = {
+    genres: [],
+  };
 
-  useEffect(() => {
-    getAllGenres();
-  }, []);
-  useEffect(() => () => {}, []);
+  // componentDidMount = () => {
+  //   this.getAllGenres();
+  // };
 
-  const getAllGenres = () => {
+  getAllGenres = () => {
     instance("genres", "fields name, url; sort id; limit 50;")
       .then((response) => {
-        setGenres(response.data.map((obj) => obj.name));
+        this.setState({ genres: response.data.map((obj) => obj.name) });
       })
       .catch((err) => {
         console.error(err);
       });
   };
 
-  const filterGames = () => {};
+  filterGames = () => {};
 
-  return (
-    <section className="SearchPage">
-      <FilterPanel genres={genres} />
-      <div className="SearchPage__container">
-        <GameItem />
-      </div>
-      <Pagination />
-    </section>
-  );
-};
+  render() {
+    return (
+      <main className="SearchPage">
+        <FilterPanel genres={this.state.genres} />
+        <div className="SearchPage__container">
+          <GameItem />
+        </div>
+        <Pagination />
+      </main>
+    );
+  }
+}
 
 export default SearchPage;

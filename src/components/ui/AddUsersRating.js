@@ -1,6 +1,6 @@
 import React from "react";
 
-import StarButton from "./ui/StarButton";
+import StarButton from "./StarButton";
 
 const addUserRating = () => (
   <div className="AddUserRating">

@@ -12,7 +12,7 @@ const RandomGame = (props) => {
       <div className="RandomGame__container">
         <Rating />
         <TitleGame titleRandomGame={props.titleRandomGame} />
-        <DescriptionGame />
+        <DescriptionGame summaryGame={props.summaryGame} />
       </div>
     </section>
   );

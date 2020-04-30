@@ -1,8 +1,10 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGamepad } from '@fortawesome/free-solid-svg-icons'
 
 const toRememberButton = () => (
   <button className="ToRememberButton">
-    <img src={require("../../assets/gamepad.svg")} alt="gamepad-icon" />
+    <FontAwesomeIcon icon={faGamepad} size={"2x"} />
   </button>
 );
 

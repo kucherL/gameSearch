@@ -4,7 +4,7 @@ import GameItem from "../GameItem";
 
 const preferenceGames = (props) => {
   const preferencesList = props.preferenceGames.map((game, index) => {
-    return <GameItem game={game[0]} cover={game[2]} key={index} />
+    return <GameItem game={game[0]} summary={game[2]} cover={game[3]} key={index} />
   });
 
   return (

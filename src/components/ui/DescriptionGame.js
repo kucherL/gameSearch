@@ -1,8 +1,8 @@
 import React from "react";
 
-const descriptionGame = () => (
+const descriptionGame = (props) => (
   <div className="DescriptionGame">
-    <p>DescriptionGame</p>
+    <p>{props.summaryGame}</p>
   </div>
 );
 
