@@ -1,27 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
-import ArrowButton from "../ui/ArrowButton";
-
-const YearOfReleaseSearch = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const menuOpenHandler = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const releasesList = <input type="checkbox" />;
-
+const YearOfReleaseSearch = (props) => {
   return (
-    <ul className="FilterPanel__item">
-      <div>
-        <ArrowButton click={menuOpenHandler} menuOpen={menuOpen}>
-          Год выхода
-        </ArrowButton>
-      </div>
-      {menuOpen ? (
-        <div className="FilterPanel__item__dropdownMenu">{releasesList}</div>
-      ) : null}
-    </ul>
+    <div className="FilterPanel__item input-field">
+      <label>Год выхода</label>
+      <input
+        type="text"
+        className="FilterPanel__item--input-text"
+        onChange={props.yearChanged}
+      />
+    </div>
   );
 };
 

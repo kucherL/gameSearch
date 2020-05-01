@@ -190,6 +190,18 @@ p {
         box-shadow: $border;
       }
 
+      .FilterPanel__item--input-text {
+        margin-left: 1rem;
+        background-color: transparent;
+        border: none;
+        border-color: $accent-color;
+        box-shadow: $border;
+        border-radius: 3px;
+        font-family: inherit;
+        padding: 0.2rem 0.5rem;
+        width: 68%;
+      }
+
       input[type="range"] {
         margin-left: 1rem;
         -webkit-appearance: none;
@@ -237,7 +249,7 @@ p {
       }
     }
 
-    .input-range {
+    .input-field {
       flex-direction: row;
     }
 

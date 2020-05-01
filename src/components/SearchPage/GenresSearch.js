@@ -12,9 +12,13 @@ const GenresSearch = (props) => {
   const genresList = props.genres.map((genre, index) => {
     return (
       <li key={index}>
-        <input type="checkbox" key={index}>
-          {genre}
-        </input>
+        <input
+          type="checkbox"
+          key={index}
+          onClick={props.clicked}
+          value={genre}
+        />
+        <p>{genre[0]}</p>
       </li>
     );
   });
