@@ -10,9 +10,12 @@ class SearchPage extends Component {
   state = {
     genres: [],
     checkedGenres: [],
+    genresAPI: `genre=${this.state.checkedGenres}`,
     platforms: [],
     checkedPlatform: "",
+    platformsAPI: `platforms=${this.state.checkedPlatform}`,
     years: "",
+    yearsAPI: `release_dates=${this.state.years}`,
     rating: "100",
     popularity: "5",
   };
@@ -87,10 +90,16 @@ class SearchPage extends Component {
     });
   };
 
+  handleAPIRequest = () => {
+    if (this.state.genres !== [] || this.state.platforms !== [] || this.state.years !== "") {
+      
+    }
+  };
+
   filterGames = () => {
     instance(
       "games",
-      `fields name, id; where (genre=${this.state.checkedGenres} & platforms=${this.state.checkedPlatform} & release_dates=${this.state.years} & rating>=${this.state.rating} & popularity>=${this.state.popularity}); sort id; limit 500;`
+      `fields name, id; where (rating>=${this.state.rating} & popularity>=${this.state.popularity}); sort id; limit 500;`
     )
       .then((response) => {
         console.log(response.data);
