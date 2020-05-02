@@ -10,14 +10,13 @@ class SearchPage extends Component {
   state = {
     genres: [],
     checkedGenres: [],
-    genresAPI: `genre=${this.state.checkedGenres}`,
     platforms: [],
-    checkedPlatform: "",
-    platformsAPI: `platforms=${this.state.checkedPlatform}`,
+    checkedPlatforms: "",
     years: "",
-    yearsAPI: `release_dates=${this.state.years}`,
-    rating: "100",
-    popularity: "5",
+    checkedYears: "",
+    rating: "80",
+    popularity: "4",
+    apiString: "",
   };
 
   componentDidMount = () => {
@@ -25,13 +24,25 @@ class SearchPage extends Component {
     this.getAllPlatforms();
   };
 
+  componentDidUpdate = () => {
+    console.log(this.state.apiString);
+    // if (this.state.checkedGenres.length !== 0) {
+    //   this.setState({apiString: this.state.apiString.concat(` & genres=${this.state.checkedGenres}`)});
+    // };
+    // if (this.state.checkedPlatforms.length !== 0) {
+    //   this.setState({apiString: this.state.apiString.concat(` & platforms=${this.state.checkedPlatforms}`)});
+    // };
+    // if (this.state.checkedYears.length !== 0) {
+    //   this.setState({apiString: this.state.apiString.concat(` & release_dates=${this.state.checkedYears}`)});
+    // };
+  };
+
   getAllGenres = () => {
     instance("genres", "fields name, id; sort id; limit 50;")
       .then((response) => {
         this.setState({
           genres: response.data.map((obj) => [obj.name, obj.id]),
-        });
-        console.log(this.state.genres);
+        }, () => {console.log(this.state.genres);});
       })
       .catch((err) => {
         console.error(err);
@@ -43,8 +54,7 @@ class SearchPage extends Component {
       .then((response) => {
         this.setState({
           platforms: response.data.map((obj) => [obj.name, obj.id]),
-        });
-        console.log(this.state.platforms);
+        }, () => {console.log(this.state.platforms);});
       })
       .catch((err) => {
         console.error(err);
@@ -63,18 +73,21 @@ class SearchPage extends Component {
         checkedGenres: this.state.checkedGenres.concat(event.target.value),
       });
     }
-    console.log(this.state.checkedGenres);
   };
 
   handleChangedPlatform = (event) => {
     this.setState({
-      checkedPlatform: event.target.value,
+      checkedPlatforms: event.target.value,
+      // apiString: this.state.apiString.concat(` & platforms=${tempData}`),
     });
   };
 
   handleChangedYear = (event) => {
     this.setState({
-      years: event.target.value,
+      checkedYears: event.target.value,
+      // apiString: this.state.apiString.concat(
+      //   ` & release_dates=${event.target.value}`
+      // ),
     });
   };
 
@@ -90,23 +103,73 @@ class SearchPage extends Component {
     });
   };
 
-  handleAPIRequest = () => {
-    if (this.state.genres !== [] || this.state.platforms !== [] || this.state.years !== "") {
-      
-    }
-  };
-
   filterGames = () => {
-    instance(
-      "games",
-      `fields name, id; where (rating>=${this.state.rating} & popularity>=${this.state.popularity}); sort id; limit 500;`
-    )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    if (this.state.checkedGenres.length !== 0) {
+      this.setState(
+        {
+          apiString: this.state.apiString.concat(
+            ` & genres=${this.state.checkedGenres}`
+          ),
+        },
+        () => {
+          instance(
+            "games/",
+            `fields name, id; where (rating >= ${this.state.rating} & popularity >= ${this.state.popularity}${this.state.apiString}); sort rating; limit 10;`
+          )
+            .then((response) => {
+              console.log(this.state.apiString);
+              console.log(response.data);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }
+      );
+    }
+    if (this.state.checkedPlatforms.length !== 0) {
+      this.setState(
+        {
+          apiString: this.state.apiString.concat(
+            ` & platforms=${this.state.checkedPlatforms}`
+          ),
+        },
+        () => {
+          instance(
+            "games/",
+            `fields name, id; where (rating >= ${this.state.rating} & popularity >= ${this.state.popularity}${this.state.apiString}); sort rating; limit 10;`
+          )
+            .then((response) => {
+              console.log(this.state.apiString);
+              console.log(response.data);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }
+      );
+    }
+    if (this.state.checkedYears.length !== 0) {
+      this.setState(
+        {
+          apiString: this.state.apiString.concat(
+            ` & release_dates=${this.state.checkedYears}`
+          ),
+        },
+        () => {
+          instance(
+            "games/",
+            `fields name, id; where (rating >= ${this.state.rating} & popularity >= ${this.state.popularity}${this.state.apiString}); sort rating; limit 10;`
+          )
+            .then((response) => {
+              console.log(this.state.apiString);
+              console.log(response.data);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }
+      );
+    }
   };
 
   render() {
@@ -121,6 +184,7 @@ class SearchPage extends Component {
           rating={this.state.rating}
           popularityChanged={this.handleChangedPopularity}
           popularity={this.state.popularity}
+          filter={this.filterGames}
         />
         <div className="SearchPage__container">
           <GameItem />

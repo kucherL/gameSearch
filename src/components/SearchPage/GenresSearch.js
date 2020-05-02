@@ -16,7 +16,7 @@ const GenresSearch = (props) => {
           type="checkbox"
           key={index}
           onClick={props.clicked}
-          value={genre}
+          value={genre[1]}
         />
         <p>{genre[0]}</p>
       </li>

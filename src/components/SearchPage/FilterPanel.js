@@ -19,6 +19,7 @@ const filterPanel = (props) => {
         popularityChanged={props.popularityChanged}
         popularity={props.popularity}
       />
+      <button onClick={props.filter}>Найти</button>
     </nav>
   );
 };
