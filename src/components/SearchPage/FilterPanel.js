@@ -10,9 +10,9 @@ import PopularitySearch from "./PopularitySearch";
 const filterPanel = (props) => {
   return (
     <nav className="FilterPanel">
-      <SearchBar />
-      <GenresSearch genres={props.genres} clicked={props.clicked} />
-      <PlatformSearch platformChanged={props.platformChanged} />
+      <SearchBar searchFieldChanged={props.searchFieldChanged}/>
+      <GenresSearch genres={props.genres} clicked={props.checkGenre} />
+      <PlatformSearch platforms={props.platforms} clicked={props.checkPlatform} />
       <YearOfReleaseSearch yearChanged={props.yearChanged} />
       <RatingSearch ratingChanged={props.ratingChanged} rating={props.rating} />
       <PopularitySearch

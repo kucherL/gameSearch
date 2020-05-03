@@ -4,9 +4,9 @@ import ArrowButton from "../ui/ArrowButton";
 
 const pagination = (props) => (
   <div className="Pagination">
-    <ArrowButton />
+    <ArrowButton click={props.changePageBackwards} />
     {props.children}
-    <ArrowButton />
+    <ArrowButton click={props.changePageForward} />
   </div>
 );
 
