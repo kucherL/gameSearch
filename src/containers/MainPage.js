@@ -14,10 +14,10 @@ class MainPage extends Component {
     preferenceGames: [],
   };
 
-  // componentDidMount = () => {
-  //   this.getRandomPopularGame();
-  //   this.getPreferenceGames();
-  // };
+  componentDidMount = () => {
+    this.getRandomPopularGame();
+    this.getPreferenceGames();
+  };
 
   getRandomPopularGame = () => {
     instance(

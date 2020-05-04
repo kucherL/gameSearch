@@ -1,26 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import { instance } from "../axios";
-
+import * as actionTypes from "../store/actions/actions";
 import FilterPanel from "../components/SearchPage/FilterPanel";
 import GameItem from "../components/GameItem";
 import Pagination from "../components/SearchPage/Pagination";
 
 class SearchPage extends Component {
   state = {
-    searchField: "",
     genres: [],
-    checkedGenres: [],
     platforms: [],
-    checkedPlatforms: [],
-    years: "",
-    checkedYears: "",
-    rating: "80",
-    popularity: "4",
     imagesURL: "//images.igdb.com/igdb/image/upload/t_thumb/",
     searchedGames: [],
-    page: [1, 2, 3],
-    offset: 0,
   };
 
   componentDidMount = () => {
@@ -52,112 +44,29 @@ class SearchPage extends Component {
       });
   };
 
-  handleSearchField = (event) => {
-    this.setState({
-      searchField: event.target.value,
-    });
-  };
-
-  handleCheckedGenre = (event) => {
-    if (this.state.checkedGenres.includes(event.target.value)) {
-      this.setState({
-        checkedGenres: this.state.checkedGenres.filter(
-          (item) => item !== event.target.value
-        ),
-      });
-    } else {
-      this.setState({
-        checkedGenres: this.state.checkedGenres.concat(event.target.value),
-      });
-    }
-    console.log(this.state.checkedGenres);
-  };
-
-  handleChangedPlatform = (event) => {
-    if (this.state.checkedPlatforms.includes(event.target.value)) {
-      this.setState({
-        checkedPlatforms: this.state.checkedPlatforms.filter(
-          (item) => item !== event.target.value
-        ),
-      });
-    } else {
-      this.setState({
-        checkedPlatforms: this.state.checkedPlatforms.concat(
-          event.target.value
-        ),
-      });
-    }
-    console.log(this.state.checkedGenres);
-  };
-
-  handleChangedYear = (event) => {
-    this.setState({
-      checkedYears: event.target.value,
-    });
-  };
-
-  handleChangedRating = (event) => {
-    this.setState({
-      rating: event.target.value,
-    });
-  };
-
-  handleChangedPopularity = (event) => {
-    this.setState({
-      popularity: event.target.value,
-    });
-  };
-
-  handlePaginationForward = () => {
-    let tempArr = [...this.state.page];
-    let shifted = tempArr.shift();
-    let pushed = tempArr.push(this.state.page[2] + 1);
-    this.setState(
-      {
-        page: tempArr,
-        offset: (this.state.offset += 10),
-      },
-      () => this.filterGames()
-    );
-  };
-
-  handlePaginationBackwards = () => {
-    let tempArr = [...this.state.page];
-    let popped = tempArr.pop();
-    let unshifted = tempArr.unshift(this.state.page[0] - 1);
-    this.setState(
-      {
-        page: tempArr,
-        offset: (this.state.offset -= 10),
-      },
-      () => this.filterGames()
-    );
-  };
-
   filterGames = () => {
-    console.log(this.state.offset);
     let apiString = "";
-    if (this.state.searchField.length > 0) {
-      apiString = ` search "${this.state.searchField}";`;
+    if (this.props.sField.length > 0) {
+      apiString = ` search "${this.props.sField}";`;
     } else {
-      apiString = ` where rating>=${this.state.rating} & popularity>=${this.state.popularity}`;
-      if (this.state.checkedGenres.length !== 0) {
-        apiString += ` & genres=(${this.state.checkedGenres})`;
+      apiString = ` where rating>=${this.props.sRating} & popularity>=${this.props.sPopularity}`;
+      if (this.props.sGenres.length !== 0) {
+        apiString += ` & genres=(${this.props.sGenres})`;
       }
-      if (this.state.checkedPlatforms.length !== 0) {
-        apiString += ` & platforms=(${this.state.checkedPlatforms})`;
+      if (this.props.sPlatforms.length !== 0) {
+        apiString += ` & platforms=(${this.props.sPlatforms})`;
       }
-      if (this.state.checkedYears.length !== 0) {
-        apiString += ` & release_dates=(${this.state.checkedYears})`;
+      if (this.props.sYear.length !== 0) {
+        apiString += ` & release_dates=(${this.props.sYear})`;
       }
     }
     instance(
       "games/",
-      `fields name, cover;${apiString}; sort rating; limit 10; offset ${this.state.offset};`
+      `fields name, cover;${apiString}; sort rating; limit 10; offset ${this.props.sOffset};`
     )
       .then((response) => {
         console.log(response.data);
-        if (response.data.some(game => !game.cover)) {
+        if (response.data.some((game) => !game.cover)) {
           this.setState({
             searchedGames: response.data.map((game) => [
               game.name,
@@ -194,16 +103,16 @@ class SearchPage extends Component {
     return (
       <main className="SearchPage">
         <FilterPanel
-          searchFieldChanged={this.handleSearchField}
+          searchFieldChanged={this.props.onChangeSearchField}
           genres={this.state.genres}
-          checkGenre={this.handleCheckedGenre}
+          checkGenre={this.props.onSelectGenres}
           platforms={this.state.platforms}
-          checkPlatform={this.handleChangedPlatform}
-          yearChanged={this.handleChangedYear}
-          ratingChanged={this.handleChangedRating}
-          rating={this.state.rating}
-          popularityChanged={this.handleChangedPopularity}
-          popularity={this.state.popularity}
+          checkPlatform={this.props.onSelectPlatforms}
+          yearChanged={this.props.onSelectYear}
+          ratingChanged={this.props.onSelectRating}
+          rating={this.props.sRating}
+          popularityChanged={this.props.onSelectPopularity}
+          popularity={this.props.sPopularity}
           filter={this.filterGames}
         />
         <div className="SearchPage__container">
@@ -219,8 +128,8 @@ class SearchPage extends Component {
           })}
         </div>
         <Pagination
-          changePageForward={this.handlePaginationForward}
-          changePageBackwards={this.handlePaginationBackwards}
+          changePageForward={this.props.onChangePageForward}
+          changePageBackwards={this.props.onChangePageBack}
         >
           {this.state.page}
         </Pagination>
@@ -229,4 +138,35 @@ class SearchPage extends Component {
   }
 }
 
-export default SearchPage;
+const mapStateToProps = (state) => {
+  return {
+    sField: state.searchField,
+    sGenres: state.selectedGenres,
+    sPlatforms: state.selectedPlatforms,
+    sYear: state.selectedYear,
+    sRating: state.selectedRating,
+    sPopularity: state.selectedPopularity,
+    sPages: state.pages,
+    sOffset: state.offset,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChangeSearchField: (e) =>
+      dispatch(actionTypes.changeSearchField(e.target.value)),
+    onSelectGenres: (e) =>
+      dispatch(actionTypes.selectGenres(e.target.value)),
+    onSelectPlatforms: (e) =>
+      dispatch(actionTypes.selectPlatforms(e.target.value)),
+    onSelectYear: (e) => dispatch(actionTypes.selectYear(e.target.value)),
+    onSelectRating: (e) =>
+      dispatch(actionTypes.selectRating(e.target.value)),
+    onSelectPopularity: (e) =>
+      dispatch(actionTypes.selectPopularity(e.target.value)),
+    onChangePageForward: () => dispatch(actionTypes.changePageForward()),
+    onChangePageBack: () => dispatch(actionTypes.changePageBack()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
