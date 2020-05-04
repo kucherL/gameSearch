@@ -42,14 +42,16 @@ export const selectPopularity = (value) => {
   };
 };
 
-export const changePageForward = () => {
+export const changePageForward = (filter) => {
   return {
     type: actionTypes.CHANGE_PAGE_FORWARD,
+    func: filter(),
   };
 };
 
-export const changePageBack = () => {
+export const changePageBack = (filter) => {
   return {
     type: actionTypes.CHANGE_PAGE_BACK,
+    func: filter(),
   };
 };

@@ -48,22 +48,31 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, { selectedPopularity: action.val });
     case actionTypes.CHANGE_PAGE_FORWARD:
       let tempForwardArr = [...state.pages];
-      let shifted = tempForwardArr.shift();
-      let pushed = tempForwardArr.push(state.pages[2] + 1);
-      return updateObject(state, {
-        pages: tempForwardArr,
-        offset: (state.offset += 10),
-      });
+      tempForwardArr.shift();
+      tempForwardArr.push(state.pages[2] + 1);
+      return updateObject(
+        state,
+        {
+          pages: tempForwardArr,
+          offset: (state.offset += 10),
+        },
+        () => action.func()
+      );
     case actionTypes.CHANGE_PAGE_BACK:
       let tempBackArr = [...state.pages];
-      let popped = tempBackArr.pop();
-      let unshifted = tempBackArr.unshift(state.pages[0] - 1);
-      return updateObject(state, {
-        pages: tempBackArr,
-        offset: (state.offset -= 10),
-      });
+      tempBackArr.pop();
+      tempBackArr.unshift(state.pages[0] - 1);
+      return updateObject(
+        state,
+        {
+          pages: tempBackArr,
+          offset: (state.offset -= 10),
+        },
+        () => action.func()
+      );
+    default:
+      return state;
   }
-  return state;
 };
 
 export default reducer;

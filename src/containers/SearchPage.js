@@ -128,10 +128,10 @@ class SearchPage extends Component {
           })}
         </div>
         <Pagination
-          changePageForward={this.props.onChangePageForward}
-          changePageBackwards={this.props.onChangePageBack}
+          changePageForward={() => this.props.onChangePageForward(this.filterGames)}
+          changePageBackwards={() => this.props.onChangePageBack(this.filterGames)}
         >
-          {this.state.page}
+          {this.props.sPages}
         </Pagination>
       </main>
     );
@@ -164,8 +164,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionTypes.selectRating(e.target.value)),
     onSelectPopularity: (e) =>
       dispatch(actionTypes.selectPopularity(e.target.value)),
-    onChangePageForward: () => dispatch(actionTypes.changePageForward()),
-    onChangePageBack: () => dispatch(actionTypes.changePageBack()),
+    onChangePageForward: (filter) => dispatch(actionTypes.changePageForward(filter)),
+    onChangePageBack: (filter) => dispatch(actionTypes.changePageBack(filter)),
   };
 };
 
