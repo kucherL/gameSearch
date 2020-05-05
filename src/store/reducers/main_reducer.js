@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../../utility";
 
 const initialState = {
+  randomGameId: "",
   randomGameTitle: "",
   randomGameSummary: "",
   randomGameCover: "",
@@ -12,6 +13,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_RANDOM_GAME:
       return updateObject(state, {
+        randomGameId: action.id,
         randomGameTitle: action.title,
         randomGameSummary: action.summary,
       });

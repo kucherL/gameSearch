@@ -1,20 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import PosterGame from "../ui/PosterGame";
-import Rating from "../ui/Rating";
-import TitleGame from "../ui/TitleGame";
-import DescriptionGame from "../ui/DescriptionGame";
+import GameItem from "../GameItem";
 
 const RandomGame = (props) => {
   return (
-    <section className="RandomGame">
-      <PosterGame coverRandomGame={props.coverRandomGame} />
-      <div className="RandomGame__container">
-        <Rating />
-        <TitleGame titleRandomGame={props.titleRandomGame} />
-        <DescriptionGame summaryGame={props.summaryGame} />
-      </div>
-    </section>
+    <Link to="/singlePage">
+      <section className="RandomGame">
+        <GameItem
+          game={props.titleRandomGame}
+          summary={props.summaryGame}
+          cover={props.coverRandomGame}
+          key={props.idRandomGame}
+        />
+      </section>
+    </Link>
   );
 };
 

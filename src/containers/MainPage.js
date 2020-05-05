@@ -21,6 +21,7 @@ class MainPage extends Component {
     return (
       <main className="MainPage">
         <RandomGame
+          idRandomGame={this.props.randId}
           coverRandomGame={this.props.randCover}
           titleRandomGame={this.props.randTitle}
           summaryGame={this.props.randSummary}
@@ -33,6 +34,7 @@ class MainPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    randId: state.mRed.randomGameId,
     randTitle: state.mRed.randomGameTitle,
     randSummary: state.mRed.randomGameSummary,
     randCover: state.mRed.randomGameCover,
