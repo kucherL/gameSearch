@@ -32,12 +32,6 @@ const Header = () => {
               </Link>
             )}
           </li>
-          {/* TODO:убрать этот блок!! */}
-          <li className="Header__container-right__item">
-            <Link to="/singlePage">
-              Временная!!
-            </Link>
-          </li>
           <li className="Header__container-right__item">
             <a href="/">Профиль</a>
           </li>

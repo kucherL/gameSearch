@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
-import { updateObject } from "../utility";
+import { updateObject } from "../../utility";
 
 const initialState = {
   searchField: "",
@@ -10,6 +10,9 @@ const initialState = {
   selectedPopularity: "4",
   pages: [1, 2, 3],
   offset: 0,
+  genres: [],
+  platforms: [],
+  filteredGames: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -70,6 +73,22 @@ const reducer = (state = initialState, action) => {
         },
         () => action.func()
       );
+    case actionTypes.GET_GENRES:
+      return updateObject(state, {
+        genres: action.data.map((obj) => [obj.name, obj.id]),
+      });
+    case actionTypes.GET_PLATFORMS:
+      return updateObject(state, {
+        platforms: action.data.map((obj) => [obj.name, obj.id]),
+      });
+    case actionTypes.FILTER_GAMES:
+      return updateObject(state, {
+        filteredGames: action.data.map((game) => [game.name, game.summary]),
+      });
+    case actionTypes.FILTER_GAMES_AND_COVERS:
+      return updateObject(state, {
+        filteredGames: action.data,
+      });
     default:
       return state;
   }

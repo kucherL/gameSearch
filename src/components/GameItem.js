@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import PosterGame from "./ui/PosterGame";
 import ToRememberButton from "./ui/ToRememberButton";
@@ -7,17 +8,18 @@ import TitleGame from "./ui/TitleGame";
 import DescriptionGame from "./ui/DescriptionGame";
 
 const gameItem = (props) => {
-
   return (
-    <section className="GameItem">
-      <PosterGame coverRandomGame={props.cover} />
-      <div>
-        <ToRememberButton />
-        <AddUsersRating />
-        <TitleGame titleRandomGame={props.game} />
-        <DescriptionGame summaryGame={props.summary} />
-      </div>
-    </section>
+    <Link to="/singlePage">
+      <section className="GameItem">
+        <PosterGame coverRandomGame={props.cover} />
+        <div>
+          <ToRememberButton />
+          <AddUsersRating />
+          <TitleGame titleRandomGame={props.game} />
+          <DescriptionGame summaryGame={props.summary} />
+        </div>
+      </section>
+    </Link>
   );
 };
 

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import { instance } from "../axios";
-
 import PosterGame from "../components/ui/PosterGame";
 import TitleGame from "../components/ui/TitleGame";
 import DescriptionGame from "../components/ui/DescriptionGame";
