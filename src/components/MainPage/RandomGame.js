@@ -5,13 +5,13 @@ import GameItem from "../GameItem";
 
 const RandomGame = (props) => {
   return (
-    <Link to="/singlePage">
+    <Link to="/singlePage" onClick={() => props.sendId(props.idRandomGame)}>
       <section className="RandomGame">
         <GameItem
           game={props.titleRandomGame}
           summary={props.summaryGame}
           cover={props.coverRandomGame}
-          key={props.idRandomGame}
+          id={props.idRandomGame}
         />
       </section>
     </Link>

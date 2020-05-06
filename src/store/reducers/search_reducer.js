@@ -13,6 +13,7 @@ const initialState = {
   genres: [],
   platforms: [],
   filteredGames: [],
+  choosedId: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -88,6 +89,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FILTER_GAMES_AND_COVERS:
       return updateObject(state, {
         filteredGames: action.data,
+      });
+    case actionTypes.GET_ID:
+      return updateObject(state, {
+        choosedId: action.val,
       });
     default:
       return state;

@@ -2,7 +2,7 @@ import React from "react";
 
 const descriptionGame = (props) => (
   <div className="DescriptionGame">
-    <p>{props.summaryGame}</p>
+    <p>{props.description}</p>
   </div>
 );
 

@@ -25,8 +25,12 @@ class MainPage extends Component {
           coverRandomGame={this.props.randCover}
           titleRandomGame={this.props.randTitle}
           summaryGame={this.props.randSummary}
+          sendId={this.props.onGetId}
         />
-        <PreferenceGames preferenceGames={this.props.preferredGames} />
+        <PreferenceGames
+          preferenceGames={this.props.preferredGames}
+          sendId={this.props.onGetId}
+        />
       </main>
     );
   }
@@ -47,6 +51,7 @@ const mapDispatchToProps = (dispatch) => {
     onGetRandomGame: (getRandomInt) =>
       dispatch(actionCreators.getRandomGame(getRandomInt)),
     onGetPreferredGames: () => dispatch(actionCreators.getPreferredGames()),
+    onGetId: (value) => dispatch(actionCreators.getId(value)),
   };
 };
 

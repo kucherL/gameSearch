@@ -14,7 +14,11 @@ export const GET_PLATFORMS = "GET_PLATFORMS";
 export const FILTER_GAMES = "FILTER_GAMES";
 export const FILTER_GAMES_AND_COVERS = "FILTER_GAMES_AND_COVERS";
 
-// async.MainPage
+// async.MainPage, SearchPage
 export const GET_RANDOM_GAME = "GET_RANDOM_GAME";
 export const GET_RANDOM_COVER = "GET_RANDOM_COVER";
 export const GET_PREFERRED_GAMES = "GET_PREFERRED_GAMES";
+export const GET_ID = "GET_ID";
+
+// async.SingleGamePage
+export const GET_SINGLE_GAME_INFO = "GET_SINGLE_GAME_INFO";

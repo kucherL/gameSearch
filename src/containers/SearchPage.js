@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import * as actionCreators from "../store/actions/search_actions";
 import FilterPanel from "../components/SearchPage/FilterPanel";
@@ -50,12 +51,18 @@ class SearchPage extends Component {
         <div className="SearchPage__container">
           {this.props.filteredGames.map((game, index) => {
             return (
-              <GameItem
-                game={game[0]}
-                summary={game[2]}
-                cover={game[3]}
+              <Link
+                to="/singlePage"
+                onClick={() => this.props.onGetId(game[0])}
                 key={index}
-              />
+              >
+                <GameItem
+                  game={game[1]}
+                  summary={game[3]}
+                  cover={game[4]}
+                  id={game[0]}
+                />
+              </Link>
             );
           })}
         </div>
@@ -111,6 +118,8 @@ const mapDispatchToProps = (dispatch) => {
     onGetPlatforms: () => dispatch(actionCreators.getPlatforms()),
     onFilterGames: (apiString, offset) =>
       dispatch(actionCreators.filterGames(apiString, offset)),
+
+    onGetId: (value) => dispatch(actionCreators.getId(value)),
   };
 };
 

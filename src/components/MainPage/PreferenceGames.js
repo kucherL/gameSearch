@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import GameItem from "../GameItem";
 
 const preferenceGames = (props) => {
-  const preferencesList = props.preferenceGames.map((game) => {
+  const preferencesList = props.preferenceGames.map((game, index) => {
     return (
-      <Link to="/singlePage">
+      <Link to="/singlePage" onClick={() => props.sendId(game[0])} key={index}>
         <GameItem
           game={game[1]}
           summary={game[3]}
           cover={game[4]}
-          key={game[0]} //id
+          id={game[0]}
         />
       </Link>
     );

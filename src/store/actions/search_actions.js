@@ -120,3 +120,11 @@ export const filterGames = (apiString, offset) => {
     }
   };
 };
+
+export const getId = (value) => {
+  console.log(value);
+  return {
+    type: actionTypes.GET_ID,
+    val: value,
+  };
+};

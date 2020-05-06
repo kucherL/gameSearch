@@ -7,6 +7,15 @@ const initialState = {
   randomGameSummary: "",
   randomGameCover: "",
   preferredGames: [],
+  choosedId: "",
+
+  singleCover: "",
+  singleName: "",
+  singleGenres: [],
+  singleRating: "",
+  singleVideos: [],
+  singleSummary: "",
+  singleAlike: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +34,20 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, {
         preferredGames: action.data,
       });
+    case actionTypes.GET_ID:
+      return updateObject(state, {
+        choosedId: action.val,
+      });
+    case actionTypes.GET_SINGLE_GAME_INFO:
+      return updateObject(state, {
+        singleCover: action.data[1],
+        singleName: action.data[0].name,
+        singleGenres: action.data[2],
+        singleRating: Math.floor(action.data[0].rating),
+        singleVideos: action.data[3],
+        singleSummary: action.data[0].summary,
+        singleAlike: action.data[4],
+      })
     default:
       return state;
   }
