@@ -1,0 +1,71 @@
+@import "../../varibles";
+
+.MainPage {
+  background-color: $first-background-color;
+
+  .RandomGame {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    text-align: center;
+  }
+
+  .PreferenceGames {
+    background-color: $first-background-color;
+    width: 100%;
+    height: auto;
+    padding: 0rem 1rem;
+
+    .PreferenceGames__title {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      color: $text-color;
+    }
+
+    .PreferenceGames__container {
+      grid-template-columns: 1fr;
+      display: grid;
+      grid-gap: 0.5rem;
+    }
+
+    .DescriptionGame {
+      margin-bottom: 0rem;
+    }
+  }
+}
+
+@media (min-width: 40rem) {
+  .MainPage {
+    .RandomGame {
+      flex-direction: row;
+      justify-content: space-around;
+
+      .RandomGame__container {
+        text-align: left;
+        width: 50%;
+      }
+    }
+    .PreferenceGames {
+      .PreferenceGames__container {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 60rem) {
+  .MainPage {
+    .PreferenceGames {
+      .PreferenceGames__container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+      }
+    }
+  }
+}

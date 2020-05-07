@@ -1,0 +1,100 @@
+@import "../../varibles";
+
+.SingleGamePage {
+  background-color: $first-background-color;
+  width: 100%;
+  padding: 1rem 1rem;
+
+  .GameInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .GameInfo__bottom-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .Videos {
+    margin: 1rem auto;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+
+    .Videos__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem auto;
+      border-color: $accent-color;
+      box-shadow: $border;
+      border-radius: 3px;
+
+      iframe {
+        width: 90%;
+        height: auto;
+        margin: 1rem;
+      }
+    }
+  }
+
+  .Summary {
+    margin: 1rem auto;
+
+    .Summary__title {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .Alike {
+    margin: 1rem auto;
+
+    .Alike__title {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .Alike__container {
+      grid-template-columns: 1fr;
+      display: grid;
+      grid-gap: 0.5rem;
+    }
+  }
+}
+
+@media (min-width: 40rem) {
+  .SingleGamePage {
+    .GameInfo {
+      flex-direction: row;
+      justify-content: space-around;
+
+      .GameInfo__bottom-block {
+        text-align: left;
+        width: 50%;
+      }
+    }
+    
+    .Alike {
+      .Alike__container {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 60rem) {
+  .SingleGamePage {
+    .Alike {
+      .Alike__container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+      }
+    }
+  }
+}

@@ -1,39 +1,21 @@
-import React, { useState } from "react";
-
-import ArrowButton from "../ui/ArrowButton";
+import React from "react";
 
 const PlatformSearch = (props) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const menuOpenHandler = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   const platformsList = props.platforms.map((platform, index) => {
     return (
-      <li key={index}>
-        <input
-          type="checkbox"
-          key={index}
-          onClick={props.clicked}
-          value={platform[1]}
-        />
-        <p>{platform[0]}</p>
-      </li>
+      <option key={index} onClick={props.clicked} value={platform[1]}>
+        {platform[0]}
+      </option>
     );
   });
 
   return (
-    <ul className="FilterPanel__item">
-      <div>
-        <ArrowButton click={menuOpenHandler} menuOpen={menuOpen}>
-          Платформа
-        </ArrowButton>
-      </div>
-      {menuOpen ? (
-        <div className="FilterPanel__item__dropdownMenu">{platformsList}</div>
-      ) : null}
-    </ul>
+    <div className="FilterPanel__item">
+      <label htmlFor="platform-select">Платформа</label>
+      <select name="platforms" id="platform-select">
+        {platformsList}
+      </select>
+    </div>
   );
 };
 

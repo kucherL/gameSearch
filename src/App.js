@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import MainPage from "./containers/MainPage";
-import SearchPage from "./containers/SearchPage";
-import SingleGamePage from "./containers/SingleGamePage"
+import MainPage from "./components/MainPage/MainPage";
+import SearchPage from "./components/SearchPage/SearchPage";
+import SingleGamePage from "./components/SingleGamePage/SingleGamePage"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 

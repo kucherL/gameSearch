@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./UiItems.scss";
+
 const arrowButton = (props) => {
   let className = "ArrowButton";
   if (props.menuOpen) {

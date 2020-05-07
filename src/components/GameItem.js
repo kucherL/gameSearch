@@ -8,13 +8,13 @@ import DescriptionGame from "./ui/DescriptionGame";
 
 const gameItem = (props) => {
   return (
-    <section className="GameItem">
-      <PosterGame coverRandomGame={props.cover} />
-      <div>
+    <section className="GameItem__container">
+      <PosterGame cover={props.cover} />
+      <div className="GameItem__info">
         <ToRememberButton />
         <AddUsersRating />
-        <TitleGame titleRandomGame={props.game} />
-        <DescriptionGame summaryGame={props.summary} />
+        <TitleGame title={props.game} />
+        <DescriptionGame description={props.description} />
       </div>
     </section>
   );

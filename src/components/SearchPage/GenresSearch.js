@@ -1,39 +1,25 @@
-import React, { useState } from "react";
-
-import ArrowButton from "../ui/ArrowButton";
+import React from "react";
 
 const GenresSearch = (props) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const menuOpenHandler = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   const genresList = props.genres.map((genre, index) => {
     return (
-      <li key={index}>
-        <input
-          type="checkbox"
-          key={index}
-          onClick={props.clicked}
-          value={genre[1]}
-        />
-        <p>{genre[0]}</p>
-      </li>
+      <option
+        key={index}
+        onClick={props.clicked}
+        value={genre[1]}
+      >
+        {genre[0]}
+      </option>
     );
   });
 
   return (
-    <ul className="FilterPanel__item">
-      <div>
-        <ArrowButton click={menuOpenHandler} menuOpen={menuOpen}>
-          Жанр
-        </ArrowButton>
-      </div>
-      {menuOpen ? (
-        <div className="FilterPanel__item__dropdownMenu">{genresList}</div>
-      ) : null}
-    </ul>
+    <div className="FilterPanel__item">
+      <label htmlFor="genre-select">Жанр</label>
+      <select name="genres" id="genre-select">
+        {genresList}
+      </select>
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ import PlatformSearch from "./PlatformSearch";
 import YearOfReleaseSearch from "./YearOfReleaseSearch";
 import RatingSearch from "./RatingSearch";
 import PopularitySearch from "./PopularitySearch";
+import SubmitButton from "../ui/SubmitButton";
 
 const filterPanel = (props) => {
   return (
@@ -19,7 +20,7 @@ const filterPanel = (props) => {
         popularityChanged={props.popularityChanged}
         popularity={props.popularity}
       />
-      <button onClick={props.filter}>Найти</button>
+      <SubmitButton click={props.filter}>Найти</SubmitButton>
     </nav>
   );
 };
