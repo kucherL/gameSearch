@@ -22,7 +22,7 @@ class MainPage extends Component {
   render() {
     return (
       <main className="MainPage">
-        {this.props.loading ? (
+        {!this.props.randCover ? (
           <Loader />
         ) : (
           <>
@@ -46,7 +46,6 @@ class MainPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.loading,
     randId: state.randomGameId,
     randTitle: state.randomGameTitle,
     randSummary: state.randomGameSummary,

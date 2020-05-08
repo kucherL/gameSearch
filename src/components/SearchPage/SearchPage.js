@@ -15,6 +15,10 @@ class SearchPage extends Component {
     this.props.onGetPlatforms();
   };
 
+  componentDidUpdate = () => {
+    console.log(this.props.filteredGames);
+  }
+
   filterGames = () => {
     let apiString = "";
     if (this.props.sField.length > 0) {
@@ -37,54 +41,52 @@ class SearchPage extends Component {
   render() {
     return (
       <main className="SearchPage">
-        {this.props.loading ? (
+        <FilterPanel
+          searchFieldChanged={this.props.onChangeSearchField}
+          genres={this.props.genres}
+          checkGenre={this.props.onSelectGenres}
+          platforms={this.props.platforms}
+          checkPlatform={this.props.onSelectPlatforms}
+          yearChanged={this.props.onSelectYear}
+          ratingChanged={this.props.onSelectRating}
+          rating={this.props.sRating}
+          popularityChanged={this.props.onSelectPopularity}
+          popularity={this.props.sPopularity}
+          filter={this.filterGames}
+        />
+        {!this.props.filteredGames[0, [0]] ? (
           <Loader />
         ) : (
-          <>
-            <FilterPanel
-              searchFieldChanged={this.props.onChangeSearchField}
-              genres={this.props.genres}
-              checkGenre={this.props.onSelectGenres}
-              platforms={this.props.platforms}
-              checkPlatform={this.props.onSelectPlatforms}
-              yearChanged={this.props.onSelectYear}
-              ratingChanged={this.props.onSelectRating}
-              rating={this.props.sRating}
-              popularityChanged={this.props.onSelectPopularity}
-              popularity={this.props.sPopularity}
-              filter={this.filterGames}
-            />
-            <div className="SearchPage__container">
-              {this.props.filteredGames.map((game, index) => {
-                return (
-                  <Link
-                    to="/singlePage"
-                    onClick={() => this.props.onGetId(game[0])}
-                    key={index}
-                    className="GameItem"
-                  >
-                    <GameItem
-                      game={game[0]}
-                      description={game[2]}
-                      cover={game[3]}
-                      id={game[1]}
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-            <Pagination
-              changePageForward={() =>
-                this.props.onChangePageForward(this.filterGames)
-              }
-              changePageBackwards={() =>
-                this.props.onChangePageBack(this.filterGames)
-              }
-            >
-              {this.props.sPages}
-            </Pagination>
-          </>
+          <div className="SearchPage__container">
+            {this.props.filteredGames.map((game, index) => {
+              return (
+                <Link
+                  to="/singlePage"
+                  onClick={() => this.props.onGetId(game[0])}
+                  key={index}
+                  className="GameItem"
+                >
+                  <GameItem
+                    game={game[0]}
+                    description={game[2]}
+                    cover={game[3]}
+                    id={game[1]}
+                  />
+                </Link>
+              );
+            })}
+          </div>
         )}
+        <Pagination
+          changePageForward={() =>
+            this.props.onChangePageForward(this.filterGames)
+          }
+          changePageBackwards={() =>
+            this.props.onChangePageBack(this.filterGames)
+          }
+        >
+          {this.props.sPages}
+        </Pagination>
       </main>
     );
   }
@@ -92,7 +94,6 @@ class SearchPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.loading,
     sField: state.searchField,
     sGenres: state.selectedGenres,
     sPlatforms: state.selectedPlatforms,

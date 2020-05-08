@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import MainPage from "./components/MainPage/MainPage";
 import SearchPage from "./components/SearchPage/SearchPage";
-import SingleGamePage from "./components/SingleGamePage/SingleGamePage"
+import SingleGamePage from "./components/SingleGamePage/SingleGamePage";
+import UserPage from "./components/UserPage/UserPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -19,6 +20,9 @@ const App = () => {
             </Route>
             <Route path="/singlePage">
               <SingleGamePage />
+            </Route>
+            <Route path="/userPage">
+              <UserPage />
             </Route>
             <Route exact path="/">
               <MainPage />

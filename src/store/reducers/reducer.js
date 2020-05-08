@@ -2,7 +2,6 @@ import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../../utility";
 
 const initialState = {
-  loading: true,
   randomGameId: "",
   randomGameTitle: "",
   randomGameSummary: "",
@@ -42,12 +41,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_RANDOM_COVER:
       return updateObject(state, {
         randomGameCover: action.cover,
-        loading: false,
       });
     case actionTypes.GET_PREFERRED_GAMES:
       return updateObject(state, {
         preferredGames: action.data,
-        loading: false,
       });
     case actionTypes.GET_ID:
       return updateObject(state, {
@@ -120,12 +117,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FILTER_GAMES:
       return updateObject(state, {
         filteredGames: action.data.map((game) => [game.name, game.summary]),
-        loading: false,
       });
     case actionTypes.FILTER_GAMES_AND_COVERS:
       return updateObject(state, {
         filteredGames: action.data,
-        loading: false,
       });
     case actionTypes.GET_SINGLE_GAME_INFO:
       return updateObject(state, {
