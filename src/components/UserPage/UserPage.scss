@@ -1,1 +1,49 @@
 @import "../../varibles";
+
+.UserPage {
+  padding: 2rem;
+  background-color: $first-background-color;
+
+  .ProfileInfo {
+    margin-bottom: 2rem;
+    display: flex;
+
+    .ProfileInfo__photo {
+      width: 50%;
+
+      img {
+        border-color: $accent-color;
+        box-shadow: $border;
+        border-radius: 3px;
+      }
+    }
+
+    .ProfileInfo__about {
+      width: 50%;
+      margin-left: 1rem;
+    }
+  }
+
+  .FoldersSection {
+    .FoldersSection__select {
+      background-color: transparent;
+      border: none;
+      border-color: $accent-color;
+      box-shadow: $border;
+      border-radius: 3px;
+      font-family: inherit;
+      padding: 0.2rem 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .FoldersSection__select:enabled {
+      background-color: $first-background-color;
+    }
+
+    .GameItem__container {
+      border-color: $accent-color;
+      box-shadow: $border;
+      border-radius: 3px;
+    }
+  }
+}
