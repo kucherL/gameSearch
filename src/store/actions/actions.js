@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import { IMAGES_URL } from "../../utility";
 import { instance } from "../../axios";
+import { auth, firestore } from "../../firebase";
 
 export const getId = (value) => {
   return {
@@ -202,25 +203,25 @@ export const getSingleGameInfo = (id) => {
       "genres",
       `fields name; where id=(${info.data[0].genres});`
     );
-    genres = genres.data.map(genre => genre.name);
+    genres = genres.data.map((genre) => genre.name);
 
     let videos = await instance(
       "game_videos",
       `fields video_id; where game=${id};`
     );
     if (videos.data.length > 0) {
-      videos = videos.data.map(video => video.video_id);
+      videos = videos.data.map((video) => video.video_id);
     } else {
       videos = null;
-    };
+    }
 
     let alike = await instance(
       "games/",
       `fields id, cover, name, rating; where id=(${info.data[0].similar_games}); limit 5;`
     );
     let temporaryDataPreference = alike.data
-    .sort((a, b) => a.cover - b.cover)
-    .map((game) => [game.id, game.name, game.rating, game.cover]);
+      .sort((a, b) => a.cover - b.cover)
+      .map((game) => [game.id, game.name, game.rating, game.cover]);
     let temporaryData = alike.data.map((item) => item.cover).join(", ");
     let alikeCovers = await instance(
       "covers",
@@ -240,6 +241,36 @@ export const getSingleGameInfo = (id) => {
     dispatch({
       type: actionTypes.GET_SINGLE_GAME_INFO,
       data: allInfo,
+    });
+  };
+};
+
+export const checkAuth = () => {
+  return async (dispatch) => {
+    auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        dispatch({
+          type: actionTypes.CHECK_AUTH,
+          data: { uid: userAuth.id, ...userAuth.data },
+        });
+      }
+      dispatch({
+        type: actionTypes.CHECK_AUTH,
+        data: userAuth,
+      });
+    });
+  };
+};
+
+export const getProfileData = (user) => {
+  return async (dispatch) => {
+    let profile = await firestore
+      .doc(`users/${user}`)
+      .get();
+      const profileData = profile.data();
+    dispatch({
+      type: actionTypes.GET_PROFILE_DATA,
+      data: profileData,
     });
   };
 };

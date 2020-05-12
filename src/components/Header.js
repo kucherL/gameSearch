@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { signInWithGoogle, signOut } from "../firebase";
+import { signOut } from "../firebase";
 import SubmitButton from "./ui/SubmitButton";
 
 const Header = () => {
@@ -13,7 +13,6 @@ const Header = () => {
   };
 
   const handleSignInWithGoogle = () => {
-    signInWithGoogle();
     setLogin(true);
   };
 
@@ -46,15 +45,14 @@ const Header = () => {
           </li>
           <li className="Header__container-right__item">
             <Link to="/userPage">
-              <a href="/">Профиль</a>
+              Профиль
             </Link>
-          </li>
-          <li className="Header__container-right__item">
-            <a href="/">Настройки</a>
           </li>
         </ul>
         {!login ? (
-          <SubmitButton click={handleSignInWithGoogle}>Войти</SubmitButton>
+          <Link to="/auth">
+            <SubmitButton click={handleSignInWithGoogle}>Войти</SubmitButton>
+          </Link>
         ) : (
           <SubmitButton click={handleSignOutWithGoogle}>Выход</SubmitButton>
         )}

@@ -1,45 +1,44 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import "./Auth.scss";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import SubmitButton from "../ui/SubmitButton";
-import { auth, createUserProfile } from "../../firebase";
+import * as actionCreators from "../../store/actions/actions";
 
 class Auth extends Component {
-
-  state = {
-    user: null,
-  };
-
   unsubscribeFormAuth = null;
 
   componentDidMount = async () => {
-    this.unsubscribeFormAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfile(userAuth);
-        userRef.onSnapshot((snapshot) => {
-          this.setState({user: {uid: snapshot.id, ...snapshot.data()}});
-        });
-      }
-      this.setState({user: userAuth});
-    });
+    this.props.onCheckAuth();
   };
 
-  componentWillUnmount = () => {
-    this.unsubscribeFormAuth();
-  };
+  // componentWillUnmount = () => {
+  //   this.unsubscribeFormAuth();
+  // };
 
   render() {
-    // return <div>{user ? <CurrentUser {...user} /> : <SignInAndSignUp />}</div>;
     return (
       <div className="Auth">
         <SignIn />
         <SignUp />
         <SubmitButton />
       </div>
-    )
+    );
   }
 }
 
-export default Auth;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCheckAuth: () => dispatch(actionCreators.checkAuth()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

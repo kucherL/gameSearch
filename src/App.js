@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MainPage from "./components/MainPage/MainPage";
 import SearchPage from "./components/SearchPage/SearchPage";
 import SingleGamePage from "./components/SingleGamePage/SingleGamePage";
+import Auth from "./components/Auth/Auth";
 import UserPage from "./components/UserPage/UserPage";
+import ProfileSettings from "./components/UserPage/ProfileSettings";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -21,8 +23,14 @@ const App = () => {
             <Route path="/singlePage">
               <SingleGamePage />
             </Route>
+            <Route path="/auth">
+              <Auth />
+            </Route>
             <Route path="/userPage">
               <UserPage />
+            </Route>
+            <Route path="/profileSettings">
+              <ProfileSettings />
             </Route>
             <Route exact path="/">
               <MainPage />

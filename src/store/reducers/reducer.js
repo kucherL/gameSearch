@@ -28,6 +28,9 @@ const initialState = {
   singleVideos: [],
   singleSummary: "",
   singleAlike: [],
+
+  user: "",
+  profileData: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -131,6 +134,14 @@ const reducer = (state = initialState, action) => {
         singleVideos: action.data[3],
         singleSummary: action.data[0].summary,
         singleAlike: action.data[4],
+      });
+    case actionTypes.CHECK_AUTH:
+      return updateObject(state, {
+        user: action.data,
+      });
+    case actionTypes.GET_PROFILE_DATA:
+      return updateObject(state, {
+        profileData: action.data,
       });
     default:
       return state;

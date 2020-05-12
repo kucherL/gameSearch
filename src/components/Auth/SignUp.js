@@ -8,9 +8,16 @@ class SignUp extends Component {
     password: "",
   };
 
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+  handleChangeName = (event) => {
+    this.setState({ name: event.target.value });
+  };
+
+  handleChangeEmail = (event) => {
+    this.setState({ email: event.target.value });
+  };
+
+  handleChangePassword = (event) => {
+    this.setState({ password: event.target.value });
   };
 
   handleSubmit = async (event) => {
@@ -39,21 +46,21 @@ class SignUp extends Component {
           name="displayName"
           placeholder="Display Name"
           value={name}
-          onChange={this.handleChange}
+          onChange={this.handleChangeName}
         />
         <input
           type="email"
           name="email"
           placeholder="Email"
           value={email}
-          onChange={this.handleChange}
+          onChange={this.handleChangeEmail}
         />
         <input
           type="password"
           name="password"
           placeholder="Password"
           value={password}
-          onChange={this.handleChange}
+          onChange={this.handleChangePassword}
         />
         <input type="submit" value="Sign Up" />
       </form>

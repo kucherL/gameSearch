@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import "firebase/storage";
 
 var firebaseConfig = {
   apiKey: "AIzaSyCO9mRTUYp9R-9-wIIoi79OkTJKFd3RfKE",
@@ -16,12 +17,24 @@ firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
 export const auth = firebase.auth();
+export const storage = firebase.storage();
 export const signOut = () => auth.signOut();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
 export const signInWithGoogle = () => {
-  auth.signInWithPopup(provider);
+  auth.signInWithPopup(provider).then((result) => {
+    if (firestore.doc(`users/${result.user.uid}`) === true) {
+      return null;
+    } else {
+      createUserProfile({
+        uid: result.user.uid,
+        email: result.user.email,
+        name: result.user.displayName,
+        photoURL: result.user.photoURL,
+      });
+    }
+  });
 };
 
 export const createUserProfile = async (user, additionalData) => {

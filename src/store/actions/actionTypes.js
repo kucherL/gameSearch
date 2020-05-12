@@ -22,3 +22,9 @@ export const GET_ID = "GET_ID";
 
 // async.SingleGamePage
 export const GET_SINGLE_GAME_INFO = "GET_SINGLE_GAME_INFO";
+
+// async.Auth
+export const CHECK_AUTH = "CHECK_AUTH";
+
+// async.ProfileInfo
+export const GET_PROFILE_DATA = "GET_PROFILE_DATA";
