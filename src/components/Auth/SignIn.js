@@ -22,8 +22,6 @@ class SignIn extends Component {
     this.setState({ email: "", password: "" });
   };
 
-  // TODO: реализовать авторизацию через гугл
-
   render() {
     const { email, password } = this.state;
     return (

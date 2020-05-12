@@ -28,3 +28,6 @@ export const CHECK_AUTH = "CHECK_AUTH";
 
 // async.ProfileInfo
 export const GET_PROFILE_DATA = "GET_PROFILE_DATA";
+
+// async.FoldersSection
+export const SET_NEW_FOLDER = "SET_NEW_FOLDER";

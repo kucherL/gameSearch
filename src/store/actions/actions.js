@@ -274,3 +274,9 @@ export const getProfileData = (user) => {
     });
   };
 };
+
+export const setNewFolder = (user, title) => {
+  return async () => {
+    await firestore.collection(`users/${user}/folders`).add({title});
+  }
+}
