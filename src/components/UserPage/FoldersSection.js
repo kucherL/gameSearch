@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import GameItem from "../GameItem";
 
 class FoldersSection extends Component {
-  addFolder = (event) => {};
+  addFolder = (event) => {
+    
+  };
 
   render = () => {
     return (
