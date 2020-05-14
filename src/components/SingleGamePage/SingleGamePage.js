@@ -35,7 +35,7 @@ class SingleGamePage extends Component {
                   title={this.props.title}
                   summary={this.props.summary}
                 />
-                <AddUsersRating />
+                <AddUsersRating idGame={this.props.id} />
                 <TitleGame title={this.props.title} />
                 <DescriptionGame description={this.props.genre} />
                 <Rating>{this.props.rating}</Rating>

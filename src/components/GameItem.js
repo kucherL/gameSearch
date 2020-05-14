@@ -17,7 +17,7 @@ const GameItem = (props) => {
           title={props.game}
           description={props.description}
         />
-        <AddUsersRating />
+        <AddUsersRating idGame={props.id} />
         <TitleGame title={props.game} />
         <DescriptionGame description={props.description} />
       </div>

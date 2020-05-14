@@ -299,11 +299,22 @@ export const addGameToFolder = (gameData, user, idFolder) => {
 
 export const fetchGamesInFolder = (user, idFolder) => {
   return async (dispatch) => {
-    const games = await firestore.collection(`users/${user}/folders/${idFolder}/games`).get();
-    const folderGames = games.docs.map(doc => doc.data());
+    const games = await firestore
+      .collection(`users/${user}/folders/${idFolder}/games`)
+      .get();
+    const folderGames = games.docs.map((doc) => doc.data());
     dispatch({
       type: actionTypes.FETCH_GAMES_IN_FOLDER,
       data: folderGames,
-    })
-  }
-}
+    });
+  };
+};
+
+export const addUserRating = (user, starValue, idGame) => {
+  console.log(user, starValue, idGame);
+  return async () => {
+    await firestore
+      .collection(`users/${user}/playedGames`)
+      .add({ starValue, idGame });
+  };
+};

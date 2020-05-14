@@ -1,7 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 
 import "./UiItems.scss";
 
-const starButton = () => <button className="StarButton" />;
+class StarButton extends Component {
+  render = () => {
+    return <button className="StarButton" onClick={this.props.click} />;
+  };
+}
 
-export default starButton;
+export default StarButton;
