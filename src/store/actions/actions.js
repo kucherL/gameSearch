@@ -237,7 +237,6 @@ export const getSingleGameInfo = (id) => {
     alike = temporaryDataPreference;
 
     let allInfo = info.data.concat(cover, [genres], [videos], [alike]);
-    console.log(allInfo);
     dispatch({
       type: actionTypes.GET_SINGLE_GAME_INFO,
       data: allInfo,
@@ -264,13 +263,47 @@ export const checkAuth = () => {
 
 export const getProfileData = (user) => {
   return async (dispatch) => {
-    let profile = await firestore
-      .doc(`users/${user}`)
-      .get();
-      const profileData = profile.data();
+    const profile = await firestore.doc(`users/${user}`).get();
+    const profileData = profile.data();
     dispatch({
       type: actionTypes.GET_PROFILE_DATA,
       data: profileData,
     });
   };
 };
+
+export const setNewFolder = (user, title) => {
+  return async () => {
+    await firestore.collection(`users/${user}/folders`).add({ title });
+  };
+};
+
+export const getUserFolders = (user) => {
+  return async (dispatch) => {
+    const folders = await firestore.collection(`users/${user}/folders`).get();
+    const userFolders = folders.docs.map((doc) => [doc.id, doc.data()]);
+    dispatch({
+      type: actionTypes.GET_USER_FOLDERS,
+      data: userFolders,
+    });
+  };
+};
+
+export const addGameToFolder = (gameData, user, idFolder) => {
+  return async () => {
+    await firestore
+      .collection(`users/${user}/folders/${idFolder}/games`)
+      .add({ gameData });
+  };
+};
+
+export const fetchGamesInFolder = (user, idFolder) => {
+  return async (dispatch) => {
+    const games = await firestore.collection(`users/${user}/folders/${idFolder}/games`).get();
+    const folderGames = games.docs.map(doc => doc.data());
+    dispatch({
+      type: actionTypes.FETCH_GAMES_IN_FOLDER,
+      data: folderGames,
+    })
+  }
+}

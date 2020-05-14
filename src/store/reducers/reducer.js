@@ -31,6 +31,8 @@ const initialState = {
 
   user: "",
   profileData: [],
+  userFolders: [],
+  folderGames: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -143,6 +145,14 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, {
         profileData: action.data,
       });
+    case actionTypes.GET_USER_FOLDERS:
+      return updateObject(state, {
+        userFolders: action.data,
+      })
+    case actionTypes.FETCH_GAMES_IN_FOLDER:
+      return updateObject(state, {
+        folderGames: action.data,
+      })
     default:
       return state;
   }

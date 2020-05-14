@@ -29,7 +29,12 @@ class SingleGamePage extends Component {
             <section className="GameInfo">
               <PosterGame cover={this.props.cover} />
               <div className="GameInfo__bottom-block">
-                <ToRememberButton />
+                <ToRememberButton
+                  idGame={this.props.id}
+                  cover={this.props.cover}
+                  title={this.props.title}
+                  summary={this.props.summary}
+                />
                 <AddUsersRating />
                 <TitleGame title={this.props.title} />
                 <DescriptionGame description={this.props.genre} />

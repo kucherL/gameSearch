@@ -28,3 +28,10 @@ export const CHECK_AUTH = "CHECK_AUTH";
 
 // async.ProfileInfo
 export const GET_PROFILE_DATA = "GET_PROFILE_DATA";
+export const GET_USER_FOLDERS = "GET_USER_FOLDERS";
+export const FETCH_GAMES_IN_FOLDER = "FETCH_GAMES_IN_FOLDER";
+
+// async.FoldersSection
+export const SET_NEW_FOLDER = "SET_NEW_FOLDER";
+
+export const ADD_GAME_TO_FOLDER = "ADD_GAME_TO_FOLDER";

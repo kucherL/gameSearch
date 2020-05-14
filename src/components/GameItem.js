@@ -6,12 +6,17 @@ import AddUsersRating from "./ui/AddUsersRating";
 import TitleGame from "./ui/TitleGame";
 import DescriptionGame from "./ui/DescriptionGame";
 
-const gameItem = (props) => {
+const GameItem = (props) => {
   return (
     <section className="GameItem__container">
       <PosterGame cover={props.cover} />
       <div className="GameItem__info">
-        <ToRememberButton />
+        <ToRememberButton
+          idGame={props.id}
+          cover={props.cover}
+          title={props.game}
+          description={props.description}
+        />
         <AddUsersRating />
         <TitleGame title={props.game} />
         <DescriptionGame description={props.description} />
@@ -20,4 +25,4 @@ const gameItem = (props) => {
   );
 };
 
-export default gameItem;
+export default GameItem;
