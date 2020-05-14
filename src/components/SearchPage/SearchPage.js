@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import * as actionCreators from "../../store/actions/actions";
-import FilterPanel from "./FilterPanel";
+import FilterPanel from "./FilterPanel/FilterPanel";
 import GameItem from "../GameItem";
-import Pagination from "./Pagination";
-import Loader from "../ui/Loader";
+import Loader from "../ui/Loader/Loader";
+import ArrowButton from "../ui/ArrowButton/ArrowButton";
 import "./SearchPage.scss";
 
 class SearchPage extends Component {
@@ -17,7 +17,7 @@ class SearchPage extends Component {
 
   componentDidUpdate = () => {
     console.log(this.props.filteredGames);
-  }
+  };
 
   filterGames = () => {
     let apiString = "";
@@ -54,7 +54,7 @@ class SearchPage extends Component {
           popularity={this.props.sPopularity}
           filter={this.filterGames}
         />
-        {!this.props.filteredGames[0, [0]] ? (
+        {!this.props.filteredGames[(0, [0])] ? (
           <Loader />
         ) : (
           <div className="SearchPage__container">
@@ -77,16 +77,15 @@ class SearchPage extends Component {
             })}
           </div>
         )}
-        <Pagination
-          changePageForward={() =>
-            this.props.onChangePageForward(this.filterGames)
-          }
-          changePageBackwards={() =>
-            this.props.onChangePageBack(this.filterGames)
-          }
-        >
+        <div className="Pagination">
+          <ArrowButton
+            click={() => this.props.onChangePageForward(this.filterGames)}
+          />
           {this.props.sPages}
-        </Pagination>
+          <ArrowButton
+            click={() => this.props.onChangePageBack(this.filterGames)}
+          />
+        </div>
       </main>
     );
   }

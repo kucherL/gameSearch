@@ -1,0 +1,24 @@
+@import "../../../varibles";
+
+.FoldersSection {
+  &__select {
+    background-color: transparent;
+    border: none;
+    border-color: $accent-color;
+    box-shadow: $border;
+    border-radius: 3px;
+    font-family: inherit;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__select:enabled {
+    background-color: $first-background-color;
+  }
+
+  .GameItem__container {
+    border-color: $accent-color;
+    box-shadow: $border;
+    border-radius: 3px;
+  }
+}

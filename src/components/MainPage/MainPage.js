@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import RandomGame from "./RandomGame";
-import PreferenceGames from "./PreferenceGames";
-import Loader from "../ui/Loader";
+import RandomGame from "./RandomGame/RandomGame";
+import PreferenceList from "./PreferenceList/PreferenceList";
+import Loader from "../ui/Loader/Loader";
 import * as actionCreators from "../../store/actions/actions";
 import "./MainPage.scss";
 
@@ -33,7 +33,7 @@ class MainPage extends Component {
               summaryGame={this.props.randSummary}
               sendId={this.props.onGetId}
             />
-            <PreferenceGames
+            <PreferenceList
               preferenceGames={this.props.preferredGames}
               sendId={this.props.onGetId}
             />

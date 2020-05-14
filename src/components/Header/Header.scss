@@ -1,0 +1,24 @@
+@import "../../varibles";
+
+.Header {
+  background-color: $second-background-color;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+
+  &__container-right {
+    display: flex;
+    justify-content: flex-end;
+
+    &__items {
+      display: flex;
+    }
+
+    &__item {
+      margin-right: 1rem;
+    }
+  }
+}

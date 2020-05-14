@@ -1,0 +1,9 @@
+@import "../../../varibles";
+
+.Rating {
+  margin-bottom: 1rem;
+
+  &__number {
+    color: $second-background-color;
+  }
+}

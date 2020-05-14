@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import "./UserPage.scss";
-import ProfileInfo from "./ProfileInfo";
-import FoldersSection from "./FoldersSection";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import FoldersSection from "./FoldersSection/FoldersSection";
 
 class UserPage extends Component {
   render() {

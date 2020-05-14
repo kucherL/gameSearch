@@ -1,0 +1,43 @@
+@import "../../../varibles";
+
+.PreferenceList {
+  background-color: $first-background-color;
+  width: 100%;
+  height: auto;
+  padding: 0rem 1rem;
+
+  &__title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: $text-color;
+  }
+
+  &__container {
+    grid-template-columns: 1fr;
+    display: grid;
+    grid-gap: 0.5rem;
+  }
+
+  .DescriptionGame {
+    margin-bottom: 0rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  .PreferenceList {
+    &__container {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1rem;
+    }
+  }
+}
+
+@media (min-width: 60rem) {
+  .PreferenceList {
+    &__container {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 1rem;
+    }
+  }
+}

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import "./Auth.scss";
-import SignUp from "./SignUp";
-import SignIn from "./SignIn";
+import SignUp from "./SignUp/SignUp";
+import SignIn from "./SignIn/SignIn";
 import SubmitButton from "../ui/SubmitButton";
 import * as actionCreators from "../../store/actions/actions";
 

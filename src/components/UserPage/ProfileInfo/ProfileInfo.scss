@@ -1,0 +1,21 @@
+@import "../../../varibles";
+
+.ProfileInfo {
+  margin-bottom: 2rem;
+  display: flex;
+
+  &__photo {
+    width: 50%;
+
+    img {
+      border-color: $accent-color;
+      box-shadow: $border;
+      border-radius: 3px;
+    }
+  }
+
+  &__about {
+    width: 50%;
+    margin-left: 1rem;
+  }
+}

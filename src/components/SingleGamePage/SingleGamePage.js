@@ -7,9 +7,9 @@ import DescriptionGame from "../ui/DescriptionGame";
 import ToRememberButton from "../ui/ToRememberButton";
 import AddUsersRating from "../ui/AddUsersRating";
 import Rating from "../ui/Rating";
-import Videos from "./Videos";
-import Summary from "./Summary";
-import Alike from "./Alike";
+import Trailers from "./Trailers/Trailers";
+import Summary from "./Summary/Summary";
+import SimilarGames from "./SimilarGames/SimilarGames";
 import Loader from "../ui/Loader";
 import * as actionCreators from "../../store/actions/actions";
 import "./SingleGamePage.scss";
@@ -42,10 +42,10 @@ class SingleGamePage extends Component {
               </div>
             </section>
             {this.props.videos !== null ? (
-              <Videos videos={this.props.videos} />
+              <Trailers videos={this.props.videos} />
             ) : null}
             <Summary summary={this.props.summary} />
-            <Alike alikeGames={this.props.alike} sendId={this.props.onGetId} />
+            <SimilarGames alikeGames={this.props.alike} sendId={this.props.onGetId} />
           </>
         )}
       </main>

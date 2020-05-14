@@ -1,0 +1,10 @@
+@import "../../../varibles";
+
+.SubmitButton {
+  border: none;
+  background: $first-background-color;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  font-family: inherit;
+  font-weight: bold;
+}
