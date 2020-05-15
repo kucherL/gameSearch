@@ -1,9 +1,44 @@
 @import "../../../varibles";
 
 .Rating {
-  margin-bottom: 1rem;
+  width: 10%;
+  justify-content: space-around;
 
-  &__number {
-    color: $second-background-color;
+  &__circular-chart {
+    display: block;
+    margin: 10px auto;
+    max-width: 80%;
+    max-height: 250px;
+  }
+
+  &__circle-bg {
+    fill: none;
+    stroke: $first-background-color;
+    stroke-width: 3.8;
+  }
+
+  &__circle {
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+  }
+
+  &__circular-chart, 
+  &__circle {
+    stroke: $second-background-color;
+  }
+
+  &__percentage {
+    fill: $text-color;
+    font-family: inherit;
+    font-size: 0.5em;
+    text-anchor: middle;
+  }
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
   }
 }
