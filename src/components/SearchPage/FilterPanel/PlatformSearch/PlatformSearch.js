@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlatformSearch = (props) => {
+const platformSearch = (props) => {
   const platformsList = props.platforms.map((platform, index) => {
     return (
       <option key={index} onClick={props.clicked} value={platform[1]}>
@@ -19,4 +19,4 @@ const PlatformSearch = (props) => {
   );
 };
 
-export default PlatformSearch;
+export default platformSearch;

@@ -11,6 +11,7 @@ class MainPage extends Component {
   componentDidMount = () => {
     this.props.onGetRandomGame(this.getRandomInt);
     this.props.onGetPreferredGames();
+    this.props.onCheckAuth();
   };
 
   getRandomInt = (arr) => {
@@ -60,6 +61,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.getRandomGame(getRandomInt)),
     onGetPreferredGames: () => dispatch(actionCreators.getPreferredGames()),
     onGetId: (value) => dispatch(actionCreators.getId(value)),
+    onCheckAuth: () => dispatch(actionCreators.checkAuth()),
   };
 };
 

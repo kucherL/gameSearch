@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./PreferenceList.scss";
 import GameItem from "../../ui/GameItem/GameItem";
 
-const PreferenceList = (props) => {
+const preferenceList = (props) => {
   const list = props.preferenceGames.map((game, index) => {
     return (
       <Link
@@ -33,4 +33,4 @@ const PreferenceList = (props) => {
   );
 };
 
-export default PreferenceList;
+export default preferenceList;

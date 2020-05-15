@@ -7,7 +7,7 @@ import Title from "../../ui/Title/Title";
 import Rating from "../../ui/Rating/Rating";
 import Description from "../../ui/Description/Description";
 
-const RandomGame = (props) => {
+const randomGame = (props) => {
   return (
     <Link to="/singlePage" onClick={() => props.sendId(props.idRandomGame)}>
       <figure className="RandomGame">
@@ -22,4 +22,4 @@ const RandomGame = (props) => {
   );
 };
 
-export default RandomGame;
+export default randomGame;

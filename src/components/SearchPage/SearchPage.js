@@ -15,10 +15,6 @@ class SearchPage extends Component {
     this.props.onGetPlatforms();
   };
 
-  componentDidUpdate = () => {
-    console.log(this.props.filteredGames);
-  };
-
   filterGames = () => {
     let apiString = "";
     if (this.props.sField.length > 0) {
@@ -128,7 +124,6 @@ const mapDispatchToProps = (dispatch) => {
     onGetPlatforms: () => dispatch(actionCreators.getPlatforms()),
     onFilterGames: (apiString, offset) =>
       dispatch(actionCreators.filterGames(apiString, offset)),
-
     onGetId: (value) => dispatch(actionCreators.getId(value)),
   };
 };

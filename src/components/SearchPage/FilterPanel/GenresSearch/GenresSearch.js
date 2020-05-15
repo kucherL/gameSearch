@@ -1,6 +1,6 @@
 import React from "react";
 
-const GenresSearch = (props) => {
+const genresSearch = (props) => {
   const genresList = props.genres.map((genre, index) => {
     return (
       <option
@@ -23,4 +23,4 @@ const GenresSearch = (props) => {
   );
 };
 
-export default GenresSearch;
+export default genresSearch;

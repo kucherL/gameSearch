@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Trailers.scss";
 
-const Trailers = (props) => {
+const trailers = (props) => {
   const trailersConteiner = props.videos.map((video, index) => {
     return (
       <iframe
@@ -26,4 +26,4 @@ const Trailers = (props) => {
   );
 };
 
-export default Trailers;
+export default trailers;
