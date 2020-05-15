@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./Header.scss";
 import { signOut } from "../../firebase";
-import SubmitButton from "../ui/SubmitButton";
+import SubmitButton from "../ui/SubmitButton/SubmitButton";
 
 const Header = () => {
   const [homePage, setHomePage] = useState(true);
@@ -24,16 +24,14 @@ const Header = () => {
 
   return (
     <header className="Header">
-      <div className="Header__container-left">
-        <img
-          src={require("../assets/иконка7.svg")}
-          alt="logo"
-          className="Logo"
-        />
-      </div>
-      <nav className="Header__container-right">
-        <ul className="Header__container-right__items">
-          <li className="Header__container-right__item">
+      <img
+        src={require("../../assets/иконка7.svg")}
+        alt="logo"
+        className="Header__logo"
+      />
+      <nav className="Header__navigation">
+        <ul>
+          <li>
             {homePage ? (
               <Link to="/search" onClick={homePageHandler}>
                 Поиск
@@ -44,17 +42,21 @@ const Header = () => {
               </Link>
             )}
           </li>
-          <li className="Header__container-right__item">
+          <li>
             <Link to="/userPage">Профиль</Link>
           </li>
+          <li>
+            {!login ? (
+              <Link to="/auth">
+                <SubmitButton click={handleSignInWithGoogle}>
+                  Войти
+                </SubmitButton>
+              </Link>
+            ) : (
+              <SubmitButton click={handleSignOutWithGoogle}>Выход</SubmitButton>
+            )}
+          </li>
         </ul>
-        {!login ? (
-          <Link to="/auth">
-            <SubmitButton click={handleSignInWithGoogle}>Войти</SubmitButton>
-          </Link>
-        ) : (
-          <SubmitButton click={handleSignOutWithGoogle}>Выход</SubmitButton>
-        )}
       </nav>
     </header>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./SimilarGames.scss";
-import GameItem from "../GameItem";
+import GameItem from "../../ui/GameItem/GameItem";
 
 const SimilarGames = (props) => {
   const alikeList = props.alikeGames.map((game, index) => {

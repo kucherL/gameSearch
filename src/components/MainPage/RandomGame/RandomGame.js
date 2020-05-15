@@ -1,22 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import PosterGame from "../ui/PosterGame";
-import TitleGame from "../ui/TitleGame";
-import Rating from "../ui/Rating";
-import DescriptionGame from "../ui/DescriptionGame";
+import "./RandomGame.scss";
+import Poster from "../../ui/Poster/Poster";
+import Title from "../../ui/Title/Title";
+import Rating from "../../ui/Rating/Rating";
+import Description from "../../ui/Description/Description";
 
 const RandomGame = (props) => {
   return (
     <Link to="/singlePage" onClick={() => props.sendId(props.idRandomGame)}>
-      <section className="RandomGame">
-        <PosterGame cover={props.coverRandomGame} />
-        <div className="RandomGame__container">
-          <TitleGame title={props.titleRandomGame} />
+      <figure className="RandomGame">
+        <Poster cover={props.coverRandomGame} />
+        <figcaption className="RandomGame__info">
+          <Title title={props.titleRandomGame} />
           <Rating>{"70"}</Rating>
-          <DescriptionGame description={props.summaryGame} />
-        </div>
-      </section>
+          <Description description={props.summaryGame} />
+        </figcaption>
+      </figure>
     </Link>
   );
 };

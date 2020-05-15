@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import "./FoldersSection.scss";
-import GameItem from "../GameItem";
-import * as actionCreators from "../../store/actions/actions";
+import SubmitButton from "../../ui/SubmitButton/SubmitButton";
+import GameItem from "../../ui/GameItem/GameItem";
+import * as actionCreators from "../../../store/actions/actions";
 
 class FoldersSection extends Component {
   state = {
@@ -61,24 +62,33 @@ class FoldersSection extends Component {
   render() {
     return (
       <section className="FoldersSection">
-        <select className="FoldersSection__select" onChange={this.eventHandler}>
-          <option value="">Please choose a folder</option>
-          {this.getFoldersList()}
-        </select>
-        <button onClick={this.showInputHandler}>Add new folder</button>
+        <div>
+          <select
+            className="FoldersSection__select"
+            onChange={this.eventHandler}
+          >
+            <option value="">Please choose a folder</option>
+            {this.getFoldersList()}
+          </select>
+          <SubmitButton click={this.showInputHandler}>
+            Add new folder
+          </SubmitButton>
+        </div>
         {this.state.showInput ? (
-          <>
+          <div>
             <input type="text" onChange={this.addFolderName} />
-            <button
-              onClick={() =>
+            <SubmitButton
+              click={() =>
                 this.props.onSetNewFolder(this.props.uid, this.state.folderName)
               }
             >
               Submit
-            </button>
-          </>
+            </SubmitButton>
+          </div>
         ) : null}
-        {this.getListOfGames()}
+        <section className="FoldersSection__folders-games">
+          {this.getListOfGames()}
+        </section>
       </section>
     );
   }

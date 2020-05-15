@@ -2,8 +2,8 @@ import React from "react";
 
 import "./GameItem.scss";
 import PosterGame from "../Poster/Poster";
-import ToRememberButton from "../ToRememberButton";
-import AddUsersRating from "./AddUsersRating";
+import ToRememberButton from "../ToRememberButton/ToRememberButton";
+import AddUsersRating from "../AddUserRating/AddUserRating";
 import Title from "../Title/Title";
 import Description from "../Description/Description";
 

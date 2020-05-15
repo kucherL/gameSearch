@@ -7,18 +7,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 0.5rem;
+  position: fixed;
+  z-index: 1;
 
-  &__container-right {
+  &__logo {
+    width: 2rem;
+  }
+
+  &__navigation {
     display: flex;
     justify-content: flex-end;
 
-    &__items {
+    ul {
       display: flex;
-    }
 
-    &__item {
-      margin-right: 1rem;
+      li {
+        margin-right: 1rem;
+      }
     }
   }
 }

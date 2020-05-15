@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import "./AddUserRating.scss";
-import StarButton from "../StarButton";
+import StarButton from "../StarButton/StarButton";
 import * as actionCreators from "../../../store/actions/actions";
 
 class AddUserRating extends Component {

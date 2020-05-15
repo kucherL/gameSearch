@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./PreferenceList.scss";
-import GameItem from "../GameItem";
+import GameItem from "../../ui/GameItem/GameItem";
 
 const PreferenceList = (props) => {
   const list = props.preferenceGames.map((game, index) => {

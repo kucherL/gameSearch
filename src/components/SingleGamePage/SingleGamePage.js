@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import PosterGame from "../ui/PosterGame";
-import TitleGame from "../ui/TitleGame";
-import DescriptionGame from "../ui/DescriptionGame";
-import ToRememberButton from "../ui/ToRememberButton";
-import AddUsersRating from "../ui/AddUsersRating";
-import Rating from "../ui/Rating";
+import Poster from "../ui/Poster/Poster";
+import Title from "../ui/Title/Title";
+import Description from "../ui/Description/Description";
+import ToRememberButton from "../ui/ToRememberButton/ToRememberButton";
+import AddUserRating from "../ui/AddUserRating/AddUserRating";
+import Rating from "../ui/Rating/Rating";
 import Trailers from "./Trailers/Trailers";
 import Summary from "./Summary/Summary";
 import SimilarGames from "./SimilarGames/SimilarGames";
-import Loader from "../ui/Loader";
+import Loader from "../ui/Loader/Loader";
 import * as actionCreators from "../../store/actions/actions";
 import "./SingleGamePage.scss";
 
@@ -27,7 +27,7 @@ class SingleGamePage extends Component {
         ) : (
           <>
             <section className="GameInfo">
-              <PosterGame cover={this.props.cover} />
+              <Poster cover={this.props.cover} />
               <div className="GameInfo__bottom-block">
                 <ToRememberButton
                   idGame={this.props.id}
@@ -35,9 +35,9 @@ class SingleGamePage extends Component {
                   title={this.props.title}
                   summary={this.props.summary}
                 />
-                <AddUsersRating idGame={this.props.id} />
-                <TitleGame title={this.props.title} />
-                <DescriptionGame description={this.props.genre} />
+                <AddUserRating idGame={this.props.id} />
+                <Title title={this.props.title} />
+                <Description description={this.props.genre} />
                 <Rating>{this.props.rating}</Rating>
               </div>
             </section>

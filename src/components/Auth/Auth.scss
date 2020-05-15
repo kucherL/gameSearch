@@ -1,1 +1,17 @@
 @import "../../varibles";
+
+.Auth {
+  padding: 5rem 1rem 1rem 1rem;
+  background-color: $first-background-color;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 60rem) {
+  .Auth {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+

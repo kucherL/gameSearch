@@ -1,13 +1,19 @@
 @import "../../../varibles";
 
 .ProfileInfo {
+  margin-left: 1rem;
   margin-bottom: 2rem;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   &__photo {
-    width: 50%;
+    width: 90%;
+    margin-bottom: 1rem;
 
     img {
+      width: 20rem;
+      height: auto;
       border-color: $accent-color;
       box-shadow: $border;
       border-radius: 3px;
@@ -15,7 +21,30 @@
   }
 
   &__about {
-    width: 50%;
-    margin-left: 1rem;
+    width: 90%;
+  }
+}
+
+@media (min-width: 40rem) {
+  .ProfileInfo {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    &__photo {
+      width: 50%;
+      margin-bottom: 1rem;
+  
+      img {
+        border-color: $accent-color;
+        box-shadow: $border;
+        border-radius: 3px;
+      }
+    }
+  
+    &__about {
+      margin-left: 1rem;
+      width: 50%;
+    }
   }
 }

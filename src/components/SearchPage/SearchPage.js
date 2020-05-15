@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import * as actionCreators from "../../store/actions/actions";
 import FilterPanel from "./FilterPanel/FilterPanel";
-import GameItem from "../GameItem";
+import GameItem from "../ui/GameItem/GameItem";
 import Loader from "../ui/Loader/Loader";
 import ArrowButton from "../ui/ArrowButton/ArrowButton";
 import "./SearchPage.scss";
@@ -57,7 +57,7 @@ class SearchPage extends Component {
         {!this.props.filteredGames[(0, [0])] ? (
           <Loader />
         ) : (
-          <div className="SearchPage__container">
+          <section className="SearchPage__filtered-games">
             {this.props.filteredGames.map((game, index) => {
               return (
                 <Link
@@ -75,7 +75,7 @@ class SearchPage extends Component {
                 </Link>
               );
             })}
-          </div>
+          </section>
         )}
         <div className="Pagination">
           <ArrowButton

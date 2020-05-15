@@ -1,6 +1,10 @@
 @import "../../../varibles";
 
 .FoldersSection {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+
   &__select {
     background-color: transparent;
     border: none;
@@ -9,16 +13,55 @@
     border-radius: 3px;
     font-family: inherit;
     padding: 0.2rem 0.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    width: 10rem;
   }
 
   &__select:enabled {
     background-color: $first-background-color;
   }
 
-  .GameItem__container {
+  .SubmitButton {
+    margin-left: 1rem;
+    background-color: $second-background-color;
+  }
+
+  input {
+    margin-left: 1rem;
+    background-color: transparent;
+    border: none;
     border-color: $accent-color;
     box-shadow: $border;
     border-radius: 3px;
+    font-family: inherit;
+    padding: 0.2rem 0.5rem;
+    width: 10rem;
+  }
+
+  &__folders-games {
+    margin-top: 1rem;
+    padding: 1rem;
+    grid-template-columns: 1fr;
+    display: grid;
+    grid-gap: 0.5rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  .FoldersSection {
+    &__folders-games {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1rem;
+    }
+  }
+}
+
+@media (min-width: 60rem) {
+  .FoldersSection {
+    &__folders-games {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 1rem;
+    }
   }
 }

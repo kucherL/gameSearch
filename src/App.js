@@ -6,9 +6,9 @@ import SearchPage from "./components/SearchPage/SearchPage";
 import SingleGamePage from "./components/SingleGamePage/SingleGamePage";
 import Auth from "./components/Auth/Auth";
 import UserPage from "./components/UserPage/UserPage";
-import ProfileSettings from "./components/UserPage/ProfileSettings";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import ProfileSettings from "./components/UserPage/ProfileSettings/ProfileSettings";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (

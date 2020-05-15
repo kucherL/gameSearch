@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./Auth.scss";
 import SignUp from "./SignUp/SignUp";
 import SignIn from "./SignIn/SignIn";
-import SubmitButton from "../ui/SubmitButton";
+import SubmitButton from "../ui/SubmitButton/SubmitButton";
 import * as actionCreators from "../../store/actions/actions";
 
 class Auth extends Component {
@@ -20,11 +20,10 @@ class Auth extends Component {
 
   render() {
     return (
-      <div className="Auth">
+      <main className="Auth">
         <SignIn />
         <SignUp />
-        <SubmitButton />
-      </div>
+      </main>
     );
   }
 }

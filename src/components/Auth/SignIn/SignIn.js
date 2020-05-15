@@ -27,8 +27,8 @@ class SignIn extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <>
-        <form className="SignIn" onSubmit={this.handleSubmit}>
+      <section className="SignIn">
+        <form className="SignIn__form" onSubmit={this.handleSubmit}>
           <h2>Sign In</h2>
           <input
             type="email"
@@ -46,8 +46,8 @@ class SignIn extends Component {
           />
           <input type="submit" value="Sign In" />
         </form>
-        <button onClick={signInWithGoogle}>Sign In With Google</button>
-      </>
+        <button className="SignIn__google" onClick={signInWithGoogle}>Sign In With Google</button>
+      </section>
     );
   }
 }

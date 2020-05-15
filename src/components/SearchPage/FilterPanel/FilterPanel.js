@@ -7,7 +7,7 @@ import PlatformSearch from "./PlatformSearch/PlatformSearch";
 import YearOfReleaseFilter from "./YearOfReleaseFilter/YearOfReleaseFilter";
 import RatingFilter from "./RatingFilter/RatingFilter";
 import PopularityFilter from "./PopularityFilter/PopularityFilter";
-import SubmitButton from "../ui/SubmitButton";
+import SubmitButton from "../../ui/SubmitButton/SubmitButton";
 
 const filterPanel = (props) => {
   return (

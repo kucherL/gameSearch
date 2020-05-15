@@ -1,25 +1,25 @@
 import React from "react";
 
 import "./Footer.scss";
-import ArrowButton from "../ui/ArrowButton";
+import ArrowButton from "../ui/ArrowButton/ArrowButton";
 
 const footer = () => (
   <footer className="Footer">
     <ArrowButton />
-    <ul className="Footer__container-middle">
-      <li className="Footer__container-middle__item">
+    <ul className="Footer__contact-links">
+      <li>
         <a href="/">@</a>
       </li>
-      <li className="Footer__container-middle__item">
+      <li>
         <a href="/">@</a>
       </li>
-      <li className="Footer__container-middle__item">
+      <li>
         <a href="/">@</a>
       </li>
     </ul>
-    <div className="Footer__container-right">
-      <p className="Footer__container-right__item-text">Копирайт</p>
-    </div>
+    <p className="Footer__copyright">
+      2020 Елизавета Кучерова
+    </p>
   </footer>
 );
 
