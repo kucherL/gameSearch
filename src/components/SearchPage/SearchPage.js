@@ -13,6 +13,7 @@ class SearchPage extends Component {
   componentDidMount = () => {
     this.props.onGetGenres();
     this.props.onGetPlatforms();
+    this.props.onGetUserFolders(this.props.user.uid);
   };
 
   filterGames = () => {
@@ -67,6 +68,10 @@ class SearchPage extends Component {
                     description={game[2]}
                     cover={game[3]}
                     id={game[1]}
+                    folders={this.props.folders}
+                    addGameToFolder={this.props.onAddGameToFolder}
+                    uid={this.props.user.uid}
+                    addUserRating={this.props.onAddUserRating}
                   />
                 </Link>
               );
@@ -89,6 +94,8 @@ class SearchPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
+    folders: state.userFolders,
     sField: state.searchField,
     sGenres: state.selectedGenres,
     sPlatforms: state.selectedPlatforms,
@@ -105,6 +112,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onAddUserRating: (user, starValue, idGame) =>
+      dispatch(actionCreators.addUserRating(user, starValue, idGame)),
+    onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
+    onAddGameToFolder: (gameData, user, idFolder) =>
+      dispatch(actionCreators.addGameToFolder(gameData, user, idFolder)),
     onChangeSearchField: (e) =>
       dispatch(actionCreators.changeSearchField(e.target.value)),
     onSelectGenres: (e) =>

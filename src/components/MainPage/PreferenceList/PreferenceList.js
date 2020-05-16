@@ -18,6 +18,10 @@ const preferenceList = (props) => {
           description={game[3]}
           cover={game[4]}
           id={game[0]}
+          folders={props.folders}
+          addGameToFolder={props.addGameToFolder}
+          uid={props.uid}
+          addUserRating={props.addUserRating}
         />
       </Link>
     );

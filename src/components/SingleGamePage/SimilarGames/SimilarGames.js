@@ -13,7 +13,15 @@ const similarGames = (props) => {
         key={index}
         className="GameItem"
       >
-        <GameItem game={game[1]} cover={game[4]} id={game[0]} />
+        <GameItem
+          game={game[1]}
+          cover={game[4]}
+          id={game[0]}
+          folders={props.folders}
+          addGameToFolder={props.addGameToFolder}
+          uid={props.uid}
+          addUserRating={props.addUserRating}
+        />
       </Link>
     );
   });

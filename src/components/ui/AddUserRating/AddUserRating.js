@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 
 import "./AddUserRating.scss";
 import StarButton from "../StarButton/StarButton";
-import * as actionCreators from "../../../store/actions/actions";
 
-class AddUserRating extends Component {
+const addUserRating = () => {
   starButtonsList = () => {
     const arr = [1, 2, 3, 4, 5];
     return arr.map((value) => {
@@ -13,35 +11,14 @@ class AddUserRating extends Component {
         <StarButton
           value={value}
           key={value}
-          idGame={this.props.idGame}
-          click={() =>
-            this.props.onAddUserRating(
-              this.props.user,
-              value,
-              this.props.idGame
-            )
-          }
+          idGame={props.idGame}
+          click={() => props.addUserRating(props.uid, value, props.idGame)}
         />
       );
     });
   };
 
-  render = () => {
-    return <div className="AddUserRating">{this.starButtonsList()}</div>;
-  };
-}
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.user.uid,
-  };
+  return <div className="AddUserRating">{starButtonsList()}</div>;
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAddUserRating: (user, starValue, idGame) =>
-      dispatch(actionCreators.addUserRating(user, starValue, idGame)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddUserRating);
+export default addUserRating;

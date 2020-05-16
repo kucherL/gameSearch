@@ -16,8 +16,15 @@ const gameItem = (props) => (
         cover={props.cover}
         title={props.game}
         description={props.description}
+        folders={props.folders}
+        addGameToFolder={props.addGameToFolder}
+        uid={props.uid}
       />
-      <AddUsersRating idGame={props.id} />
+      <AddUsersRating
+        idGame={props.id}
+        uid={props.uid}
+        addUserRating={props.addUserRating}
+      />
       <Title title={props.game} />
       <Description description={props.description} />
     </div>

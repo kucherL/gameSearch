@@ -12,6 +12,7 @@ class MainPage extends Component {
     this.props.onGetRandomGame(this.getRandomInt);
     this.props.onGetPreferredGames();
     this.props.onCheckAuth();
+    this.props.onGetUserFolders(this.props.user.uid);
   };
 
   getRandomInt = (arr) => {
@@ -37,6 +38,10 @@ class MainPage extends Component {
             <PreferenceList
               preferenceGames={this.props.preferredGames}
               sendId={this.props.onGetId}
+              folders={this.props.folders}
+              addGameToFolder={this.props.onAddGameToFolder}
+              uid={this.props.user.uid}
+              addUserRating={this.props.onAddUserRating}
             />
           </>
         )}
@@ -47,6 +52,8 @@ class MainPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
+    folders: state.userFolders,
     randId: state.randomGameId,
     randTitle: state.randomGameTitle,
     randSummary: state.randomGameSummary,
@@ -57,6 +64,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onAddUserRating: (user, starValue, idGame) =>
+      dispatch(actionCreators.addUserRating(user, starValue, idGame)),
+    onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
+    onAddGameToFolder: (gameData, user, idFolder) =>
+      dispatch(actionCreators.addGameToFolder(gameData, user, idFolder)),
     onGetRandomGame: (getRandomInt) =>
       dispatch(actionCreators.getRandomGame(getRandomInt)),
     onGetPreferredGames: () => dispatch(actionCreators.getPreferredGames()),

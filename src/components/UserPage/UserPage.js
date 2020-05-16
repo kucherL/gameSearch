@@ -14,7 +14,7 @@ class UserPage extends Component {
 
   componentDidMount() {
     this.props.onGetProfileData(this.props.user.uid);
-    this.props.onGetUserFolders(this.props.uid);
+    this.props.onGetUserFolders(this.props.user.uid);
   }
 
   eventHandler = (event) => {
@@ -45,6 +45,10 @@ class UserPage extends Component {
             description={game.gameData[3]}
             cover={game.gameData[1]}
             id={game.gameData[0]}
+            folders={this.props.folders}
+            addGameToFolder={this.props.onAddGameToFolder}
+            uid={this.props.user.uid}
+            addUserRating={this.props.onAddUserRating}
           />
         </Link>
       );
@@ -90,6 +94,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onAddUserRating: (user, starValue, idGame) =>
+      dispatch(actionCreators.addUserRating(user, starValue, idGame)),
+    onAddGameToFolder: (gameData, user, idFolder) =>
+      dispatch(actionCreators.addGameToFolder(gameData, user, idFolder)),
     onGetProfileData: (user) => dispatch(actionCreators.getProfileData(user)),
     onSetNewFolder: (user, title) =>
       dispatch(actionCreators.setNewFolder(user, title)),

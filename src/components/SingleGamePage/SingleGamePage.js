@@ -17,6 +17,7 @@ import "./SingleGamePage.scss";
 class SingleGamePage extends Component {
   componentDidMount = () => {
     this.props.onGetSingleGameInfo(this.props.id);
+    this.props.onGetUserFolders(this.props.user.uid);
   };
 
   render() {
@@ -34,8 +35,15 @@ class SingleGamePage extends Component {
                   cover={this.props.cover}
                   title={this.props.title}
                   summary={this.props.summary}
+                  folders={this.props.folders}
+                  addGameToFolder={this.props.onAddGameToFolder}
+                  uid={this.props.user.uid}
                 />
-                <AddUserRating idGame={this.props.id} />
+                <AddUserRating
+                  idGame={this.props.id}
+                  uid={this.props.user.uid}
+                  addUserRating={this.props.onAddUserRating}
+                />
                 <Title title={this.props.title} />
                 <Description description={this.props.genre} />
                 <Rating>{this.props.rating}</Rating>
@@ -45,7 +53,14 @@ class SingleGamePage extends Component {
               <Trailers videos={this.props.videos} />
             ) : null}
             <Summary summary={this.props.summary} />
-            <SimilarGames alikeGames={this.props.alike} sendId={this.props.onGetId} />
+            <SimilarGames
+              alikeGames={this.props.alike}
+              sendId={this.props.onGetId}
+              folders={this.props.folders}
+              addGameToFolder={this.props.onAddGameToFolder}
+              uid={this.props.user.uid}
+              addUserRating={this.props.onAddUserRating}
+            />
           </>
         )}
       </main>
@@ -55,6 +70,8 @@ class SingleGamePage extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
+    folders: state.userFolders,
     id: state.choosedId,
     cover: state.singleCover,
     title: state.singleName,
@@ -68,6 +85,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onAddUserRating: (user, starValue, idGame) =>
+      dispatch(actionCreators.addUserRating(user, starValue, idGame)),
+    onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
+    onAddGameToFolder: (gameData, user, idFolder) =>
+      dispatch(actionCreators.addGameToFolder(gameData, user, idFolder)),
     onGetSingleGameInfo: (val) =>
       dispatch(actionCreators.getSingleGameInfo(val)),
     onGetId: (value) => dispatch(actionCreators.getId(value)),
