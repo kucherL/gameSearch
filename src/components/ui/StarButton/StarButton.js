@@ -2,8 +2,8 @@ import React from "react";
 
 import "./StarButton.scss";
 
-const starButton = () => (
-  <button className="StarButton" onClick={this.props.click} />
+const StarButton = (props) => (
+  <button className="StarButton" onClick={props.click} />
 );
 
-export default starButton;
+export default StarButton;

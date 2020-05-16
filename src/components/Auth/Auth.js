@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signInWithGoogle, auth, createUserProfile } from "../../../firebase";
+import { signInWithGoogle, auth, createUserProfile } from "../../firebase";
 
 import "./Auth.scss";
 import SignUp from "./SignUp/SignUp";
@@ -61,8 +61,8 @@ class Auth extends Component {
         <SignUp 
           handleChange={this.handleChange}
           email={this.state.signUp.email}
-          email={this.state.signUp.password}
-          email={this.state.signUp.name}
+          password={this.state.signUp.password}
+          name={this.state.signUp.name}
           handleSubmit={this.handleSubmitSignUp}
         />
       </main>

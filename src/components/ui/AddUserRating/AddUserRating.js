@@ -3,8 +3,9 @@ import React from "react";
 import "./AddUserRating.scss";
 import StarButton from "../StarButton/StarButton";
 
-const addUserRating = () => {
-  starButtonsList = () => {
+const addUserRating = (props) => {
+
+  const starButtonsList = () => {
     const arr = [1, 2, 3, 4, 5];
     return arr.map((value) => {
       return (

@@ -4,7 +4,7 @@ import { faGamepad } from "@fortawesome/free-solid-svg-icons";
 
 import "./ToRememberButton.scss";
 
-const toRememberButton = () => {
+const ToRememberButton = (props) => {
   const [showFolders, setShowFolders] = useState(false);
 
   const foldersHandler = () => {
@@ -44,4 +44,4 @@ const toRememberButton = () => {
   );
 };
 
-export default toRememberButton;
+export default ToRememberButton;

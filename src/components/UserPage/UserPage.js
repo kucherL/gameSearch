@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions/actions";
+import { Link } from "react-router-dom";
 
 import "./UserPage.scss";
+import GameItem from "../ui/GameItem/GameItem";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FoldersSection from "./FoldersSection/FoldersSection";
 
@@ -31,6 +33,7 @@ class UserPage extends Component {
     });
   };
 
+  // TODO: исправить ошибку при переходе по ссылке
   getListOfGames = () => {
     return this.props.games.map((game, index) => {
       return (

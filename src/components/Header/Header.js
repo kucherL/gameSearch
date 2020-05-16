@@ -1,65 +1,68 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "./Header.scss";
 import { signOut } from "../../firebase";
 import SubmitButton from "../ui/SubmitButton/SubmitButton";
 
-const Header = () => {
-  const [homePage, setHomePage] = useState(true);
-  const [login, setLogin] = useState(false);
-
-  const homePageHandler = () => {
-    setHomePage(!homePage);
+class Header extends Component {
+  state = {
+    homePage: true,
   };
 
-  const handleSignInWithGoogle = () => {
-    setLogin(true);
+  homePageHandler = () => {
+    this.setState({ homePage: !this.state.homePage });
   };
 
-  const handleSignOutWithGoogle = () => {
-    signOut();
-    setLogin(false);
+  render = () => {
+    return (
+      <header className="Header">
+        <Link to="/">
+          <img
+            src={require("../../assets/иконка7.svg")}
+            alt="logo"
+            className="Header__logo"
+          />
+        </Link>
+        <nav className="Header__navigation">
+          <ul>
+            <li>
+              {this.state.homePage ? (
+                <Link to="/search" onClick={this.homePageHandler}>
+                  Поиск
+                </Link>
+              ) : (
+                <Link to="/" onClick={this.homePageHandler}>
+                  На главную
+                </Link>
+              )}
+            </li>
+            {this.props.user ? (
+              <li>
+                <Link to="/userPage">Профиль</Link>
+              </li>
+            ) : null}
+            <li>
+              {!this.props.user ? (
+                <Link to="/auth">
+                  <SubmitButton>Войти</SubmitButton>
+                </Link>
+              ) : (
+                <SubmitButton click={signOut}>Выход</SubmitButton>
+              )}
+            </li>
+          </ul>
+        </nav>
+      </header>
+    );
   };
+}
 
-  return (
-    <header className="Header">
-      <img
-        src={require("../../assets/иконка7.svg")}
-        alt="logo"
-        className="Header__logo"
-      />
-      <nav className="Header__navigation">
-        <ul>
-          <li>
-            {homePage ? (
-              <Link to="/search" onClick={homePageHandler}>
-                Поиск
-              </Link>
-            ) : (
-              <Link to="/" onClick={homePageHandler}>
-                На главную
-              </Link>
-            )}
-          </li>
-          <li>
-            <Link to="/userPage">Профиль</Link>
-          </li>
-          <li>
-            {!login ? (
-              <Link to="/auth">
-                <SubmitButton click={handleSignInWithGoogle}>
-                  Войти
-                </SubmitButton>
-              </Link>
-            ) : (
-              <SubmitButton click={handleSignOutWithGoogle}>Выход</SubmitButton>
-            )}
-          </li>
-        </ul>
-      </nav>
-    </header>
-  );
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
 };
 
-export default Header;
+export default connect(mapStateToProps)(Header);

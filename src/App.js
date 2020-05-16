@@ -1,45 +1,51 @@
-import React, { Fragment } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { Suspense } from "react";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
-import MainPage from "./components/MainPage/MainPage";
-import SearchPage from "./components/SearchPage/SearchPage";
-import SingleGamePage from "./components/SingleGamePage/SingleGamePage";
 import Auth from "./components/Auth/Auth";
-import UserPage from "./components/UserPage/UserPage";
 import ProfileSettings from "./components/UserPage/ProfileSettings/ProfileSettings";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
+const MainPage = React.lazy(() => {
+  return import("./components/MainPage/MainPage");
+});
+
+const SearchPage = React.lazy(() => {
+  return import("./components/SearchPage/SearchPage");
+});
+
+const SingleGamePage = React.lazy(() => {
+  return import("./components/SingleGamePage/SingleGamePage");
+});
+
+const UserPage = React.lazy(() => {
+  return import("./components/UserPage/UserPage");
+});
+
 const App = () => {
+  let routes = (
+    <Switch>
+      <Route path="/search" render={(props) => <SearchPage {...props} />} />
+      <Route
+        path="/singlePage"
+        render={(props) => <SingleGamePage {...props} />}
+      />
+      <Route path="/auth" component={Auth} />
+      <Route path="/userPage" render={(props) => <UserPage {...props} />} />
+      <Route path="/profileSettings" component={ProfileSettings} />
+      <Route path="/" render={(props) => <MainPage {...props} />} />
+      <Redirect to="/" />
+    </Switch>
+  );
+
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      <Router>
         <Header />
-        <Switch>
-          <Fragment>
-            <Route path="/search">
-              <SearchPage />
-            </Route>
-            <Route path="/singlePage">
-              <SingleGamePage />
-            </Route>
-            <Route path="/auth">
-              <Auth />
-            </Route>
-            <Route path="/userPage">
-              <UserPage />
-            </Route>
-            <Route path="/profileSettings">
-              <ProfileSettings />
-            </Route>
-            <Route exact path="/">
-              <MainPage />
-            </Route>
-          </Fragment>
-        </Switch>
+        <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
         <Footer />
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 };
 
