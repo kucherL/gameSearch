@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import RandomGame from "./RandomGame/RandomGame";
 import PreferenceList from "./PreferenceList/PreferenceList";
-import Loader from "../ui/Loader/Loader";
 import * as actionCreators from "../../store/actions/actions";
 import "./MainPage.scss";
 
@@ -11,8 +10,8 @@ class MainPage extends Component {
   componentDidMount = () => {
     this.props.onGetRandomGame(this.getRandomInt);
     this.props.onGetPreferredGames();
-    this.props.onCheckAuth();
-    this.props.onGetUserFolders(this.props.user.uid);
+    // this.props.onCheckAuth();
+    // this.props.onGetUserFolders(this.props.user.uid);
   };
 
   getRandomInt = (arr) => {
@@ -24,27 +23,24 @@ class MainPage extends Component {
   render() {
     return (
       <main className="MainPage">
-        {!this.props.randCover ? (
-          <Loader />
-        ) : (
-          <>
-            <RandomGame
-              idRandomGame={this.props.randId}
-              coverRandomGame={this.props.randCover}
-              titleRandomGame={this.props.randTitle}
-              summaryGame={this.props.randSummary}
-              sendId={this.props.onGetId}
-            />
-            <PreferenceList
-              preferenceGames={this.props.preferredGames}
-              sendId={this.props.onGetId}
-              folders={this.props.folders}
-              addGameToFolder={this.props.onAddGameToFolder}
-              uid={this.props.user.uid}
-              addUserRating={this.props.onAddUserRating}
-            />
-          </>
-        )}
+        <>
+          <RandomGame
+            idRandomGame={this.props.randomGame.id}
+            coverRandomGame={this.props.randomGame.cover}
+            titleRandomGame={this.props.randomGame.title}
+            summaryGame={this.props.randomGame.summary}
+            rating={this.props.randomGame.rating}
+            sendId={this.props.onGetId}
+          />
+          <PreferenceList
+            preferenceGames={this.props.preferredGames}
+            sendId={this.props.onGetId}
+            folders={this.props.folders}
+            addGameToFolder={this.props.onAddGameToFolder}
+            uid={this.props.user.uid}
+            addUserRating={this.props.onAddUserRating}
+          />
+        </>
       </main>
     );
   }
@@ -54,10 +50,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     folders: state.userFolders,
-    randId: state.randomGameId,
-    randTitle: state.randomGameTitle,
-    randSummary: state.randomGameSummary,
-    randCover: state.randomGameCover,
+    randomGame: state.randomGame,
     preferredGames: state.preferredGames,
   };
 };

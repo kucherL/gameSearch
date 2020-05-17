@@ -10,6 +10,7 @@ const ratingFilter = (props) => (
       step="1"
       value={props.rating}
       onChange={props.ratingChanged}
+      name="selectedRating"
     />
   </div>
 );

@@ -26,7 +26,10 @@ const gameItem = (props) => (
         addUserRating={props.addUserRating}
       />
       <Title title={props.game} />
-      <Description description={props.description} />
+      <Description
+        genres={props.genres}
+        platforms={props.platforms}
+      />
     </div>
   </section>
 );

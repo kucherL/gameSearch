@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./SimilarGames.scss";
+import sprite from "../../../assets/sprite.svg";
 import GameItem from "../../ui/GameItem/GameItem";
 
 const similarGames = (props) => {
@@ -28,6 +29,9 @@ const similarGames = (props) => {
 
   return (
     <section className="SimilarGames">
+      <svg>
+        <use href={sprite + "#icon-spaceinvaders"} />
+      </svg>
       <p className="SimilarGames__title">Похожие игры</p>
       <div className="SimilarGames__container">{alikeList}</div>
     </section>

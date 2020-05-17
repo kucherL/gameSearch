@@ -14,24 +14,24 @@ export const getRandomGame = (getRandomInt) => {
   return async (dispatch) => {
     const randomGames = await instance(
       "games/",
-      "fields id, name, summary; where (rating > 95 & popularity > 4); sort popularity; limit 100;"
+      "fields id, rating, name, summary; where (rating > 70 & popularity > 4); limit 50;"
     );
-    let randomInt = getRandomInt(randomGames.data);
-    let randomGameId = randomGames.data[randomInt].id;
-    dispatch({
-      type: actionTypes.GET_RANDOM_GAME,
-      id: randomGames.data[randomInt].id,
-      title: randomGames.data[randomInt].name,
-      summary: randomGames.data[randomInt].summary,
-    });
+    const randomInt = getRandomInt(randomGames.data);
+    const randomGameId = randomGames.data[randomInt].id;
     const randomGamesCovers = await instance(
       "covers",
       `fields url; where game=${randomGameId};`
     );
     let hash = randomGamesCovers.data[0].url.split(IMAGES_URL);
     dispatch({
-      type: actionTypes.GET_RANDOM_COVER,
-      cover: `https://images.igdb.com/igdb/image/upload/t_cover_big/${hash[1]}`,
+      type: actionTypes.GET_RANDOM_GAME,
+      data: {
+        rating: randomGames.data[randomInt].rating,
+        id: randomGames.data[randomInt].id,
+        title: randomGames.data[randomInt].name,
+        summary: randomGames.data[randomInt].summary,
+        cover: `https://images.igdb.com/igdb/image/upload/t_cover_big/${hash[1]}`,
+      },
     });
   };
 };
@@ -40,11 +40,17 @@ export const getPreferredGames = () => {
   return async (dispatch) => {
     const preferredGames = await instance(
       "games/",
-      "fields id, name, cover, summary; where (rating > 95 & popularity > 4); sort rating;"
+      "fields id, name, cover, genres, platforms; where (rating > 80 & popularity > 4); sort rating; limit 12;"
     );
     let temporaryDataPreference = preferredGames.data
       .sort((a, b) => a.cover - b.cover)
-      .map((game) => [game.id, game.name, game.cover, game.summary]);
+      .map((game) => [
+        game.id,
+        game.name,
+        game.cover,
+        game.genres,
+        game.platforms,
+      ]);
     let temporaryData = preferredGames.data
       .map((item) => item.cover)
       .join(", ");
@@ -56,94 +62,12 @@ export const getPreferredGames = () => {
     for (let i = 0; i < coversURL.length; i++) {
       let hash = coversURL[i].split(IMAGES_URL);
       temporaryDataPreference[i].push(
-        `https://images.igdb.com/igdb/image/upload/t_cover_big/${hash[1]}`
+        `https://images.igdb.com/igdb/image/upload/t_cover_small/${hash[1]}`
       );
     }
     dispatch({
       type: actionTypes.GET_PREFERRED_GAMES,
       data: temporaryDataPreference,
-    });
-  };
-};
-
-export const changeSearchField = (value) => {
-  return {
-    type: actionTypes.CHANGE_SEARCH_FIELD,
-    val: value,
-  };
-};
-
-export const selectGenres = (value) => {
-  return {
-    type: actionTypes.SELECT_GENRES,
-    val: value,
-  };
-};
-
-export const selectPlatforms = (value) => {
-  return {
-    type: actionTypes.SELECT_PLATFORMS,
-    val: value,
-  };
-};
-
-export const selectYear = (value) => {
-  return {
-    type: actionTypes.SELECT_YEAR,
-    val: value,
-  };
-};
-
-export const selectRating = (value) => {
-  return {
-    type: actionTypes.SELECT_RATING,
-    val: value,
-  };
-};
-
-export const selectPopularity = (value) => {
-  return {
-    type: actionTypes.SELECT_POPULARITY,
-    val: value,
-  };
-};
-
-export const changePageForward = (filter) => {
-  return {
-    type: actionTypes.CHANGE_PAGE_FORWARD,
-    func: filter(),
-  };
-};
-
-export const changePageBack = (filter) => {
-  return {
-    type: actionTypes.CHANGE_PAGE_BACK,
-    func: filter(),
-  };
-};
-
-export const getGenres = () => {
-  return async (dispatch) => {
-    const genres = await instance(
-      "genres",
-      "fields name, id; sort name; limit 50;"
-    );
-    dispatch({
-      type: actionTypes.GET_GENRES,
-      data: genres.data,
-    });
-  };
-};
-
-export const getPlatforms = () => {
-  return async (dispatch) => {
-    const platforms = await instance(
-      "platforms",
-      "fields name, id; sort name; limit 200;"
-    );
-    dispatch({
-      type: actionTypes.GET_PLATFORMS,
-      data: platforms.data,
     });
   };
 };
@@ -174,7 +98,7 @@ export const filterGames = (apiString, offset) => {
       for (let i = 0; i < coversURL.length; i++) {
         let hash = coversURL[i].split(IMAGES_URL);
         temporaryDataPreference[i].push(
-          `https://images.igdb.com/igdb/image/upload/t_cover_big/${hash[1]}`
+          `https://images.igdb.com/igdb/image/upload/t_cover_small/${hash[1]}`
         );
       }
       dispatch({
@@ -231,7 +155,7 @@ export const getSingleGameInfo = (id) => {
     for (let i = 0; i < coversURL.length; i++) {
       let hash = coversURL[i].split(IMAGES_URL);
       temporaryDataPreference[i].push(
-        `https://images.igdb.com/igdb/image/upload/t_cover_big/${hash[1]}`
+        `https://images.igdb.com/igdb/image/upload/t_cover_small/${hash[1]}`
       );
     }
     alike = temporaryDataPreference;

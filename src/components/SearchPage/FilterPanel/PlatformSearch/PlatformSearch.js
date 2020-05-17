@@ -3,16 +3,20 @@ import React from "react";
 const platformSearch = (props) => {
   const platformsList = props.platforms.map((platform, index) => {
     return (
-      <option key={index} onClick={props.clicked} value={platform[1]}>
-        {platform[0]}
+      <option key={index} value={platform.id}>
+        {platform.name}
       </option>
     );
   });
 
   return (
     <div className="FilterPanel__item">
-      <label htmlFor="platform-select">Платформа</label>
-      <select name="platforms" id="platform-select">
+      <label htmlFor="selectedPlatforms">Платформа</label>
+      <select
+        name="selectedPlatforms"
+        id="platform-select"
+        onClick={props.clicked}
+      >
         {platformsList}
       </select>
     </div>

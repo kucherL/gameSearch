@@ -12,16 +12,16 @@ import SubmitButton from "../../ui/SubmitButton/SubmitButton";
 const filterPanel = (props) => {
   return (
     <nav className="FilterPanel">
-      <SearchBar searchFieldChanged={props.searchFieldChanged} />
-      <GenresSearch genres={props.genres} clicked={props.checkGenre} />
+      <SearchBar searchFieldChanged={props.handleChange} />
+      <GenresSearch genres={props.genres} clicked={props.handleChange} />
       <PlatformSearch
         platforms={props.platforms}
-        clicked={props.checkPlatform}
+        clicked={props.handleChange}
       />
-      <YearOfReleaseFilter yearChanged={props.yearChanged} />
-      <RatingFilter ratingChanged={props.ratingChanged} rating={props.rating} />
+      <YearOfReleaseFilter yearChanged={props.handleChange} />
+      <RatingFilter ratingChanged={props.handleChange} rating={props.rating} />
       <PopularityFilter
-        popularityChanged={props.popularityChanged}
+        popularityChanged={props.handleChange}
         popularity={props.popularity}
       />
       <SubmitButton click={props.filter}>Найти</SubmitButton>

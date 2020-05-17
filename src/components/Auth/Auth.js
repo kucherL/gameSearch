@@ -3,49 +3,56 @@ import { connect } from "react-redux";
 import { signInWithGoogle, auth, createUserProfile } from "../../firebase";
 
 import "./Auth.scss";
+import * as actionCreators from "../../store/actions/actions";
 import SignUp from "./SignUp/SignUp";
 import SignIn from "./SignIn/SignIn";
 
 class Auth extends Component {
   state = {
-    signIn: {
-      email: "",
-      password: "",
-    },
-    signUp: {
-      name: "",
-      email: "",
-      password: "",
-    },
+    emailSignIn: "",
+    passwordSignIn: "",
+    nameSignUp: "",
+    emailSignUp: "",
+    passwordSignUp: "",
+  };
+
+  componentDidUpdate = () => {
+    console.log(this.props.emailSignIn, this.props.passwordSignIn);
   };
 
   handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmitSignIn = async (event) => {
     event.preventDefault();
     await auth.signInWithEmailAndPassword(
-      this.state.signIn.email,
-      this.state.signIn.password
+      this.state.emailSignIn,
+      this.state.passwordSignIn
     );
-    this.state.signIn.setState({ email: "", password: "" });
+    this.props.onCheckAuth();
+    this.setState({ emailSignIn: "", passwordSignIn: "" });
+  };
+
+  handleSignInWithGoogle = () => {
+    signInWithGoogle();
+    this.props.onCheckAuth();
   };
 
   handleSubmitSignUp = async (event) => {
     event.preventDefault();
-    const { email, password, name } = this.state.signUp;
+    const { emailSignUp, passwordSignUp, nameSignUp } = this.state;
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
+        emailSignUp,
+        passwordSignUp
       );
-      createUserProfile(user, { name });
+      createUserProfile(user, { nameSignUp });
+      this.props.onCheckAuth();
     } catch (error) {
       console.error(error);
     }
-    this.state.signUp.setState({ name: "", email: "", password: "" });
+    this.setState({ nameSignUp: "", emailSignUp: "", passwordSignUp: "" });
   };
 
   render() {
@@ -53,16 +60,16 @@ class Auth extends Component {
       <main className="Auth">
         <SignIn
           handleChange={this.handleChange}
-          email={this.state.signIn.email}
-          password={this.state.signIn.password}
+          email={this.state.emailSignIn}
+          password={this.state.passwordSignIn}
           handleSubmit={this.handleSubmitSignIn}
-          click={signInWithGoogle}
+          click={this.handleSignInWithGoogle}
         />
-        <SignUp 
+        <SignUp
           handleChange={this.handleChange}
-          email={this.state.signUp.email}
-          password={this.state.signUp.password}
-          name={this.state.signUp.name}
+          email={this.state.emailSignUp}
+          password={this.state.passwordSignUp}
+          name={this.state.nameSignUp}
           handleSubmit={this.handleSubmitSignUp}
         />
       </main>
@@ -76,4 +83,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Auth);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCheckAuth: () => dispatch(actionCreators.checkAuth()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGamepad } from "@fortawesome/free-solid-svg-icons";
+import sprite from "../../../assets/sprite.svg"
 
 import "./ToRememberButton.scss";
 
@@ -33,7 +32,9 @@ const ToRememberButton = (props) => {
 
   return (
     <button className="ToRememberButton" onClick={foldersHandler}>
-      <FontAwesomeIcon icon={faGamepad} size={"2x"} />
+      <svg>
+        <use href={sprite + "#icon-gamepad"} />
+      </svg>
       {showFolders ? (
         <select className="FoldersSection__select" onChange={gameDataHandler}>
           <option value="">Please choose a folder</option>

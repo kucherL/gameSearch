@@ -15,8 +15,9 @@ const preferenceList = (props) => {
       >
         <GameItem
           game={game[1]}
-          description={game[3]}
-          cover={game[4]}
+          genres={game[3]}
+          platforms={game[4]}
+          cover={game[5]}
           id={game[0]}
           folders={props.folders}
           addGameToFolder={props.addGameToFolder}

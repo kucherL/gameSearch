@@ -1,5 +1,6 @@
 import React from "react";
 
+import sprite from "../../../assets/sprite.svg";
 import "./Trailers.scss";
 
 const trailers = (props) => {
@@ -20,6 +21,9 @@ const trailers = (props) => {
 
   return (
     <section className="Trailers">
+      <svg>
+        <use href={sprite + "#icon-film"} />
+      </svg>
       <p className="TitleGame">Трейлеры</p>
       <div className="Trailers__container">{trailersConteiner}</div>
     </section>

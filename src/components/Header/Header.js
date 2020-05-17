@@ -20,7 +20,7 @@ class Header extends Component {
       <header className="Header">
         <Link to="/">
           <img
-            src={require("../../assets/иконка7.svg")}
+            src={require("../../assets/portfolio-icon.svg")}
             alt="logo"
             className="Header__logo"
           />
@@ -28,7 +28,7 @@ class Header extends Component {
         <nav className="Header__navigation">
           <ul>
             <li>
-              {this.state.homePage ? (
+              {window.location.pathname === "/" ? (
                 <Link to="/search" onClick={this.homePageHandler}>
                   Поиск
                 </Link>

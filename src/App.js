@@ -5,6 +5,7 @@ import Auth from "./components/Auth/Auth";
 import ProfileSettings from "./components/UserPage/ProfileSettings/ProfileSettings";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Loader from "./components/ui/Loader/Loader";
 
 const MainPage = React.lazy(() => {
   return import("./components/MainPage/MainPage");
@@ -42,7 +43,7 @@ const App = () => {
     <div className="App">
       <Router>
         <Header />
-        <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
+        <Suspense fallback={<Loader />}>{routes}</Suspense>
         <Footer />
       </Router>
     </div>

@@ -10,6 +10,7 @@ const popularityFilter = (props) => (
       step="1"
       value={props.popularity}
       onChange={props.popularityChanged}
+      name="selectedPopularity"
     />
   </div>
 );

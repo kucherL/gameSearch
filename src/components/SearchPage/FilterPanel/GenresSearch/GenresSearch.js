@@ -5,18 +5,17 @@ const genresSearch = (props) => {
     return (
       <option
         key={index}
-        onClick={props.clicked}
-        value={genre[1]}
+        value={genre.id}
       >
-        {genre[0]}
+        {genre.name}
       </option>
     );
   });
 
   return (
     <div className="FilterPanel__item">
-      <label htmlFor="genre-select">Жанр</label>
-      <select name="genres" id="genre-select">
+      <label htmlFor="selectedGenres">Жанр</label>
+      <select name="selectedGenres" id="genre-select" onClick={props.clicked}>
         {genresList}
       </select>
     </div>

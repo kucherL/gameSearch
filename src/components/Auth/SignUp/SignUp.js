@@ -7,21 +7,21 @@ const signUp = (props) => (
     <h2>Sign Up</h2>
     <input
       type="text"
-      name="displayName"
+      name="nameSignUp"
       placeholder="Display Name"
       value={props.name}
       onChange={props.handleChange}
     />
     <input
       type="email"
-      name="email"
+      name="emailSignUp"
       placeholder="Email"
       value={props.email}
       onChange={props.handleChange}
     />
     <input
       type="password"
-      name="password"
+      name="passwordSignUp"
       placeholder="Password"
       value={props.password}
       onChange={props.handleChange}

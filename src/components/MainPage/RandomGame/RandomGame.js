@@ -14,7 +14,7 @@ const randomGame = (props) => {
         <Poster cover={props.coverRandomGame} />
         <figcaption className="RandomGame__info">
           <Title title={props.titleRandomGame} />
-          <Rating>{"70"}</Rating>
+          <Rating>{Math.floor(props.rating)}</Rating>
           <Description description={props.summaryGame} />
         </figcaption>
       </figure>

@@ -8,14 +8,14 @@ const signIn = (props) => (
       <h2>Sign In</h2>
       <input
         type="email"
-        name="email"
+        name="emailSignIn"
         placeholder="Email"
         value={props.email}
         onChange={props.handleChange}
       />
       <input
         type="password"
-        name="password"
+        name="passwordSignIn"
         placeholder="Password"
         value={props.password}
         onChange={props.handleChange}
