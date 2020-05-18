@@ -3,7 +3,7 @@ import React from "react";
 import "./Rating.scss";
 
 const rating = (props) => (
-  <div className="Rating">
+  <div className="Rating" hint="Средний рейтинг игры">
     <svg viewBox="0 0 36 36" className="Rating__circular-chart">
       <path
         className="Rating__circle-bg"

@@ -1,6 +1,13 @@
 @import "../../../varibles";
 
 .Poster {
-  margin-bottom: 1rem;
-  width: auto;
+
+  &-svg {
+    margin-top: 1rem;
+    margin-left: 2rem;
+    width: 3rem;
+    height: 3rem;
+    fill: $accent-color;
+    align-self: center;
+  }
 }

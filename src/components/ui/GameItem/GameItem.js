@@ -9,27 +9,29 @@ import Description from "../Description/Description";
 
 const gameItem = (props) => (
   <section className="GameItem__container">
-    <PosterGame cover={props.cover} />
+    <figure>
+      <PosterGame cover={props.cover} />
+      <div className="GameItem__interactive-el">
+        <ToRememberButton
+          idGame={props.id}
+          cover={props.cover}
+          title={props.game}
+          description={props.description}
+          folders={props.folders}
+          addGameToFolder={props.addGameToFolder}
+          uid={props.uid}
+          getUserFolders={props.getUserFolders}
+        />
+        <AddUsersRating
+          idGame={props.id}
+          uid={props.uid}
+          addUserRating={props.addUserRating}
+        />
+      </div>
+    </figure>
     <div className="GameItem__info">
-      <ToRememberButton
-        idGame={props.id}
-        cover={props.cover}
-        title={props.game}
-        description={props.description}
-        folders={props.folders}
-        addGameToFolder={props.addGameToFolder}
-        uid={props.uid}
-      />
-      <AddUsersRating
-        idGame={props.id}
-        uid={props.uid}
-        addUserRating={props.addUserRating}
-      />
       <Title title={props.game} />
-      <Description
-        genres={props.genres}
-        platforms={props.platforms}
-      />
+      <Description genres={props.genres} platforms={props.platforms} />
     </div>
   </section>
 );

@@ -4,5 +4,10 @@
   background-color: transparent;
   border: none;
   margin-bottom: 1rem;
-  color: $second-background-color;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    fill: $second-background-color;
+  }
 }

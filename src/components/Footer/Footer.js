@@ -2,13 +2,15 @@ import React, { Component } from "react";
 
 import "./Footer.scss";
 import sprite from "../../assets/sprite.svg";
-import ArrowButton from "../ui/ArrowButton/ArrowButton";
+import portfolioIcon from "../../assets/portfolio-icon.svg";
 
 class Footer extends Component {
   render = () => {
     return (
       <footer className="Footer">
-        <ArrowButton />
+        <a href="#top" className="Footer__to-top">
+          <button />
+        </a>
         <ul className="Footer__contact-links">
           <li>
             <a href="/">
@@ -20,7 +22,7 @@ class Footer extends Component {
           <li>
             <a href="/">
               <img
-                src={require("../../assets/portfolio-icon.svg")}
+                src={portfolioIcon}
                 alt="portfolio-link"
               />
             </a>

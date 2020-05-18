@@ -2,6 +2,6 @@ import React from "react";
 
 import "./Title.scss";
 
-const title = (props) => <h3 className="Title">{props.title}</h3>;
+const title = (props) => <h2 className="Title">{props.title}</h2>;
 
 export default title;

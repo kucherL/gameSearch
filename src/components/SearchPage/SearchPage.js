@@ -20,6 +20,10 @@ class SearchPage extends Component {
     offset: 0,
   };
 
+  componentDidMount = () => {
+    console.log(this.props.filteredGames);
+  };
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -80,14 +84,16 @@ class SearchPage extends Component {
                 className="GameItem"
               >
                 <GameItem
-                  game={game[0]}
-                  description={game[2]}
-                  cover={game[3]}
-                  id={game[1]}
+                  game={game[1]}
+                  genres={game[3]}
+                  platforms={game[4]}
+                  cover={game[5]}
+                  id={game[0]}
                   folders={this.props.folders}
                   addGameToFolder={this.props.onAddGameToFolder}
                   uid={this.props.user.uid}
                   addUserRating={this.props.onAddUserRating}
+                  getUserFolders={this.props.onGetUserFolders}
                 />
               </Link>
             );
@@ -96,21 +102,21 @@ class SearchPage extends Component {
         <div className="Pagination">
           {this.state.page === 1 ? (
             <button disabled>
-              <svg name="back">
-                <use href={sprite + "#icon-arrow-right"} />
+              <svg>
+                <use href={sprite + "#icon-arrow-left"} name="back" />
               </svg>
             </button>
           ) : (
             <button onClick={this.changePage}>
-              <svg name="back">
-                <use href={sprite + "#icon-arrow-right"} />
+              <svg>
+                <use href={sprite + "#icon-arrow-left"} name="back" />
               </svg>
             </button>
           )}
           {this.state.page}
           <button onClick={this.changePage}>
-            <svg name="forward">
-              <use href={sprite + "#icon-arrow-right"} />
+            <svg>
+              <use href={sprite + "#icon-arrow-right"} name="forward" />
             </svg>
           </button>
         </div>

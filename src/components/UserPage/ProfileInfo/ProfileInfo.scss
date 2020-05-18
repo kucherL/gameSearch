@@ -22,6 +22,31 @@
 
   &__about {
     width: 90%;
+
+    &--item {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+
+      svg {
+        width: 2rem;
+        height: 2rem;
+        fill: $second-background-color;
+        margin-right: 1rem;
+        margin-bottom: 0.5rem;
+
+        &:last-child {
+          fill: $accent-color;
+          width: 2.4rem;
+          height: 3rem;
+        }
+      }
+
+      a {
+        width: 2.4rem;
+        margin-right: 0.7rem;
+      }
+    }
   }
 }
 
@@ -32,7 +57,6 @@
     align-items: flex-start;
 
     &__photo {
-      width: 50%;
       margin-bottom: 1rem;
   
       img {
@@ -44,7 +68,6 @@
   
     &__about {
       margin-left: 1rem;
-      width: 50%;
     }
   }
 }

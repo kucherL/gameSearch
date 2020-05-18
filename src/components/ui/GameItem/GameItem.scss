@@ -1,11 +1,11 @@
 @import "../../../varibles";
 
 .GameItem {
-  padding: 1rem 1rem;
+  padding: 1rem;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   border-color: $accent-color;
   box-shadow: $border;
   border-radius: 3px;
@@ -14,6 +14,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    figure {
+      width: 100%;
+      display: flex;
+      margin-bottom: 1rem;
+
+      .Poster {
+        width: 8rem;
+      }
+    }
+  }
+
+  &__interactive-el {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
   }
 
   &__info {

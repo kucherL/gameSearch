@@ -10,20 +10,27 @@ const profileInfo = (props) => (
       <img src={props.profileData.photoURL} alt={props.profileData.name} />
     </div>
     <figcaption className="ProfileInfo__about">
-      <svg>
-        <use href={sprite + "#icon-profile"} />
-      </svg>
-      <p className="ProfileInfo__login">Login: {props.profileData.name}</p>
-      <svg>
-        <use href={sprite + "#icon-envelope"} />
-      </svg>
-      <p className="ProfileInfo__email">Email: {props.profileData.email}</p>
+      <div className="ProfileInfo__about--item">
+        <svg>
+          <use href={sprite + "#icon-profile"} />
+        </svg>
+        <p>Login: {props.profileData.name}</p>
+      </div>
+      <div className="ProfileInfo__about--item">
+        <svg>
+          <use href={sprite + "#icon-envelope"} />
+        </svg>
+        <p>Email: {props.profileData.email}</p>
+      </div>
+      <div className="ProfileInfo__about--item">
+        <Link to="/profileSettings">
+          <svg>
+            <use href={sprite + "#icon-cogs"} />
+          </svg>
+        </Link>
+        <p>Settings</p>
+      </div>
     </figcaption>
-    <Link to="/profileSettings">
-      <svg>
-        <use href={sprite + "#icon-cogs"} />
-      </svg>
-    </Link>
   </figure>
 );
 

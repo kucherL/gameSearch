@@ -21,6 +21,7 @@ const ToRememberButton = (props) => {
   };
 
   const getFoldersList = () => {
+    props.getUserFolders(props.uid);
     return props.folders.map((folder, index) => {
       return (
         <option key={index} value={folder[0]}>

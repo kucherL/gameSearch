@@ -9,8 +9,9 @@
   &__title {
     font-weight: bold;
     margin-bottom: 1rem;
-    font-size: 1.2rem;
-    color: $text-color;
+    font-size: 1.5rem;
+    color: $accent-color;
+    word-wrap: break-word;
   }
 
   &__container {

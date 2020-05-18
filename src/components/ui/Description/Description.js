@@ -14,8 +14,8 @@ const description = (props) => {
 
   return (
     <div className="Description">
-      <p>{namedGenres}</p>
-      <p>{namedPlatforms}</p>
+      <p className="Description__genres" hint="Жанры">{namedGenres}</p>
+      <p className="Description__platforms" hint="Платформы">{namedPlatforms}</p>
     </div>
   );
 };

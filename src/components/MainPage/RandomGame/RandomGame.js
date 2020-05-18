@@ -5,7 +5,6 @@ import "./RandomGame.scss";
 import Poster from "../../ui/Poster/Poster";
 import Title from "../../ui/Title/Title";
 import Rating from "../../ui/Rating/Rating";
-import Description from "../../ui/Description/Description";
 
 const randomGame = (props) => {
   return (
@@ -15,7 +14,7 @@ const randomGame = (props) => {
         <figcaption className="RandomGame__info">
           <Title title={props.titleRandomGame} />
           <Rating>{Math.floor(props.rating)}</Rating>
-          <Description description={props.summaryGame} />
+          <p>{props.summaryGame}</p>
         </figcaption>
       </figure>
     </Link>

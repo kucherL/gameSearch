@@ -1,10 +1,10 @@
 import React from "react";
 
 const genresSearch = (props) => {
-  const genresList = props.genres.map((genre, index) => {
+  const genresList = Object.values(props.genres).map(genre => {
     return (
       <option
-        key={index}
+        key={genre.id}
         value={genre.id}
       >
         {genre.name}

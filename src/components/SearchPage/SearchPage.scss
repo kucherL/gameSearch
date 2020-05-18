@@ -18,25 +18,22 @@
   }
 
   .Pagination {
-    color: $text-color;
+    margin-bottom: 1rem;
+    color: $accent-color;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
 
-    .ArrowButton {
-      height: 0.7rem;
-      width: 0.7rem;
-      padding-bottom: 1.5rem;
-      margin-bottom: 1rem;
+    button {
+      background-color: transparent;
       border: none;
-      background-color: $second-background-color;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-
-      &:first-child {
-        transform: rotateZ(270deg);
-        margin-right: 1rem;
-      }
-
-      &:last-child {
-        transform: rotateZ(90deg);
-        margin-left: 1rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      svg {
+        width: 2rem;
+        height: 2rem;
+        fill: $second-background-color;
       }
     }
   }

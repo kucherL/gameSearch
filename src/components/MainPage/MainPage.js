@@ -10,8 +10,7 @@ class MainPage extends Component {
   componentDidMount = () => {
     this.props.onGetRandomGame(this.getRandomInt);
     this.props.onGetPreferredGames();
-    // this.props.onCheckAuth();
-    // this.props.onGetUserFolders(this.props.user.uid);
+    this.props.onCheckAuth();
   };
 
   getRandomInt = (arr) => {
@@ -39,6 +38,7 @@ class MainPage extends Component {
             addGameToFolder={this.props.onAddGameToFolder}
             uid={this.props.user.uid}
             addUserRating={this.props.onAddUserRating}
+            getUserFolders={this.props.onGetUserFolders}
           />
         </>
       </main>

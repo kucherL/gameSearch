@@ -1,9 +1,9 @@
 import React from "react";
 
 const platformSearch = (props) => {
-  const platformsList = props.platforms.map((platform, index) => {
+  const platformsList = Object.values(props.platforms).map(platform => {
     return (
-      <option key={index} value={platform.id}>
+      <option key={platform.id} value={platform.id}>
         {platform.name}
       </option>
     );

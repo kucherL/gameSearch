@@ -23,6 +23,7 @@ const preferenceList = (props) => {
           addGameToFolder={props.addGameToFolder}
           uid={props.uid}
           addUserRating={props.addUserRating}
+          getUserFolders={props.getUserFolders}
         />
       </Link>
     );
@@ -30,9 +31,9 @@ const preferenceList = (props) => {
 
   return (
     <section className="PreferenceList">
-      <p className="PreferenceList__title">
+      <h1 className="PreferenceList__title">
         Вам могут понравиться следующие игры
-      </p>
+      </h1>
       <div className="PreferenceList__container">{list}</div>
     </section>
   );

@@ -76,36 +76,33 @@ export const filterGames = (apiString, offset) => {
   return async (dispatch) => {
     const filteredGames = await instance(
       "games/",
-      `fields name, cover, summary;${apiString}; sort rating; limit 10; offset ${offset};`
+      `fields id, name, cover, genres, platforms;${apiString}; sort rating; limit 12; offset ${offset};`
     );
-    if (filteredGames.data.some((game) => !game.cover)) {
-      dispatch({
-        type: actionTypes.FILTER_GAMES,
-        data: filterGames.data,
-      });
-    } else {
-      let temporaryDataPreference = filteredGames.data
-        .sort((a, b) => a.cover - b.cover)
-        .map((game) => [game.name, game.cover, game.summary]);
-      let temporaryData = filteredGames.data
-        .map((item) => item.cover)
-        .join(", ");
-      const filteredGamesAndCovers = await instance(
-        "covers",
-        `fields url; where id=(${temporaryData});`
+    let temporaryDataPreference = filteredGames.data
+      .sort((a, b) => a.cover - b.cover)
+      .map((game) => [
+        game.id,
+        game.name,
+        game.cover,
+        game.genres,
+        game.platforms,
+      ]);
+    let temporaryData = filteredGames.data.map((item) => item.cover).join(", ");
+    const filteredGamesAndCovers = await instance(
+      "covers",
+      `fields url; where id=(${temporaryData});`
+    );
+    let coversURL = filteredGamesAndCovers.data.map((cover) => cover.url);
+    for (let i = 0; i < coversURL.length; i++) {
+      let hash = coversURL[i].split(IMAGES_URL);
+      temporaryDataPreference[i].push(
+        `https://images.igdb.com/igdb/image/upload/t_cover_small/${hash[1]}`
       );
-      let coversURL = filteredGamesAndCovers.data.map((cover) => cover.url);
-      for (let i = 0; i < coversURL.length; i++) {
-        let hash = coversURL[i].split(IMAGES_URL);
-        temporaryDataPreference[i].push(
-          `https://images.igdb.com/igdb/image/upload/t_cover_small/${hash[1]}`
-        );
-      }
-      dispatch({
-        type: actionTypes.FILTER_GAMES_AND_COVERS,
-        data: temporaryDataPreference,
-      });
     }
+    dispatch({
+      type: actionTypes.FILTER_GAMES_AND_COVERS,
+      data: temporaryDataPreference,
+    });
   };
 };
 

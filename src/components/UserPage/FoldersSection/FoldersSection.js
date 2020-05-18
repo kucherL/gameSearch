@@ -7,7 +7,7 @@ const foldersSection = (props) => (
   <section className="FoldersSection">
     <div>
       <select className="FoldersSection__select" onChange={props.eventHandler}>
-        <option value="">Please choose a folder</option>
+        <option value="">Favorites</option>
         {props.getFoldersList()}
       </select>
       <SubmitButton click={props.showInputHandler}>Add new folder</SubmitButton>
