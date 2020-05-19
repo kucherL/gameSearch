@@ -10,7 +10,6 @@ class MainPage extends Component {
   componentDidMount = () => {
     this.props.onGetRandomGame(this.getRandomInt);
     this.props.onGetPreferredGames();
-    this.props.onCheckAuth();
   };
 
   getRandomInt = (arr) => {

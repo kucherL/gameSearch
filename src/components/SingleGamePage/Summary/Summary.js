@@ -5,10 +5,12 @@ import "./Summary.scss";
 
 const summary = (props) => (
   <section className="Summary">
-    <svg>
-      <use href={sprite + "#icon-book"} />
-    </svg>
-    <p className="Summary__title">Описание игры</p>
+    <div className="Summary__title">
+      <svg>
+        <use href={sprite + "#icon-book"} />
+      </svg>
+      <h1>Описание игры</h1>
+    </div>
     <p>{props.summary}</p>
   </section>
 );

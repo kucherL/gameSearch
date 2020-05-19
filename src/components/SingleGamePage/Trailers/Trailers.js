@@ -21,10 +21,12 @@ const trailers = (props) => {
 
   return (
     <section className="Trailers">
-      <svg>
-        <use href={sprite + "#icon-film"} />
-      </svg>
-      <p className="TitleGame">Трейлеры</p>
+      <div className="Trailers__title">
+        <svg>
+          <use href={sprite + "#icon-film"} />
+        </svg>
+        <h1>Трейлеры</h1>
+      </div>
       <div className="Trailers__container">{trailersConteiner}</div>
     </section>
   );

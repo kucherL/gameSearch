@@ -16,10 +16,6 @@ class Auth extends Component {
     passwordSignUp: "",
   };
 
-  componentDidUpdate = () => {
-    console.log(this.props.emailSignIn, this.props.passwordSignIn);
-  };
-
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };

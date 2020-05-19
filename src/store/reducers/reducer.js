@@ -50,11 +50,12 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, {
         singleCover: action.data[1],
         singleName: action.data[0].name,
-        singleGenres: action.data[2],
+        singleGenres: action.data[0].genres,
+        singlePlatforms: action.data[0].platforms,
         singleRating: Math.floor(action.data[0].rating),
-        singleVideos: action.data[3],
+        singleVideos: action.data[2],
         singleSummary: action.data[0].summary,
-        singleAlike: action.data[4],
+        singleAlike: action.data[3],
       });
     case actionTypes.CHECK_AUTH:
       return updateObject(state, {
@@ -67,11 +68,11 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_USER_FOLDERS:
       return updateObject(state, {
         userFolders: action.data,
-      })
+      });
     case actionTypes.FETCH_GAMES_IN_FOLDER:
       return updateObject(state, {
         folderGames: action.data,
-      })
+      });
     default:
       return state;
   }

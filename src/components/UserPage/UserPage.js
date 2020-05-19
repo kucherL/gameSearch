@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions/actions";
 import { Link } from "react-router-dom";
+import { firestore, storage } from "../../firebase";
 
 import "./UserPage.scss";
 import GameItem from "../ui/GameItem/GameItem";
@@ -69,7 +70,10 @@ class UserPage extends Component {
   render() {
     return (
       <main className="UserPage">
-        <ProfileInfo profileData={this.props.profileData} />
+        <ProfileInfo
+          profileData={this.props.profileData}
+          uid={this.props.user.uid}
+        />
         <FoldersSection
           eventHandler={this.eventHandler}
           getFoldersList={this.getFoldersList}

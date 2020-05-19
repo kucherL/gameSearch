@@ -110,7 +110,7 @@ export const getSingleGameInfo = (id) => {
   return async (dispatch) => {
     const info = await instance(
       "games/",
-      `fields cover, name, genres, rating, videos, summary, similar_games; where id=${id};`
+      `fields name, cover, genres, platforms, rating, videos, summary, similar_games; where id=${id};`
     );
 
     let cover = await instance(
@@ -119,12 +119,6 @@ export const getSingleGameInfo = (id) => {
     );
     let hash = cover.data[0].url.split(IMAGES_URL);
     cover = `https://images.igdb.com/igdb/image/upload/t_cover_big/${hash[1]}`;
-
-    let genres = await instance(
-      "genres",
-      `fields name; where id=(${info.data[0].genres});`
-    );
-    genres = genres.data.map((genre) => genre.name);
 
     let videos = await instance(
       "game_videos",
@@ -138,11 +132,17 @@ export const getSingleGameInfo = (id) => {
 
     let alike = await instance(
       "games/",
-      `fields id, cover, name, rating; where id=(${info.data[0].similar_games}); limit 5;`
+      `fields id, name, cover, genres, platforms; where id=(${info.data[0].similar_games}); limit 6;`
     );
     let temporaryDataPreference = alike.data
       .sort((a, b) => a.cover - b.cover)
-      .map((game) => [game.id, game.name, game.rating, game.cover]);
+      .map((game) => [
+        game.id,
+        game.name,
+        game.cover,
+        game.genres,
+        game.platforms,
+      ]);
     let temporaryData = alike.data.map((item) => item.cover).join(", ");
     let alikeCovers = await instance(
       "covers",
@@ -157,7 +157,7 @@ export const getSingleGameInfo = (id) => {
     }
     alike = temporaryDataPreference;
 
-    let allInfo = info.data.concat(cover, [genres], [videos], [alike]);
+    let allInfo = info.data.concat(cover, [videos], [alike]);
     dispatch({
       type: actionTypes.GET_SINGLE_GAME_INFO,
       data: allInfo,

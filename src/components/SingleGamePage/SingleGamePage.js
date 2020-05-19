@@ -17,7 +17,6 @@ import "./SingleGamePage.scss";
 class SingleGamePage extends Component {
   componentDidMount = () => {
     this.props.onGetSingleGameInfo(this.props.id);
-    this.props.onGetUserFolders(this.props.user.uid);
   };
 
   render() {
@@ -27,28 +26,33 @@ class SingleGamePage extends Component {
           <Loader />
         ) : (
           <>
-            <section className="GameInfo">
+            <figure className="GameInfo">
               <Poster cover={this.props.cover} />
-              <div className="GameInfo__bottom-block">
-                <ToRememberButton
-                  idGame={this.props.id}
-                  cover={this.props.cover}
-                  title={this.props.title}
-                  summary={this.props.summary}
-                  folders={this.props.folders}
-                  addGameToFolder={this.props.onAddGameToFolder}
-                  uid={this.props.user.uid}
-                />
-                <AddUserRating
-                  idGame={this.props.id}
-                  uid={this.props.user.uid}
-                  addUserRating={this.props.onAddUserRating}
-                />
+              <figcaption>
+                <div className="GameInfo__interactive-el">
+                  <ToRememberButton
+                    idGame={this.props.id}
+                    cover={this.props.cover}
+                    title={this.props.title}
+                    summary={this.props.summary}
+                    folders={this.props.folders}
+                    addGameToFolder={this.props.onAddGameToFolder}
+                    uid={this.props.user.uid}
+                  />
+                  <AddUserRating
+                    idGame={this.props.id}
+                    uid={this.props.user.uid}
+                    addUserRating={this.props.onAddUserRating}
+                  />
+                </div>
                 <Title title={this.props.title} />
-                <Description description={this.props.genre} />
+                <Description
+                  genres={this.props.singleGenres}
+                  platforms={this.props.singlePlatforms}
+                />
                 <Rating>{this.props.rating}</Rating>
-              </div>
-            </section>
+              </figcaption>
+            </figure>
             {this.props.videos !== null ? (
               <Trailers videos={this.props.videos} />
             ) : null}
@@ -75,7 +79,8 @@ const mapStateToProps = (state) => {
     id: state.choosedId,
     cover: state.singleCover,
     title: state.singleName,
-    genre: state.singleGenres,
+    singleGenres: state.singleGenres,
+    singlePlatforms: state.singlePlatforms,
     rating: state.singleRating,
     videos: state.singleVideos,
     summary: state.singleSummary,

@@ -16,12 +16,15 @@ const similarGames = (props) => {
       >
         <GameItem
           game={game[1]}
-          cover={game[4]}
+          genres={game[3]}
+          platforms={game[4]}
+          cover={game[5]}
           id={game[0]}
           folders={props.folders}
           addGameToFolder={props.addGameToFolder}
           uid={props.uid}
           addUserRating={props.addUserRating}
+          getUserFolders={props.getUserFolders}
         />
       </Link>
     );
@@ -29,10 +32,12 @@ const similarGames = (props) => {
 
   return (
     <section className="SimilarGames">
-      <svg>
-        <use href={sprite + "#icon-spaceinvaders"} />
-      </svg>
-      <p className="SimilarGames__title">Похожие игры</p>
+      <div className="SimilarGames__title">
+        <svg>
+          <use href={sprite + "#icon-spaceinvaders"} />
+        </svg>
+        <h1>Похожие игры</h1>
+      </div>
       <div className="SimilarGames__container">{alikeList}</div>
     </section>
   );
