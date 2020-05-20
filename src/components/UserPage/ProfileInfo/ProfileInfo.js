@@ -46,36 +46,29 @@ class ProfileInfo extends Component {
   render() {
     return (
       <figure className="ProfileInfo">
-        {this.props.profileData.photoURL ? (
-          <div className="ProfileInfo__photo">
+        <div className="ProfileInfo__photo">
+          {this.props.profileData.photoURL ? (
             <img
               src={this.props.profileData.photoURL}
               alt={this.props.profileData.name}
             />
-            <button
-              className="ProfileInfo__settings"
-              onClick={this.handleClick}
-            >
-              <svg>
-                <use href={sprite + "#icon-cogs"} />
-              </svg>
-            </button>
-          </div>
-        ) : (
-          <svg alt="poster" className="Poster-svg">
-            <use href={sprite + "#icon-spaceinvaders"} />
-          </svg>
-        )}
+          ) : (
+            <svg alt="poster" className="Poster-svg">
+              <use href={sprite + "#icon-spaceinvaders"} />
+            </svg>
+          )}
+          <button className="ProfileInfo__settings" onClick={this.handleClick}>
+            <svg>
+              <use href={sprite + "#icon-cogs"} />
+            </svg>
+          </button>
+        </div>
         <figcaption className="ProfileInfo__about">
           <div className="ProfileInfo__about--item">
             <svg>
               <use href={sprite + "#icon-profile"} />
             </svg>
-            {this.props.profileData.name ? (
-              <p>Login: {this.props.profileData.name}</p>
-            ) : (
-              <p>...</p>
-            )}
+            <p>Login: {this.props.profileData.name}</p>
             <button
               className="ProfileInfo__settings"
               onClick={this.handleClick}
@@ -89,11 +82,7 @@ class ProfileInfo extends Component {
             <svg>
               <use href={sprite + "#icon-envelope"} />
             </svg>
-            {this.props.profileData.email ? (
-              <p>Email: {this.props.profileData.email}</p>
-            ) : (
-              <p>...</p>
-            )}
+            <p>Email: {this.props.profileData.email}</p>
           </div>
         </figcaption>
         {this.state.profileChange ? (

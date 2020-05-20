@@ -8,16 +8,19 @@ import Rating from "../../ui/Rating/Rating";
 
 const randomGame = (props) => {
   return (
-    <Link to="/singlePage" onClick={() => props.sendId(props.idRandomGame)}>
-      <figure className="RandomGame">
+    <figure className="RandomGame">
+      <Link
+        to={`/game/${props.idRandomGame}`}
+        onClick={() => props.sendId(props.idRandomGame)}
+      >
         <Poster cover={props.coverRandomGame} />
-        <figcaption className="RandomGame__info">
-          <Title title={props.titleRandomGame} />
-          <Rating>{Math.floor(props.rating)}</Rating>
-          <p>{props.summaryGame}</p>
-        </figcaption>
-      </figure>
-    </Link>
+      </Link>
+      <figcaption className="RandomGame__info">
+        <Title title={props.titleRandomGame} />
+        <Rating>{Math.floor(props.rating)}</Rating>
+        <p>{props.summaryGame}</p>
+      </figcaption>
+    </figure>
   );
 };
 

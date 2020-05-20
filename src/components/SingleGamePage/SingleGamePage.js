@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import Poster from "../ui/Poster/Poster";
 import Title from "../ui/Title/Title";
@@ -19,55 +20,63 @@ class SingleGamePage extends Component {
     this.props.onGetSingleGameInfo(this.props.id);
   };
 
+  componentDidUpdate = (prevProps) => {
+    if (this.props.id !== prevProps.id) {
+      this.props.onGetSingleGameInfo(this.props.id);
+    }
+  };
+
   render() {
     return (
-      <main className="SingleGamePage">
-        {!this.props.cover ? (
-          <Loader />
+      <>
+        {!this.props.id ? (
+          <Redirect to="/" />
         ) : (
-          <>
-            <figure className="GameInfo">
-              <Poster cover={this.props.cover} />
-              <figcaption>
-                <div className="GameInfo__interactive-el">
-                  <ToRememberButton
-                    idGame={this.props.id}
-                    cover={this.props.cover}
-                    title={this.props.title}
-                    summary={this.props.summary}
-                    folders={this.props.folders}
-                    addGameToFolder={this.props.onAddGameToFolder}
-                    uid={this.props.user.uid}
+          <main className="SingleGamePage">
+            <>
+              <figure className="GameInfo">
+                <Poster cover={this.props.cover} />
+                <figcaption>
+                  <div className="GameInfo__interactive-el">
+                    <ToRememberButton
+                      idGame={this.props.id}
+                      cover={this.props.cover}
+                      title={this.props.title}
+                      summary={this.props.summary}
+                      folders={this.props.folders}
+                      addGameToFolder={this.props.onAddGameToFolder}
+                      uid={this.props.user.uid}
+                    />
+                    <AddUserRating
+                      idGame={this.props.id}
+                      uid={this.props.user.uid}
+                      addUserRating={this.props.onAddUserRating}
+                    />
+                  </div>
+                  <Title title={this.props.title} />
+                  <Description
+                    genres={this.props.singleGenres}
+                    platforms={this.props.singlePlatforms}
                   />
-                  <AddUserRating
-                    idGame={this.props.id}
-                    uid={this.props.user.uid}
-                    addUserRating={this.props.onAddUserRating}
-                  />
-                </div>
-                <Title title={this.props.title} />
-                <Description
-                  genres={this.props.singleGenres}
-                  platforms={this.props.singlePlatforms}
-                />
-                <Rating>{this.props.rating}</Rating>
-              </figcaption>
-            </figure>
-            {this.props.videos !== null ? (
-              <Trailers videos={this.props.videos} />
-            ) : null}
-            <Summary summary={this.props.summary} />
-            <SimilarGames
-              alikeGames={this.props.alike}
-              sendId={this.props.onGetId}
-              folders={this.props.folders}
-              addGameToFolder={this.props.onAddGameToFolder}
-              uid={this.props.user.uid}
-              addUserRating={this.props.onAddUserRating}
-            />
-          </>
+                  <Rating>{this.props.rating}</Rating>
+                </figcaption>
+              </figure>
+              {this.props.videos !== null ? (
+                <Trailers videos={this.props.videos} />
+              ) : null}
+              <Summary summary={this.props.summary} />
+              <SimilarGames
+                alikeGames={this.props.alike}
+                sendId={this.props.onGetId}
+                folders={this.props.folders}
+                addGameToFolder={this.props.onAddGameToFolder}
+                uid={this.props.user.uid}
+                addUserRating={this.props.onAddUserRating}
+              />
+            </>
+          </main>
         )}
-      </main>
+      </>
     );
   }
 }

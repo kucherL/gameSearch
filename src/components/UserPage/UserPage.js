@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions/actions";
-import { Link } from "react-router-dom";
-import { firestore, storage } from "../../firebase";
+import { Redirect } from "react-router-dom";
 
 import "./UserPage.scss";
 import GameItem from "../ui/GameItem/GameItem";
@@ -19,7 +18,6 @@ class UserPage extends Component {
 
   componentDidMount() {
     this.props.onGetProfileData(this.props.user.uid);
-    this.props.onGetUserFolders(this.props.user.uid);
   }
 
   eventHandler = (event) => {
@@ -38,28 +36,22 @@ class UserPage extends Component {
     });
   };
 
-  // TODO: исправить ошибку при переходе по ссылке
   getListOfGames = () => {
     return this.props.games.map((game, index) => {
       return (
         <>
-          <Link
-            to="/singlePage"
-            onClick={() => this.props.onGetId(game[0])}
+          <GameItem
             key={index}
-            className="GameItem"
-          >
-            <GameItem
-              game={game.gameData[2]}
-              description={game.gameData[3]}
-              cover={game.gameData[1]}
-              id={game.gameData[0]}
-              folders={this.props.folders}
-              addGameToFolder={this.props.onAddGameToFolder}
-              uid={this.props.user.uid}
-              addUserRating={this.props.onAddUserRating}
-            />
-          </Link>
+            game={game.gameData[2]}
+            description={game.gameData[3]}
+            cover={game.gameData[1]}
+            id={game.gameData[0]}
+            folders={this.props.folders}
+            addGameToFolder={this.props.onAddGameToFolder}
+            uid={this.props.user.uid}
+            addUserRating={this.props.onAddUserRating}
+            sendId={this.props.onGetId}
+          />
           <button
             onClick={() =>
               this.props.OnDeleteGame(
@@ -88,26 +80,32 @@ class UserPage extends Component {
 
   render() {
     return (
-      <main className="UserPage">
-        <ProfileInfo
-          profileData={this.props.profileData}
-          uid={this.props.user.uid}
-        />
-        <FoldersSection
-          eventHandler={this.eventHandler}
-          getFoldersList={this.getFoldersList}
-          showInputHandler={this.showInputHandler}
-          showInput={this.state.showInput}
-          addFolderName={this.addFolderName}
-          setNewFolder={this.props.onSetNewFolder}
-          user={this.props.user.uid}
-          folderName={this.state.folderName}
-          getListOfGames={this.getListOfGames}
-          title={this.props.title}
-          deleteFolder={this.props.onDeleteFolder}
-          folderId={this.state.folderId}
-        />
-      </main>
+      <>
+        {!this.props.user ? (
+          <Redirect to="/auth" />
+        ) : (
+          <main className="UserPage">
+            <ProfileInfo
+              profileData={this.props.profileData}
+              uid={this.props.user.uid}
+            />
+            <FoldersSection
+              eventHandler={this.eventHandler}
+              getFoldersList={this.getFoldersList}
+              showInputHandler={this.showInputHandler}
+              showInput={this.state.showInput}
+              addFolderName={this.addFolderName}
+              setNewFolder={this.props.onSetNewFolder}
+              user={this.props.user.uid}
+              folderName={this.state.folderName}
+              getListOfGames={this.getListOfGames}
+              title={this.props.title}
+              deleteFolder={this.props.onDeleteFolder}
+              folderId={this.state.folderId}
+            />
+          </main>
+        )}
+      </>
     );
   }
 }
@@ -135,7 +133,6 @@ const mapDispatchToProps = (dispatch) => {
     onGetProfileData: (user) => dispatch(actionCreators.getProfileData(user)),
     onSetNewFolder: (user, title) =>
       dispatch(actionCreators.setNewFolder(user, title)),
-    onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
     onFetchGamesInFolder: (user, idFolder) =>
       dispatch(actionCreators.fetchGamesInFolder(user, idFolder)),
     onGetId: (value) => dispatch(actionCreators.getId(value)),

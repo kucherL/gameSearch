@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./GameItem.scss";
 import PosterGame from "../Poster/Poster";
@@ -10,7 +11,9 @@ import Description from "../Description/Description";
 const gameItem = (props) => (
   <section className="GameItem__container">
     <figure>
-      <PosterGame cover={props.cover} />
+      <Link to={`/game/${props.id}`} onClick={() => props.sendId(props.id)}>
+        <PosterGame cover={props.cover} />
+      </Link>
       <div className="GameItem__interactive-el">
         <ToRememberButton
           idGame={props.id}

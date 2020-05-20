@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import sprite from "../../../assets/sprite.svg"
+import sprite from "../../../assets/sprite.svg";
 
 import "./ToRememberButton.scss";
 
@@ -32,17 +32,30 @@ const ToRememberButton = (props) => {
   };
 
   return (
-    <button className="ToRememberButton" onClick={foldersHandler}>
-      <svg>
-        <use href={sprite + "#icon-gamepad"} />
-      </svg>
-      {showFolders ? (
-        <select className="FoldersSection__select" onChange={gameDataHandler}>
-          <option value="">Please choose a folder</option>
-          {getFoldersList()}
-        </select>
-      ) : null}
-    </button>
+    <>
+      {!props.uid ? (
+        <button disabled className="ToRememberButton" onClick={foldersHandler}>
+          <svg>
+            <use href={sprite + "#icon-gamepad"} />
+          </svg>
+        </button>
+      ) : (
+        <button className="ToRememberButton" onClick={foldersHandler}>
+          <svg>
+            <use href={sprite + "#icon-gamepad"} />
+          </svg>
+          {showFolders ? (
+            <select
+              className="FoldersSection__select"
+              onChange={gameDataHandler}
+            >
+              <option value="">Please choose a folder</option>
+              {getFoldersList()}
+            </select>
+          ) : null}
+        </button>
+      )}
+    </>
   );
 };
 

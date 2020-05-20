@@ -20,10 +20,6 @@ class SearchPage extends Component {
     offset: 0,
   };
 
-  componentDidMount = () => {
-    console.log(this.props.filteredGames);
-  };
-
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -77,25 +73,20 @@ class SearchPage extends Component {
         <section className="SearchPage__filtered-games">
           {this.props.filteredGames.map((game, index) => {
             return (
-              <Link
-                to="/singlePage"
-                onClick={() => this.props.onGetId(game[0])}
+              <GameItem
                 key={index}
-                className="GameItem"
-              >
-                <GameItem
-                  game={game[1]}
-                  genres={game[3]}
-                  platforms={game[4]}
-                  cover={game[5]}
-                  id={game[0]}
-                  folders={this.props.folders}
-                  addGameToFolder={this.props.onAddGameToFolder}
-                  uid={this.props.user.uid}
-                  addUserRating={this.props.onAddUserRating}
-                  getUserFolders={this.props.onGetUserFolders}
-                />
-              </Link>
+                game={game[1]}
+                genres={game[3]}
+                platforms={game[4]}
+                cover={game[5]}
+                id={game[0]}
+                folders={this.props.folders}
+                addGameToFolder={this.props.onAddGameToFolder}
+                uid={this.props.user.uid}
+                addUserRating={this.props.onAddUserRating}
+                getUserFolders={this.props.onGetUserFolders}
+                sendId={this.props.onGetId}
+              />
             );
           })}
         </section>

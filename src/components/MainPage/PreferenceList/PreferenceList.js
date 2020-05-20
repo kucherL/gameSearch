@@ -7,25 +7,20 @@ import GameItem from "../../ui/GameItem/GameItem";
 const preferenceList = (props) => {
   const list = props.preferenceGames.map((game, index) => {
     return (
-      <Link
-        to="/singlePage"
-        onClick={() => props.sendId(game[0])}
+      <GameItem
         key={index}
-        className="GameItem"
-      >
-        <GameItem
-          game={game[1]}
-          genres={game[3]}
-          platforms={game[4]}
-          cover={game[5]}
-          id={game[0]}
-          folders={props.folders}
-          addGameToFolder={props.addGameToFolder}
-          uid={props.uid}
-          addUserRating={props.addUserRating}
-          getUserFolders={props.getUserFolders}
-        />
-      </Link>
+        game={game[1]}
+        genres={game[3]}
+        platforms={game[4]}
+        cover={game[5]}
+        id={game[0]}
+        folders={props.folders}
+        addGameToFolder={props.addGameToFolder}
+        uid={props.uid}
+        addUserRating={props.addUserRating}
+        getUserFolders={props.getUserFolders}
+        sendId={props.sendId}
+      />
     );
   });
 

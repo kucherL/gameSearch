@@ -27,12 +27,14 @@ class Auth extends Component {
       this.state.passwordSignIn
     );
     this.props.onCheckAuth();
+    this.props.onGetUserFolders(this.props.user.uid);
     this.setState({ emailSignIn: "", passwordSignIn: "" });
   };
 
   handleSignInWithGoogle = () => {
     signInWithGoogle();
     this.props.onCheckAuth();
+    this.props.onGetUserFolders(this.props.user.uid);
   };
 
   handleSubmitSignUp = async (event) => {
@@ -82,6 +84,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onCheckAuth: () => dispatch(actionCreators.checkAuth()),
+    onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
   };
 };
 

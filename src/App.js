@@ -32,7 +32,7 @@ const App = () => {
     <Switch>
       <Route path="/search" render={(props) => <SearchPage {...props} />} />
       <Route
-        path="/singlePage"
+        path="/game/:id"
         render={(props) => <SingleGamePage {...props} />}
       />
       <Route path="/auth" component={Auth} />
