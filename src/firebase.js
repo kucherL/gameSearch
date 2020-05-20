@@ -27,12 +27,14 @@ export const signInWithGoogle = () => {
     if (firestore.doc(`users/${result.user.uid}`) === true) {
       return null;
     } else {
-      createUserProfile({
-        uid: result.user.uid,
-        email: result.user.email,
-        name: result.user.displayName,
-        photoURL: result.user.photoURL,
-      });
+      createUserProfile(
+        {
+          uid: result.user.uid,
+          email: result.user.email,
+          photoURL: result.user.photoURL,
+        },
+        result.user.displayName
+      );
     }
   });
 };
@@ -42,16 +44,18 @@ export const createUserProfile = async (user, additionalData) => {
   const userRef = firestore.doc(`users/${user.uid}`);
   const snapshot = await userRef.get();
   if (!snapshot.exists) {
-    const { name, email, photoURL } = user;
+    const { email, photoURL } = user;
     const createdAt = new Date();
     try {
       await userRef.set({
-        name,
+        name: additionalData,
         email,
         photoURL,
         createdAt,
-        ...additionalData,
       });
+      await firestore
+        .collection(`users/${user.uid}/folders`)
+        .add({ title: "Favorites" });
     } catch (error) {
       console.error("Error creating user", error);
     }

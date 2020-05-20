@@ -224,9 +224,14 @@ export const fetchGamesInFolder = (user, idFolder) => {
       .collection(`users/${user}/folders/${idFolder}/games`)
       .get();
     const folderGames = games.docs.map((doc) => doc.data());
+    const temporary = await firestore
+      .doc(`users/${user}/folders/${idFolder}`)
+      .get();
+    const folderTitle = temporary.data().title;
     dispatch({
       type: actionTypes.FETCH_GAMES_IN_FOLDER,
       data: folderGames,
+      folderTitle: folderTitle,
     });
   };
 };
@@ -237,5 +242,19 @@ export const addUserRating = (user, starValue, idGame) => {
     await firestore
       .collection(`users/${user}/playedGames`)
       .add({ starValue, idGame });
+  };
+};
+
+export const deleteGame = (userId, folderId, gameId) => {
+  return async () => {
+    await firestore
+      .doc(`users/${userId}/folders/${folderId}/games/${gameId}`)
+      .delete();
+  };
+};
+
+export const deleteFolder = (userId, folderId) => {
+  return async () => {
+    await firestore.doc(`users/${userId}/folders/${folderId}`).delete();
   };
 };

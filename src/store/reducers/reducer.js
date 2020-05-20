@@ -22,6 +22,7 @@ const initialState = {
   profileData: [],
   userFolders: [],
   folderGames: [],
+  folderTitle: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -72,6 +73,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_GAMES_IN_FOLDER:
       return updateObject(state, {
         folderGames: action.data,
+        folderTitle: action.folderTitle,
       });
     default:
       return state;

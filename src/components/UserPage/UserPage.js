@@ -8,11 +8,13 @@ import "./UserPage.scss";
 import GameItem from "../ui/GameItem/GameItem";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FoldersSection from "./FoldersSection/FoldersSection";
+import sprite from "../../assets/sprite.svg";
 
 class UserPage extends Component {
   state = {
     showInput: false,
     folderName: "",
+    folderId: "",
   };
 
   componentDidMount() {
@@ -21,7 +23,9 @@ class UserPage extends Component {
   }
 
   eventHandler = (event) => {
+    console.log(event.target.value);
     this.props.onFetchGamesInFolder(this.props.user.uid, event.target.value);
+    this.setState({ folderId: event.target.value });
   };
 
   getFoldersList = () => {
@@ -38,23 +42,38 @@ class UserPage extends Component {
   getListOfGames = () => {
     return this.props.games.map((game, index) => {
       return (
-        <Link
-          to="/singlePage"
-          onClick={() => this.props.onGetId(game[0])}
-          key={index}
-          className="GameItem"
-        >
-          <GameItem
-            game={game.gameData[2]}
-            description={game.gameData[3]}
-            cover={game.gameData[1]}
-            id={game.gameData[0]}
-            folders={this.props.folders}
-            addGameToFolder={this.props.onAddGameToFolder}
-            uid={this.props.user.uid}
-            addUserRating={this.props.onAddUserRating}
-          />
-        </Link>
+        <>
+          <Link
+            to="/singlePage"
+            onClick={() => this.props.onGetId(game[0])}
+            key={index}
+            className="GameItem"
+          >
+            <GameItem
+              game={game.gameData[2]}
+              description={game.gameData[3]}
+              cover={game.gameData[1]}
+              id={game.gameData[0]}
+              folders={this.props.folders}
+              addGameToFolder={this.props.onAddGameToFolder}
+              uid={this.props.user.uid}
+              addUserRating={this.props.onAddUserRating}
+            />
+          </Link>
+          <button
+            onClick={() =>
+              this.props.OnDeleteGame(
+                this.props.user.uid,
+                this.state.folderId,
+                game[0]
+              )
+            }
+          >
+            <svg>
+              <use href={sprite + "#icon-trashcan"} />
+            </svg>
+          </button>
+        </>
       );
     });
   };
@@ -84,6 +103,9 @@ class UserPage extends Component {
           user={this.props.user.uid}
           folderName={this.state.folderName}
           getListOfGames={this.getListOfGames}
+          title={this.props.title}
+          deleteFolder={this.props.onDeleteFolder}
+          folderId={this.state.folderId}
         />
       </main>
     );
@@ -96,11 +118,16 @@ const mapStateToProps = (state) => {
     profileData: state.profileData,
     folders: state.userFolders,
     games: state.folderGames,
+    title: state.folderTitle,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onDeleteGame: (userId, folderId, gameId) =>
+      dispatch(actionCreators.deleteGame(userId, folderId, gameId)),
+    onDeleteFolder: (userId, folderId) =>
+      dispatch(actionCreators.deleteFolder(userId, folderId)),
     onAddUserRating: (user, starValue, idGame) =>
       dispatch(actionCreators.addUserRating(user, starValue, idGame)),
     onAddGameToFolder: (gameData, user, idFolder) =>

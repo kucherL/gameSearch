@@ -1,8 +1,12 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 import Auth from "./components/Auth/Auth";
-import ProfileSettings from "./components/UserPage/ProfileSettings/ProfileSettings";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Loader from "./components/ui/Loader/Loader";
@@ -33,7 +37,6 @@ const App = () => {
       />
       <Route path="/auth" component={Auth} />
       <Route path="/userPage" render={(props) => <UserPage {...props} />} />
-      <Route path="/profileSettings" component={ProfileSettings} />
       <Route path="/" render={(props) => <MainPage {...props} />} />
       <Redirect to="/" />
     </Switch>

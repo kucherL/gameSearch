@@ -43,7 +43,7 @@ class Auth extends Component {
         emailSignUp,
         passwordSignUp
       );
-      createUserProfile(user, { nameSignUp });
+      createUserProfile(user, nameSignUp);
       this.props.onCheckAuth();
     } catch (error) {
       console.error(error);
