@@ -20,6 +20,8 @@ const preferenceList = (props) => {
         addUserRating={props.addUserRating}
         getUserFolders={props.getUserFolders}
         sendId={props.sendId}
+        ratedGames={props.ratedGames}
+        fetchUserRating={props.fetchUserRating}
       />
     );
   });

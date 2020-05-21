@@ -35,7 +35,6 @@ class Auth extends Component {
   handleSignInWithGoogle = async () => {
     signInWithGoogle();
     await this.props.onCheckAuth();
-    console.log(this.props.user.uid);
     await this.props.onGetUserFolders(this.props.user.uid);
     await this.props.onFetchUserRating(this.props.user.uid);
   };

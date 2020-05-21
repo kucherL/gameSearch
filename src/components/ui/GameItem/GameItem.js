@@ -29,6 +29,8 @@ const gameItem = (props) => (
           idGame={props.id}
           uid={props.uid}
           addUserRating={props.addUserRating}
+          ratedGames={props.ratedGames}
+          fetchUserRating={props.fetchUserRating}
         />
       </div>
     </figure>

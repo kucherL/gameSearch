@@ -23,6 +23,7 @@ const initialState = {
   userFolders: [],
   folderGames: [],
   folderTitle: "",
+  ratedGames: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -74,6 +75,10 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, {
         folderGames: action.data,
         folderTitle: action.folderTitle,
+      });
+    case actionTypes.FETCH_USER_RATING:
+      return updateObject(state, {
+        ratedGames: action.data,
       });
     default:
       return state;

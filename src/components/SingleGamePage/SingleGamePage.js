@@ -51,6 +51,8 @@ class SingleGamePage extends Component {
                       idGame={this.props.id}
                       uid={this.props.user.uid}
                       addUserRating={this.props.onAddUserRating}
+                      ratedGames={this.props.ratedGames}
+                      fetchUserRating={this.props.onFetchUserRating}
                     />
                   </div>
                   <Title title={this.props.title} />
@@ -72,6 +74,7 @@ class SingleGamePage extends Component {
                 addGameToFolder={this.props.onAddGameToFolder}
                 uid={this.props.user.uid}
                 addUserRating={this.props.onAddUserRating}
+                ratedGames={this.props.ratedGames}
               />
             </>
           </main>
@@ -94,6 +97,7 @@ const mapStateToProps = (state) => {
     videos: state.singleVideos,
     summary: state.singleSummary,
     alike: state.singleAlike,
+    ratedGames: state.ratedGames,
   };
 };
 
@@ -107,6 +111,7 @@ const mapDispatchToProps = (dispatch) => {
     onGetSingleGameInfo: (val) =>
       dispatch(actionCreators.getSingleGameInfo(val)),
     onGetId: (value) => dispatch(actionCreators.getId(value)),
+    onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
   };
 };
 

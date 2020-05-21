@@ -247,11 +247,13 @@ export const addUserRating = (user, starValue, idGame) => {
 };
 
 export const fetchUserRating = (user) => {
-  return async () => {
-    await firestore
-      .doc(`users/${user}/playedGames/games`)
-      .get()
-      .then((snapshot) => console.log(snapshot.data()));
+  return async (dispatch) => {
+    const docRef = await firestore.doc(`users/${user}/playedGames/games`).get();
+    const ratedGames = docRef.data();
+    dispatch({
+      type: actionTypes.FETCH_USER_RATING,
+      data: ratedGames,
+    });
   };
 };
 

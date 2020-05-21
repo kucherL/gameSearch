@@ -38,6 +38,8 @@ class MainPage extends Component {
             uid={this.props.user.uid}
             addUserRating={this.props.onAddUserRating}
             getUserFolders={this.props.onGetUserFolders}
+            ratedGames={this.props.ratedGames}
+            fetchUserRating={this.props.onFetchUserRating}
           />
         </>
       </main>
@@ -51,6 +53,7 @@ const mapStateToProps = (state) => {
     folders: state.userFolders,
     randomGame: state.randomGame,
     preferredGames: state.preferredGames,
+    ratedGames: state.ratedGames,
   };
 };
 
@@ -66,6 +69,7 @@ const mapDispatchToProps = (dispatch) => {
     onGetPreferredGames: () => dispatch(actionCreators.getPreferredGames()),
     onGetId: (value) => dispatch(actionCreators.getId(value)),
     onCheckAuth: () => dispatch(actionCreators.checkAuth()),
+    onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
   };
 };
 

@@ -86,6 +86,8 @@ class SearchPage extends Component {
                 addUserRating={this.props.onAddUserRating}
                 getUserFolders={this.props.onGetUserFolders}
                 sendId={this.props.onGetId}
+                ratedGames={this.props.ratedGames}
+                fetchUserRating={this.props.onFetchUserRating}
               />
             );
           })}
@@ -123,6 +125,7 @@ const mapStateToProps = (state) => {
     genres: state.genres,
     platforms: state.platforms,
     filteredGames: state.filteredGames,
+    ratedGames: state.ratedGames,
   };
 };
 
@@ -136,6 +139,7 @@ const mapDispatchToProps = (dispatch) => {
     onFilterGames: (apiString, offset) =>
       dispatch(actionCreators.filterGames(apiString, offset)),
     onGetId: (value) => dispatch(actionCreators.getId(value)),
+    onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
   };
 };
 
