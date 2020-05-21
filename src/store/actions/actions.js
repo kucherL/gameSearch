@@ -241,7 +241,17 @@ export const addUserRating = (user, starValue, idGame) => {
   return async () => {
     await firestore
       .collection(`users/${user}/playedGames`)
-      .add({ starValue, idGame });
+      .doc("games")
+      .update(`${idGame}`, starValue);
+  };
+};
+
+export const fetchUserRating = (user) => {
+  return async () => {
+    await firestore
+      .doc(`users/${user}/playedGames/games`)
+      .get()
+      .then((snapshot) => console.log(snapshot.data()));
   };
 };
 

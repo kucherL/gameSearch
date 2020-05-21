@@ -1,5 +1,64 @@
 @import "../../../varibles";
 
-.AddUserRating {
-  margin-bottom: 1rem;
+.star-rating {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  button {
+    font-size: 2rem;
+  }
+}
+
+@mixin star() {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: default;
+  background-color: transparent;
+  color: #b4b7b9;
+
+  .transparent {
+    // For hiding the stars that would be on top of eachother. Without this, there are rendering issues due to anti-aliasing
+    color: transparent;
+  }
+}
+
+@mixin star-hover() {
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $second-background-color;
+
+    ~ * {
+      // Used to color the lower starts when hovering, which is why they are in reverse order in markup
+      color: $second-background-color;
+    }
+  }
+}
+
+.one-star,
+.two-star,
+.three-star,
+.four-star,
+.five-star {
+  @include star();
+  @include star-hover();
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.star-rating {
+  input[type="radio"] {
+    display: none;
+
+    &:checked {
+      ~ * {
+        color: $second-background-color;
+      }
+    }
+  }
 }
