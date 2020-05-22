@@ -3,13 +3,6 @@ import { IMAGES_URL } from "../../utility";
 import { instance } from "../../axios";
 import { auth, firestore } from "../../firebase";
 
-export const getId = (value) => {
-  return {
-    type: actionTypes.GET_ID,
-    val: value,
-  };
-};
-
 export const getRandomGame = (getRandomInt) => {
   return async (dispatch) => {
     const randomGames = await instance(
@@ -72,7 +65,14 @@ export const getPreferredGames = () => {
   };
 };
 
-export const filterGames = (apiString, offset) => {
+export const getId = (value) => {
+  return {
+    type: actionTypes.GET_ID,
+    data: value,
+  };
+};
+
+export const filterGamesAndCovers = (apiString, offset) => {
   return async (dispatch) => {
     const filteredGames = await instance(
       "games/",
@@ -193,12 +193,6 @@ export const getProfileData = (user) => {
   };
 };
 
-export const setNewFolder = (user, title) => {
-  return async () => {
-    await firestore.collection(`users/${user}/folders`).add({ title });
-  };
-};
-
 export const getUserFolders = (user) => {
   return async (dispatch) => {
     const folders = await firestore.collection(`users/${user}/folders`).get();
@@ -207,14 +201,6 @@ export const getUserFolders = (user) => {
       type: actionTypes.GET_USER_FOLDERS,
       data: userFolders,
     });
-  };
-};
-
-export const addGameToFolder = (gameData, user, idFolder) => {
-  return async () => {
-    await firestore
-      .collection(`users/${user}/folders/${idFolder}/games`)
-      .add({ gameData });
   };
 };
 
@@ -230,19 +216,11 @@ export const fetchGamesInFolder = (user, idFolder) => {
     const folderTitle = temporary.data().title;
     dispatch({
       type: actionTypes.FETCH_GAMES_IN_FOLDER,
-      data: folderGames,
-      folderTitle: folderTitle,
+      data: {
+        folderGames: folderGames,
+        folderTitle: folderTitle,
+      },
     });
-  };
-};
-
-export const addUserRating = (user, starValue, idGame) => {
-  console.log(user, starValue, idGame);
-  return async () => {
-    await firestore
-      .collection(`users/${user}/playedGames`)
-      .doc("games")
-      .update(`${idGame}`, starValue);
   };
 };
 
@@ -257,16 +235,41 @@ export const fetchUserRating = (user) => {
   };
 };
 
-export const deleteGame = (userId, folderId, gameId) => {
+export const setNewFolder = (user, title) => {
   return async () => {
-    await firestore
-      .doc(`users/${userId}/folders/${folderId}/games/${gameId}`)
-      .delete();
+    await firestore.collection(`users/${user}/folders`).add({ title });
   };
 };
 
 export const deleteFolder = (userId, folderId) => {
   return async () => {
     await firestore.doc(`users/${userId}/folders/${folderId}`).delete();
+  };
+};
+
+export const addGameToFolder = (gameData, user, idFolder) => {
+  console.log(gameData, user, idFolder);
+  return async () => {
+    await firestore
+      .collection(`users/${user}/folders/${idFolder}/games`)
+      .add({ gameData });
+  };
+};
+
+export const addUserRating = (user, starValue, idGame) => {
+  console.log(user, starValue, idGame);
+  return async () => {
+    await firestore
+      .collection(`users/${user}/playedGames`)
+      .doc("games")
+      .update(`${idGame}`, starValue);
+  };
+};
+
+export const deleteGame = (userId, folderId, gameId) => {
+  return async () => {
+    await firestore
+      .doc(`users/${userId}/folders/${folderId}/games/${gameId}`)
+      .delete();
   };
 };

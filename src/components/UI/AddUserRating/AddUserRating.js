@@ -17,6 +17,7 @@ const AddUserRating = (props) => {
         }`}
         value="5"
         onClick={clickHandler}
+        disabled={props.uid ? false : true}
       >
         <span className="transparent">★★★★</span>★
       </button>
@@ -27,6 +28,7 @@ const AddUserRating = (props) => {
         }`}
         value="4"
         onClick={clickHandler}
+        disabled={props.uid ? false : true}
       >
         <span className="transparent">★★★</span>★
       </button>
@@ -37,6 +39,7 @@ const AddUserRating = (props) => {
         }`}
         value="3"
         onClick={clickHandler}
+        disabled={props.uid ? false : true}
       >
         <span className="transparent">★★</span>★
       </button>
@@ -47,6 +50,7 @@ const AddUserRating = (props) => {
         }`}
         value="2"
         onClick={clickHandler}
+        disabled={props.uid ? false : true}
       >
         <span className="transparent">★</span>★
       </button>
@@ -57,6 +61,7 @@ const AddUserRating = (props) => {
         }`}
         value="1"
         onClick={clickHandler}
+        disabled={props.uid ? false : true}
       >
         ★
       </button>

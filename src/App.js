@@ -9,7 +9,7 @@ import {
 import Auth from "./components/Auth/Auth";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Loader from "./components/ui/Loader/Loader";
+import Loader from "./components/UI/Loader/Loader";
 
 const MainPage = React.lazy(() => {
   return import("./components/MainPage/MainPage");

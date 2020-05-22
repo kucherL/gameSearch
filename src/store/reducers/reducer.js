@@ -5,14 +5,14 @@ const initialState = {
   randomGame: {},
   preferredGames: [],
   choosedId: "",
-
+  filteredGames: [],
   genres: genres,
   platforms: platforms,
-  filteredGames: [],
 
   singleCover: "",
   singleName: "",
   singleGenres: [],
+  singlePlatforms: [],
   singleRating: "",
   singleVideos: [],
   singleSummary: "",
@@ -38,11 +38,7 @@ const reducer = (state = initialState, action) => {
       });
     case actionTypes.GET_ID:
       return updateObject(state, {
-        choosedId: action.val,
-      });
-    case actionTypes.FILTER_GAMES:
-      return updateObject(state, {
-        filteredGames: action.data.map((game) => [game.name, game.summary]),
+        choosedId: action.data,
       });
     case actionTypes.FILTER_GAMES_AND_COVERS:
       return updateObject(state, {
@@ -73,8 +69,8 @@ const reducer = (state = initialState, action) => {
       });
     case actionTypes.FETCH_GAMES_IN_FOLDER:
       return updateObject(state, {
-        folderGames: action.data,
-        folderTitle: action.folderTitle,
+        folderGames: action.data.folderGames,
+        folderTitle: action.data.folderTitle,
       });
     case actionTypes.FETCH_USER_RATING:
       return updateObject(state, {

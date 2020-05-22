@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import Poster from "../ui/Poster/Poster";
-import Title from "../ui/Title/Title";
-import Description from "../ui/Description/Description";
-import ToRememberButton from "../ui/ToRememberButton/ToRememberButton";
-import AddUserRating from "../ui/AddUserRating/AddUserRating";
-import Rating from "../ui/Rating/Rating";
+import Poster from "../UI/Poster/Poster";
+import Title from "../UI/Title/Title";
+import Description from "../UI/Description/Description";
+import ToRememberButton from "../UI/ToRememberButton/ToRememberButton";
+import AddUserRating from "../UI/AddUserRating/AddUserRating";
+import Rating from "../UI/Rating/Rating";
 import Trailers from "./Trailers/Trailers";
 import Summary from "./Summary/Summary";
 import SimilarGames from "./SimilarGames/SimilarGames";
-import Loader from "../ui/Loader/Loader";
 import * as actionCreators from "../../store/actions/actions";
 import "./SingleGamePage.scss";
 
@@ -42,7 +41,8 @@ class SingleGamePage extends Component {
                       idGame={this.props.id}
                       cover={this.props.cover}
                       title={this.props.title}
-                      summary={this.props.summary}
+                      genres={this.props.singleGenres}
+                      platforms={this.props.singlePlatforms}
                       folders={this.props.folders}
                       addGameToFolder={this.props.onAddGameToFolder}
                       uid={this.props.user.uid}

@@ -1,6 +1,6 @@
 import React from "react";
 
-const popularityFilter = (props) => (
+const PopularityFilter = (props) => (
   <div className="FilterPanel__item input-field">
     <label>Популярность</label>
     <input
@@ -15,4 +15,4 @@ const popularityFilter = (props) => (
   </div>
 );
 
-export default popularityFilter;
+export default PopularityFilter;

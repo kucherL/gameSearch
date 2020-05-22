@@ -10,19 +10,13 @@
   box-shadow: $border;
   border-radius: 3px;
 
-  &__container {
+  figure {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-bottom: 1rem;
 
-    figure {
-      width: 100%;
-      display: flex;
-      margin-bottom: 1rem;
-
-      .Poster {
-        width: 8rem;
-      }
+    .Poster {
+      width: 8rem;
     }
   }
 

@@ -1,11 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import "./SimilarGames.scss";
 import sprite from "../../../assets/sprite.svg";
-import GameItem from "../../ui/GameItem/GameItem";
+import GameItem from "../../UI/GameItem/GameItem";
 
-const similarGames = (props) => {
+const SimilarGames = (props) => {
   const alikeList = props.alikeGames.map((game, index) => {
     return (
       <GameItem
@@ -39,4 +38,4 @@ const similarGames = (props) => {
   );
 };
 
-export default similarGames;
+export default SimilarGames;

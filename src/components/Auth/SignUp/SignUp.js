@@ -2,7 +2,7 @@ import React from "react";
 
 import "./SignUp.scss";
 
-const signUp = (props) => (
+const SignUp = (props) => (
   <form className="SignUp" onSubmit={props.handleSubmit}>
     <h2>Sign Up</h2>
     <input
@@ -30,4 +30,4 @@ const signUp = (props) => (
   </form>
 );
 
-export default signUp;
+export default SignUp;

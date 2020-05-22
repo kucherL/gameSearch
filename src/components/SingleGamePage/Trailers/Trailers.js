@@ -3,7 +3,7 @@ import React from "react";
 import sprite from "../../../assets/sprite.svg";
 import "./Trailers.scss";
 
-const trailers = (props) => {
+const Trailers = (props) => {
   const trailersConteiner = props.videos.map((video, index) => {
     return (
       <iframe
@@ -32,4 +32,4 @@ const trailers = (props) => {
   );
 };
 
-export default trailers;
+export default Trailers;

@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Rating.scss";
 
-const rating = (props) => (
+const Rating = (props) => (
   <div className="Rating" hint="Средний рейтинг игры">
     <svg viewBox="0 0 36 36" className="Rating__circular-chart">
       <path
@@ -25,4 +25,4 @@ const rating = (props) => (
   </div>
 );
 
-export default rating;
+export default Rating;

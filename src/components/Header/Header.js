@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import "./Header.scss";
 import { signOut } from "../../firebase";
-import SubmitButton from "../ui/SubmitButton/SubmitButton";
+import SubmitButton from "../UI/SubmitButton/SubmitButton";
 
 class Header extends Component {
   state = {

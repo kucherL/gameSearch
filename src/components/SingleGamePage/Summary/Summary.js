@@ -3,7 +3,7 @@ import React from "react";
 import sprite from "../../../assets/sprite.svg";
 import "./Summary.scss";
 
-const summary = (props) => (
+const Summary = (props) => (
   <section className="Summary">
     <div className="Summary__title">
       <svg>
@@ -15,4 +15,4 @@ const summary = (props) => (
   </section>
 );
 
-export default summary;
+export default Summary;

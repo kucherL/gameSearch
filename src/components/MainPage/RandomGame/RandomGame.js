@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./RandomGame.scss";
-import Poster from "../../ui/Poster/Poster";
-import Title from "../../ui/Title/Title";
-import Rating from "../../ui/Rating/Rating";
+import Poster from "../../UI/Poster/Poster";
+import Title from "../../UI/Title/Title";
+import Rating from "../../UI/Rating/Rating";
 
-const randomGame = (props) => {
+const RandomGame = (props) => {
   return (
     <figure className="RandomGame">
       <Link
@@ -24,4 +24,4 @@ const randomGame = (props) => {
   );
 };
 
-export default randomGame;
+export default RandomGame;

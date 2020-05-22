@@ -1,6 +1,6 @@
 import React from "react";
 
-const ratingFilter = (props) => (
+const RatingFilter = (props) => (
   <div className="FilterPanel__item input-field">
     <label>Рейтинг</label>
     <input
@@ -15,4 +15,4 @@ const ratingFilter = (props) => (
   </div>
 );
 
-export default ratingFilter;
+export default RatingFilter;

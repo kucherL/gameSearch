@@ -7,9 +7,9 @@ import PlatformSearch from "./PlatformSearch/PlatformSearch";
 import YearOfReleaseFilter from "./YearOfReleaseFilter/YearOfReleaseFilter";
 import RatingFilter from "./RatingFilter/RatingFilter";
 import PopularityFilter from "./PopularityFilter/PopularityFilter";
-import SubmitButton from "../../ui/SubmitButton/SubmitButton";
+import SubmitButton from "../../UI/SubmitButton/SubmitButton";
 
-const filterPanel = (props) => {
+const FilterPanel = (props) => {
   return (
     <nav className="FilterPanel">
       <SearchBar searchFieldChanged={props.handleChange} />
@@ -29,4 +29,4 @@ const filterPanel = (props) => {
   );
 };
 
-export default filterPanel;
+export default FilterPanel;

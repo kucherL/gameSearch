@@ -8,9 +8,9 @@ import AddUsersRating from "../AddUserRating/AddUserRating";
 import Title from "../Title/Title";
 import Description from "../Description/Description";
 
-const gameItem = (props) => (
-  <section className="GameItem__container">
-    <figure>
+const GameItem = (props) => (
+  <section className="GameItem">
+    <figure className="GameItem__container">
       <Link to={`/game/${props.id}`} onClick={() => props.sendId(props.id)}>
         <PosterGame cover={props.cover} />
       </Link>
@@ -19,7 +19,8 @@ const gameItem = (props) => (
           idGame={props.id}
           cover={props.cover}
           title={props.game}
-          description={props.description}
+          genres={props.genres}
+          platforms={props.platforms}
           folders={props.folders}
           addGameToFolder={props.addGameToFolder}
           uid={props.uid}
@@ -41,4 +42,4 @@ const gameItem = (props) => (
   </section>
 );
 
-export default gameItem;
+export default GameItem;

@@ -4,7 +4,7 @@ import * as actionCreators from "../../store/actions/actions";
 import { Redirect } from "react-router-dom";
 
 import "./UserPage.scss";
-import GameItem from "../ui/GameItem/GameItem";
+import GameItem from "../UI/GameItem/GameItem";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FoldersSection from "./FoldersSection/FoldersSection";
 import sprite from "../../assets/sprite.svg";
@@ -16,12 +16,11 @@ class UserPage extends Component {
     folderId: "",
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.props.onGetProfileData(this.props.user.uid);
-  }
+  };
 
   eventHandler = (event) => {
-    console.log(event.target.value);
     this.props.onFetchGamesInFolder(this.props.user.uid, event.target.value);
     this.setState({ folderId: event.target.value });
   };
@@ -37,20 +36,22 @@ class UserPage extends Component {
   };
 
   getListOfGames = () => {
-    return this.props.games.map((game, index) => {
+    return this.props.games.map((game) => {
       return (
-        <>
+        <div key={game.gameData.id}>
           <GameItem
-            key={index}
-            game={game.gameData[2]}
-            description={game.gameData[3]}
-            cover={game.gameData[1]}
-            id={game.gameData[0]}
+            game={game.gameData.title}
+            genres={game.gameData.genres}
+            platforms={game.gameData.platforms}
+            cover={game.gameData.cover}
+            id={game.gameData.id}
             folders={this.props.folders}
             addGameToFolder={this.props.onAddGameToFolder}
             uid={this.props.user.uid}
             addUserRating={this.props.onAddUserRating}
             sendId={this.props.onGetId}
+            ratedGames={this.props.ratedGames}
+            fetchUserRating={this.props.onFetchUserRating}
           />
           <button
             onClick={() =>
@@ -65,7 +66,7 @@ class UserPage extends Component {
               <use href={sprite + "#icon-trashcan"} />
             </svg>
           </button>
-        </>
+        </div>
       );
     });
   };
@@ -102,6 +103,7 @@ class UserPage extends Component {
               title={this.props.title}
               deleteFolder={this.props.onDeleteFolder}
               folderId={this.state.folderId}
+              getUserFolders={this.props.onGetUserFolders}
             />
           </main>
         )}
@@ -117,6 +119,7 @@ const mapStateToProps = (state) => {
     folders: state.userFolders,
     games: state.folderGames,
     title: state.folderTitle,
+    ratedGames: state.ratedGames,
   };
 };
 
@@ -136,6 +139,8 @@ const mapDispatchToProps = (dispatch) => {
     onFetchGamesInFolder: (user, idFolder) =>
       dispatch(actionCreators.fetchGamesInFolder(user, idFolder)),
     onGetId: (value) => dispatch(actionCreators.getId(value)),
+    onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
+    onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
   };
 };
 

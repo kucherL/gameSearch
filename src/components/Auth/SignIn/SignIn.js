@@ -2,7 +2,7 @@ import React from "react";
 
 import "./SignIn.scss";
 
-const signIn = (props) => (
+const SignIn = (props) => (
   <section className="SignIn">
     <form className="SignIn__form" onSubmit={props.handleSubmit}>
       <h2>Sign In</h2>
@@ -28,4 +28,4 @@ const signIn = (props) => (
   </section>
 );
 
-export default signIn;
+export default SignIn;

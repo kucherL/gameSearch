@@ -1,10 +1,10 @@
 import React from "react";
 
 import "./FoldersSection.scss";
-import SubmitButton from "../../ui/SubmitButton/SubmitButton";
+import SubmitButton from "../../UI/SubmitButton/SubmitButton";
 import sprite from "../../../assets/sprite.svg";
 
-const foldersSection = (props) => (
+const FoldersSection = (props) => (
   <section className="FoldersSection">
     <div>
       <select className="FoldersSection__select" onClick={props.eventHandler}>
@@ -16,7 +16,10 @@ const foldersSection = (props) => (
       <div>
         <input type="text" onChange={props.addFolderName} />
         <SubmitButton
-          click={() => props.setNewFolder(props.user, props.folderName)}
+          click={() => {
+            props.setNewFolder(props.user, props.folderName);
+            props.getUserFolders(props.user);
+          }}
         >
           Submit
         </SubmitButton>
@@ -24,7 +27,12 @@ const foldersSection = (props) => (
     ) : null}
     <div className="FoldersSection__folders-games">
       <h1>{props.title}</h1>
-      <button onClick={() => props.deleteFolder(props.user, props.folderId)}>
+      <button
+        onClick={() => {
+          props.deleteFolder(props.user, props.folderId);
+          props.getUserFolders(props.user);
+        }}
+      >
         <svg>
           <use href={sprite + "#icon-trashcan"} />
         </svg>
@@ -34,4 +42,4 @@ const foldersSection = (props) => (
   </section>
 );
 
-export default foldersSection;
+export default FoldersSection;

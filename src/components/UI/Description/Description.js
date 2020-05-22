@@ -3,7 +3,7 @@ import React from "react";
 import { genres, platforms } from "../../../utility";
 import "./Description.scss";
 
-const description = (props) => {
+const Description = (props) => {
   let namedGenres = "";
   let namedPlatforms = "";
 
@@ -14,10 +14,14 @@ const description = (props) => {
 
   return (
     <div className="Description">
-      <p className="Description__genres" hint="Жанры">{namedGenres}</p>
-      <p className="Description__platforms" hint="Платформы">{namedPlatforms}</p>
+      <p className="Description__genres" hint="Жанры">
+        {namedGenres}
+      </p>
+      <p className="Description__platforms" hint="Платформы">
+        {namedPlatforms}
+      </p>
     </div>
   );
 };
 
-export default description;
+export default Description;

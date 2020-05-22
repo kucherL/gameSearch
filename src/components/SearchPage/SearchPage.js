@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import sprite from "../../assets/sprite.svg";
 import * as actionCreators from "../../store/actions/actions";
 import FilterPanel from "./FilterPanel/FilterPanel";
-import GameItem from "../ui/GameItem/GameItem";
+import GameItem from "../UI/GameItem/GameItem";
 import "./SearchPage.scss";
 
 class SearchPage extends Component {
@@ -136,8 +135,8 @@ const mapDispatchToProps = (dispatch) => {
     onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
     onAddGameToFolder: (gameData, user, idFolder) =>
       dispatch(actionCreators.addGameToFolder(gameData, user, idFolder)),
-    onFilterGames: (apiString, offset) =>
-      dispatch(actionCreators.filterGames(apiString, offset)),
+    onFilterGamesAndCovers: (apiString, offset) =>
+      dispatch(actionCreators.filterGamesAndCovers(apiString, offset)),
     onGetId: (value) => dispatch(actionCreators.getId(value)),
     onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
   };

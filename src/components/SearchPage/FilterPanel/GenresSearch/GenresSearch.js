@@ -1,12 +1,9 @@
 import React from "react";
 
-const genresSearch = (props) => {
-  const genresList = Object.values(props.genres).map(genre => {
+const GenresSearch = (props) => {
+  const genresList = Object.values(props.genres).map((genre) => {
     return (
-      <option
-        key={genre.id}
-        value={genre.id}
-      >
+      <option key={genre.id} value={genre.id}>
         {genre.name}
       </option>
     );
@@ -22,4 +19,4 @@ const genresSearch = (props) => {
   );
 };
 
-export default genresSearch;
+export default GenresSearch;
