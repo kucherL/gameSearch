@@ -40,11 +40,88 @@
   }
 
   &__folders-games {
-    margin-top: 1rem;
     padding: 1rem;
     grid-template-columns: 1fr;
     display: grid;
     grid-gap: 0.5rem;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 1rem;
+
+    h1 {
+      color: $accent-color;
+      margin-right: 2rem;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      fill: $second-background-color;
+      display: inline-block;
+      position: relative;
+
+      &:hover::after {
+        content: attr(hint);
+        position: absolute;
+        left: 70%;
+        bottom: 70%;
+        z-index: 10;
+        background: rgba(15, 26, 56, 0.9);
+        font-family: "Oswald", sans-serif;
+        font-size: 1rem;
+        padding: 1rem;
+        border-color: $accent-color;
+        box-shadow: $border;
+        border-radius: 3px;
+        color: $text-color;
+      }
+
+      svg {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+  }
+
+  &__list-of-games {
+    .GameItem {
+      padding-bottom: 4rem;
+    }
+  }
+
+  &__delete-game {
+    background-color: transparent;
+    border: none;
+    fill: $second-background-color;
+    display: inline-block;
+    position: relative;
+    bottom: 4rem;
+    left: 0.7rem;
+
+    &:hover::after {
+      content: attr(hint);
+      position: absolute;
+      left: 70%;
+      bottom: 70%;
+      z-index: 10;
+      background: rgba(15, 26, 56, 0.9);
+      font-family: "Oswald", sans-serif;
+      font-size: 1rem;
+      padding: 1rem;
+      border-color: $accent-color;
+      box-shadow: $border;
+      border-radius: 3px;
+      color: $text-color;
+    }
+
+    svg {
+      height: 2rem;
+      width: 2rem;
+    }
   }
 }
 

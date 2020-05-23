@@ -10,6 +10,10 @@
   padding: 1rem;
   text-align: center;
 
+  .Poster-img {
+    margin-right: 0;
+  }
+
   &__info {
     display: flex;
     flex-direction: column;
@@ -21,6 +25,10 @@
   .RandomGame {
     flex-direction: row;
     justify-content: space-around;
+
+    .Poster-img {
+      margin-right: 2rem;
+    }
 
     &__info {
       text-align: left;

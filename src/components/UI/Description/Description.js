@@ -14,11 +14,11 @@ const Description = (props) => {
 
   return (
     <div className="Description">
-      <p className="Description__genres" hint="Жанры">
-        {namedGenres}
+      <p className="Description__genres">
+        <span>Genres:</span> {namedGenres}
       </p>
-      <p className="Description__platforms" hint="Платформы">
-        {namedPlatforms}
+      <p className="Description__platforms">
+        <span>Platforms:</span> {namedPlatforms}
       </p>
     </div>
   );

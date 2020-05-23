@@ -16,6 +16,7 @@ const AddUserRating = (props) => {
           +props.ratedGames[props.idGame] > 4 ? "CheckedStar" : ""
         }`}
         value="5"
+        hint="Brilliantly!"
         onClick={clickHandler}
         disabled={props.uid ? false : true}
       >
@@ -27,6 +28,7 @@ const AddUserRating = (props) => {
           +props.ratedGames[props.idGame] > 3 ? "CheckedStar" : ""
         }`}
         value="4"
+        hint="Good"
         onClick={clickHandler}
         disabled={props.uid ? false : true}
       >
@@ -38,6 +40,7 @@ const AddUserRating = (props) => {
           +props.ratedGames[props.idGame] > 2 ? "CheckedStar" : ""
         }`}
         value="3"
+        hint="Fair"
         onClick={clickHandler}
         disabled={props.uid ? false : true}
       >
@@ -49,6 +52,7 @@ const AddUserRating = (props) => {
           +props.ratedGames[props.idGame] > 1 ? "CheckedStar" : ""
         }`}
         value="2"
+        hint="So-so"
         onClick={clickHandler}
         disabled={props.uid ? false : true}
       >
@@ -60,6 +64,7 @@ const AddUserRating = (props) => {
           +props.ratedGames[props.idGame] > 0 ? "CheckedStar" : ""
         }`}
         value="1"
+        hint="Not worth it"
         onClick={clickHandler}
         disabled={props.uid ? false : true}
       >

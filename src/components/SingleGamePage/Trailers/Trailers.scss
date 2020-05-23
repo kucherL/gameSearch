@@ -29,7 +29,8 @@
   }
 
   &__container {
-    display: flex;
+    grid-template-columns: 1fr;
+    display: grid;
     flex-direction: column;
     align-items: center;
     margin: 1rem auto;
@@ -41,6 +42,25 @@
       width: 90%;
       height: auto;
       margin: 1rem;
+      justify-self: center;
+    }
+  }
+}
+
+@media (min-width: 40rem) {
+  .Trailers {
+    &__container {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1rem;
+    }
+  }
+}
+
+@media (min-width: 60rem) {
+  .Trailers {
+    &__container {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 1rem;
     }
   }
 }

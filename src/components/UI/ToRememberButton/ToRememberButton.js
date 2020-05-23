@@ -35,6 +35,7 @@ const ToRememberButton = (props) => {
   return (
     <button
       className="ToRememberButton"
+      hint="Add game to folder"
       onClick={foldersHandler}
       disabled={props.uid ? false : true}
     >

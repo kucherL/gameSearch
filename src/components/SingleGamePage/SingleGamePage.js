@@ -63,10 +63,10 @@ class SingleGamePage extends Component {
                   <Rating>{this.props.rating}</Rating>
                 </figcaption>
               </figure>
+              <Summary summary={this.props.summary} />
               {this.props.videos !== null ? (
                 <Trailers videos={this.props.videos} />
               ) : null}
-              <Summary summary={this.props.summary} />
               <SimilarGames
                 alikeGames={this.props.alike}
                 sendId={this.props.onGetId}

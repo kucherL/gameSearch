@@ -4,6 +4,24 @@
   background-color: transparent;
   border: none;
   margin-bottom: 1rem;
+  display: inline-block;
+  position: relative;
+
+  &:hover::after {
+    content: attr(hint);
+    position: absolute;
+    left: 70%;
+    bottom: 70%;
+    z-index: 10;
+    background: rgba(15, 26, 56, 0.9);
+    font-family: "Oswald", sans-serif;
+    font-size: 1rem;
+    padding: 1rem;
+    border-color: $accent-color;
+    box-shadow: $border;
+    border-radius: 3px;
+    color: $text-color;
+  }
 
   svg {
     width: 2rem;

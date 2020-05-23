@@ -14,6 +14,7 @@ class UserPage extends Component {
     showInput: false,
     folderName: "",
     folderId: "",
+    showFolders: false,
   };
 
   componentDidMount = () => {
@@ -23,6 +24,7 @@ class UserPage extends Component {
   eventHandler = (event) => {
     this.props.onFetchGamesInFolder(this.props.user.uid, event.target.value);
     this.setState({ folderId: event.target.value });
+    this.setState({ showFolders: true });
   };
 
   getFoldersList = () => {
@@ -38,7 +40,7 @@ class UserPage extends Component {
   getListOfGames = () => {
     return this.props.games.map((game) => {
       return (
-        <div key={game.gameData.id}>
+        <div key={game.gameData.id} className="FoldersSection__list-of-games">
           <GameItem
             game={game.gameData.title}
             genres={game.gameData.genres}
@@ -54,6 +56,8 @@ class UserPage extends Component {
             fetchUserRating={this.props.onFetchUserRating}
           />
           <button
+            hint="Delete game"
+            className="FoldersSection__delete-game"
             onClick={() =>
               this.props.OnDeleteGame(
                 this.props.user.uid,
@@ -104,6 +108,7 @@ class UserPage extends Component {
               deleteFolder={this.props.onDeleteFolder}
               folderId={this.state.folderId}
               getUserFolders={this.props.onGetUserFolders}
+              showFolders={this.state.showFolders}
             />
           </main>
         )}

@@ -57,11 +57,6 @@ class ProfileInfo extends Component {
               <use href={sprite + "#icon-spaceinvaders"} />
             </svg>
           )}
-          <button className="ProfileInfo__settings" onClick={this.handleClick}>
-            <svg>
-              <use href={sprite + "#icon-cogs"} />
-            </svg>
-          </button>
         </div>
         <figcaption className="ProfileInfo__about">
           <div className="ProfileInfo__about--item">
@@ -70,6 +65,7 @@ class ProfileInfo extends Component {
             </svg>
             <p>Login: {this.props.profileData.name}</p>
             <button
+              hint="Change profile settings"
               className="ProfileInfo__settings"
               onClick={this.handleClick}
             >
@@ -84,25 +80,42 @@ class ProfileInfo extends Component {
             </svg>
             <p>Email: {this.props.profileData.email}</p>
           </div>
+          {this.state.profileChange ? (
+            <form onSubmit={this.handleSubmit} className="UpdateUser">
+              <label
+                for="input-change-name"
+                className="CustomInput-change-name"
+              >
+                Change name
+              </label>
+              <input
+                id="input-change-name"
+                type="text"
+                name="name"
+                value={this.state.name}
+                placeholder="Display Name"
+                onChange={this.handleChange}
+              />
+              <label
+                for="input-file-upload"
+                className="CustomInput-file-upload"
+              >
+                Change profile photo
+              </label>
+              <input
+                id="input-file-upload"
+                type="file"
+                ref={(ref) => {
+                  this.imageInput = ref;
+                }}
+              />
+              <label for="input-submit" className="CustomInput-submit">
+                Submit
+              </label>
+              <input id="input-submit" type="submit" />
+            </form>
+          ) : null}
         </figcaption>
-        {this.state.profileChange ? (
-          <form onSubmit={this.handleSubmit} className="UpdateUser">
-            <input
-              type="text"
-              name="name"
-              value={this.state.name}
-              placeholder="Display Name"
-              onChange={this.handleChange}
-            />
-            <input
-              type="file"
-              ref={(ref) => {
-                this.imageInput = ref;
-              }}
-            />
-            <input className="update" type="submit" />
-          </form>
-        ) : null}
       </figure>
     );
   }
