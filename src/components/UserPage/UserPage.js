@@ -4,10 +4,8 @@ import * as actionCreators from "../../store/actions/actions";
 import { Redirect } from "react-router-dom";
 
 import "./UserPage.scss";
-import GameItem from "../UI/GameItem/GameItem";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FoldersSection from "./FoldersSection/FoldersSection";
-import sprite from "../../assets/sprite.svg";
 
 class UserPage extends Component {
   state = {
@@ -27,56 +25,12 @@ class UserPage extends Component {
     this.setState({ showFolders: true });
   };
 
-  getFoldersList = () => {
-    return this.props.folders.map((folder, index) => {
-      return (
-        <option key={index} value={folder[0]}>
-          {folder[1].title}
-        </option>
-      );
-    });
-  };
-
-  getListOfGames = () => {
-    return this.props.games.map((game) => {
-      return (
-        <div key={game.gameData.id} className="FoldersSection__list-of-games">
-          <GameItem
-            game={game.gameData.title}
-            genres={game.gameData.genres}
-            platforms={game.gameData.platforms}
-            cover={game.gameData.cover}
-            id={game.gameData.id}
-            folders={this.props.folders}
-            addGameToFolder={this.props.onAddGameToFolder}
-            uid={this.props.user.uid}
-            addUserRating={this.props.onAddUserRating}
-            sendId={this.props.onGetId}
-            ratedGames={this.props.ratedGames}
-            fetchUserRating={this.props.onFetchUserRating}
-          />
-          <button
-            hint="Delete game"
-            className="FoldersSection__delete-game"
-            onClick={() =>
-              this.props.OnDeleteGame(
-                this.props.user.uid,
-                this.state.folderId,
-                game[0]
-              )
-            }
-          >
-            <svg>
-              <use href={sprite + "#icon-trashcan"} />
-            </svg>
-          </button>
-        </div>
-      );
-    });
-  };
-
   addFolderName = async (event) => {
     this.setState({ folderName: event.target.value });
+  };
+
+  showFoldersHandler = () => {
+    this.setState({ showFolders: !this.state.showFolders });
   };
 
   showInputHandler = () => {
@@ -96,19 +50,26 @@ class UserPage extends Component {
             />
             <FoldersSection
               eventHandler={this.eventHandler}
-              getFoldersList={this.getFoldersList}
               showInputHandler={this.showInputHandler}
+              showFoldersHandler={this.showFoldersHandler}
               showInput={this.state.showInput}
               addFolderName={this.addFolderName}
               setNewFolder={this.props.onSetNewFolder}
               user={this.props.user.uid}
               folderName={this.state.folderName}
-              getListOfGames={this.getListOfGames}
               title={this.props.title}
               deleteFolder={this.props.onDeleteFolder}
               folderId={this.state.folderId}
               getUserFolders={this.props.onGetUserFolders}
               showFolders={this.state.showFolders}
+              folders={this.props.folders}
+              games={this.props.games}
+              addUserRating={this.props.onAddUserRating}
+              sendId={this.props.onGetId}
+              fetchUserRating={this.props.onFetchUserRating}
+              deleteGame={this.props.onDeleteGame}
+              ratedGames={this.props.ratedGames}
+              addGameToFolder={this.props.onAddGameToFolder}
             />
           </main>
         )}

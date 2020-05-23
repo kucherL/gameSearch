@@ -30,6 +30,7 @@ class Auth extends Component {
     await this.props.onGetUserFolders(this.props.user.uid);
     await this.props.onFetchUserRating(this.props.user.uid);
     this.setState({ emailSignIn: "", passwordSignIn: "" });
+    await this.props.history.push("/userPage");
   };
 
   handleSignInWithGoogle = async () => {
@@ -37,6 +38,7 @@ class Auth extends Component {
     await this.props.onCheckAuth();
     await this.props.onGetUserFolders(this.props.user.uid);
     await this.props.onFetchUserRating(this.props.user.uid);
+    await this.props.history.push("/userPage");
   };
 
   handleSubmitSignUp = async (event) => {
@@ -53,6 +55,7 @@ class Auth extends Component {
       console.error(error);
     }
     this.setState({ nameSignUp: "", emailSignUp: "", passwordSignUp: "" });
+    await this.props.history.push("/userPage");
   };
 
   render() {

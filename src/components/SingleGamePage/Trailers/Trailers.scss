@@ -40,9 +40,13 @@
 
     iframe {
       width: 90%;
-      height: auto;
+      // height: auto;
       margin: 1rem;
       justify-self: center;
+    }
+
+    iframe:only-child {
+      grid-column: 1 / -1;
     }
   }
 }

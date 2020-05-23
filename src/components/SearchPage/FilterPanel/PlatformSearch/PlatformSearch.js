@@ -16,7 +16,11 @@ const PlatformSearch = (props) => {
         name="selectedPlatforms"
         id="platform-select"
         onClick={props.clicked}
+        defaultValue={"DEFAULT"}
       >
+        <option value="DEFAULT" disabled hidden>
+          --Choose a platform--
+        </option>
         {platformsList}
       </select>
     </div>

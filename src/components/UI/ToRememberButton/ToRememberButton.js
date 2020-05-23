@@ -10,7 +10,7 @@ const ToRememberButton = (props) => {
     setShowFolders(!showFolders);
   };
 
-  const gameDataHandler = async (event) => {
+  const gameDataHandler = (event) => {
     const gameData = {
       id: props.idGame,
       cover: props.cover,
@@ -18,11 +18,10 @@ const ToRememberButton = (props) => {
       genres: props.genres,
       platforms: props.platforms,
     };
-    await props.addGameToFolder(gameData, props.uid, event.target.value);
+    props.addGameToFolder(gameData, props.uid, event.target.value);
   };
 
   const getFoldersList = () => {
-    props.getUserFolders(props.uid);
     return props.folders.map((folder, index) => {
       return (
         <option key={index} value={folder[0]}>
@@ -43,8 +42,14 @@ const ToRememberButton = (props) => {
         <use href={sprite + "#icon-gamepad"} />
       </svg>
       {showFolders ? (
-        <select className="FoldersSection__select" onChange={gameDataHandler}>
-          <option value="">Please choose a folder</option>
+        <select
+          className="ToRememberButton__select"
+          onClick={gameDataHandler}
+          defaultValue={"DEFAULT"}
+        >
+          <option value="DEFAULT" disabled hidden>
+            --Choose a folder--
+          </option>
           {getFoldersList()}
         </select>
       ) : null}

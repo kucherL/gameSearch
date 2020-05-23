@@ -12,7 +12,15 @@ const GenresSearch = (props) => {
   return (
     <div className="FilterPanel__item">
       <label htmlFor="selectedGenres">Жанр</label>
-      <select name="selectedGenres" id="genre-select" onClick={props.clicked}>
+      <select
+        name="selectedGenres"
+        id="genre-select"
+        onClick={props.clicked}
+        defaultValue={"DEFAULT"}
+      >
+        <option value="DEFAULT" disabled hidden>
+          --Choose a genre--
+        </option>
         {genresList}
       </select>
     </div>

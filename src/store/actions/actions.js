@@ -209,7 +209,7 @@ export const fetchGamesInFolder = (user, idFolder) => {
     const games = await firestore
       .collection(`users/${user}/folders/${idFolder}/games`)
       .get();
-    const folderGames = games.docs.map((doc) => doc.data());
+    const folderGames = games.docs.map((doc) => [doc.data(), doc.id]);
     const temporary = await firestore
       .doc(`users/${user}/folders/${idFolder}`)
       .get();
@@ -248,7 +248,6 @@ export const deleteFolder = (userId, folderId) => {
 };
 
 export const addGameToFolder = (gameData, user, idFolder) => {
-  console.log(gameData, user, idFolder);
   return async () => {
     await firestore
       .collection(`users/${user}/folders/${idFolder}/games`)
@@ -257,7 +256,6 @@ export const addGameToFolder = (gameData, user, idFolder) => {
 };
 
 export const addUserRating = (user, starValue, idGame) => {
-  console.log(user, starValue, idGame);
   return async () => {
     await firestore
       .collection(`users/${user}/playedGames`)

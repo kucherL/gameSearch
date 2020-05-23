@@ -7,6 +7,24 @@
   display: inline-block;
   position: relative;
 
+  &__select {
+    background-color: transparent;
+    border: none;
+    border-color: $accent-color;
+    box-shadow: $border;
+    border-radius: 3px;
+    font-family: inherit;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    width: 10rem;
+    font-family: "Oswald", sans-serif;
+  }
+
+  &__select:enabled {
+    background-color: $first-background-color;
+  }
+
   &:hover::after {
     content: attr(hint);
     position: absolute;
