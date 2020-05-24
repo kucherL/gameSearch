@@ -15,9 +15,10 @@ class SearchPage extends Component {
     selectedYear: "",
     selectedRating: "80",
     selectedPopularity: "4",
-    page: 1,
-    offset: 0,
   };
+
+  page = 1;
+  offset = 0;
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -26,15 +27,12 @@ class SearchPage extends Component {
   changePage = (event) => {
     const name = event.target.getAttribute("name");
     if (name === "forward") {
-      this.setState({
-        page: this.state.page + 1,
-        offset: this.state.offset + 10,
-      });
-    } else {
-      this.setState({
-        page: this.state.page - 1,
-        offset: this.state.offset - 10,
-      });
+      this.page += 1;
+      this.offset += 10;
+    }
+    if (name === "back") {
+      this.page -= 1;
+      this.offset -= 10;
     }
     this.filterGames();
   };
@@ -55,7 +53,7 @@ class SearchPage extends Component {
         apiString += ` & release_dates=(${this.state.selectedYear})`;
       }
     }
-    this.props.onFilterGames(apiString, this.state.offset);
+    this.props.onFilterGamesAndCovers(apiString, this.offset);
   };
 
   render() {
@@ -92,7 +90,7 @@ class SearchPage extends Component {
           })}
         </section>
         <div className="Pagination">
-          {this.state.page === 1 ? (
+          {this.page === 1 ? (
             <button disabled>
               <svg>
                 <use href={sprite + "#icon-arrow-left"} name="back" />
@@ -105,7 +103,7 @@ class SearchPage extends Component {
               </svg>
             </button>
           )}
-          {this.state.page}
+          {this.page}
           <button onClick={this.changePage}>
             <svg>
               <use href={sprite + "#icon-arrow-right"} name="forward" />
