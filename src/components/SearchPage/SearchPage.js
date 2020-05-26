@@ -37,7 +37,8 @@ class SearchPage extends Component {
     this.filterGames();
   };
 
-  filterGames = () => {
+  filterGames = (event) => {
+    event.preventDefault();
     let apiString = "";
     if (this.state.searchField.length > 0) {
       apiString = ` search "${this.state.searchField}";`;

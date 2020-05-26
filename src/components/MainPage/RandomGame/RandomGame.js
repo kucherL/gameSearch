@@ -17,7 +17,7 @@ const RandomGame = (props) => {
       </Link>
       <figcaption className="RandomGame__info">
         <Title title={props.titleRandomGame} />
-        <Rating>{Math.floor(props.rating)}</Rating>
+        <Rating>{Math.round(props.rating)}</Rating>
         <p>{props.summaryGame}</p>
       </figcaption>
     </figure>

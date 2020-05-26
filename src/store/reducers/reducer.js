@@ -9,14 +9,16 @@ const initialState = {
   genres: genres,
   platforms: platforms,
 
-  singleCover: "",
-  singleName: "",
-  singleGenres: [],
-  singlePlatforms: [],
-  singleRating: "",
-  singleVideos: [],
-  singleSummary: "",
-  singleAlike: [],
+  singlePageGame: {
+    singleCover: "",
+    singleName: "",
+    singleGenres: [],
+    singlePlatforms: [],
+    singleRating: "",
+    singleVideos: [],
+    singleSummary: "",
+    singleAlike: [],
+  },
 
   user: "",
   profileData: [],
@@ -46,14 +48,16 @@ const reducer = (state = initialState, action) => {
       });
     case actionTypes.GET_SINGLE_GAME_INFO:
       return updateObject(state, {
-        singleCover: action.data[1],
-        singleName: action.data[0].name,
-        singleGenres: action.data[0].genres,
-        singlePlatforms: action.data[0].platforms,
-        singleRating: Math.floor(action.data[0].rating),
-        singleVideos: action.data[2],
-        singleSummary: action.data[0].summary,
-        singleAlike: action.data[3],
+        singlePageGame: {
+          singleCover: action.data[1],
+          singleName: action.data[0].name,
+          singleGenres: action.data[0].genres,
+          singlePlatforms: action.data[0].platforms,
+          singleRating: Math.round(action.data[0].rating),
+          singleVideos: action.data[2],
+          singleSummary: action.data[0].summary,
+          singleAlike: action.data[3],
+        },
       });
     case actionTypes.CHECK_AUTH:
       return updateObject(state, {
