@@ -83,6 +83,7 @@ class Auth extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    error: state.error,
   };
 };
 
@@ -91,6 +92,7 @@ const mapDispatchToProps = (dispatch) => {
     onCheckAuth: () => dispatch(actionCreators.checkAuth()),
     onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
     onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
+    onCleanError: () => dispatch(actionCreators.cleanError()),
   };
 };
 

@@ -26,6 +26,8 @@ const initialState = {
   folderGames: [],
   folderTitle: "",
   ratedGames: {},
+
+  error: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -79,6 +81,14 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_USER_RATING:
       return updateObject(state, {
         ratedGames: action.data,
+      });
+    case actionTypes.SET_ERROR:
+      return updateObject(state, {
+        error: action.data,
+      });
+    case actionTypes.CLEAN_ERROR:
+      return updateObject(state, {
+        error: null,
       });
     default:
       return state;

@@ -15,11 +15,12 @@ class MainPage extends Component {
   componentDidMount = () => {
     this.props.onGetRandomGame(this.getRandomInt);
     this.props.onGetPreferredGames();
+    this.setState({ loading: false });
   };
 
-  // componentWillUnmount = () => {
-  //   this.setState({ loading: true });
-  // };
+  componentWillUnmount = () => {
+    this.setState({ loading: true });
+  };
 
   getRandomInt = (arr) => {
     const min = 0;
@@ -67,6 +68,7 @@ const mapStateToProps = (state) => {
     randomGame: state.randomGame,
     preferredGames: state.preferredGames,
     ratedGames: state.ratedGames,
+    error: state.error,
   };
 };
 
@@ -83,6 +85,7 @@ const mapDispatchToProps = (dispatch) => {
     onGetId: (value) => dispatch(actionCreators.getId(value)),
     onCheckAuth: () => dispatch(actionCreators.checkAuth()),
     onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
+    onCleanError: () => dispatch(actionCreators.cleanError()),
   };
 };
 

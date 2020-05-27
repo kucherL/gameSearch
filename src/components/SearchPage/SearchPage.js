@@ -5,6 +5,7 @@ import sprite from "../../assets/sprite.svg";
 import * as actionCreators from "../../store/actions/actions";
 import FilterPanel from "./FilterPanel/FilterPanel";
 import GameItem from "../UI/GameItem/GameItem";
+import Loader from "../UI/Loader/Loader";
 import "./SearchPage.scss";
 
 class SearchPage extends Component {
@@ -15,6 +16,7 @@ class SearchPage extends Component {
     selectedYear: "",
     selectedRating: "80",
     selectedPopularity: "4",
+    loading: false,
   };
 
   page = 1;
@@ -34,11 +36,16 @@ class SearchPage extends Component {
       this.page -= 1;
       this.offset -= 10;
     }
-    this.filterGames();
+    this.handleChangePage();
   };
 
   filterGames = (event) => {
     event.preventDefault();
+    this.handleChangePage();
+  };
+
+  handleChangePage = () => {
+    this.setState({ loading: true });
     let apiString = "";
     if (this.state.searchField.length > 0) {
       apiString = ` search "${this.state.searchField}";`;
@@ -55,6 +62,7 @@ class SearchPage extends Component {
       }
     }
     this.props.onFilterGamesAndCovers(apiString, this.offset);
+    this.setState({ loading: false });
   };
 
   render() {
@@ -68,28 +76,32 @@ class SearchPage extends Component {
           handleChange={this.handleChange}
           filter={this.filterGames}
         />
-        <section className="SearchPage__filtered-games">
-          {this.props.filteredGames.map((game, index) => {
-            return (
-              <GameItem
-                key={index}
-                game={game[1]}
-                genres={game[3]}
-                platforms={game[4]}
-                cover={game[5]}
-                id={game[0]}
-                folders={this.props.folders}
-                addGameToFolder={this.props.onAddGameToFolder}
-                uid={this.props.user.uid}
-                addUserRating={this.props.onAddUserRating}
-                getUserFolders={this.props.onGetUserFolders}
-                sendId={this.props.onGetId}
-                ratedGames={this.props.ratedGames}
-                fetchUserRating={this.props.onFetchUserRating}
-              />
-            );
-          })}
-        </section>
+        {this.state.loading ? (
+          <Loader />
+        ) : (
+          <section className="SearchPage__filtered-games">
+            {this.props.filteredGames.map((game, index) => {
+              return (
+                <GameItem
+                  key={index}
+                  game={game[1]}
+                  genres={game[3]}
+                  platforms={game[4]}
+                  cover={game[5]}
+                  id={game[0]}
+                  folders={this.props.folders}
+                  addGameToFolder={this.props.onAddGameToFolder}
+                  uid={this.props.user.uid}
+                  addUserRating={this.props.onAddUserRating}
+                  getUserFolders={this.props.onGetUserFolders}
+                  sendId={this.props.onGetId}
+                  ratedGames={this.props.ratedGames}
+                  fetchUserRating={this.props.onFetchUserRating}
+                />
+              );
+            })}
+          </section>
+        )}
         <div className="Pagination">
           {this.page === 1 ? (
             <button disabled>
@@ -124,6 +136,7 @@ const mapStateToProps = (state) => {
     platforms: state.platforms,
     filteredGames: state.filteredGames,
     ratedGames: state.ratedGames,
+    error: state.error,
   };
 };
 
@@ -138,6 +151,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.filterGamesAndCovers(apiString, offset)),
     onGetId: (value) => dispatch(actionCreators.getId(value)),
     onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
+    onCleanError: () => dispatch(actionCreators.cleanError()),
   };
 };
 

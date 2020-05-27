@@ -114,6 +114,7 @@ const mapStateToProps = (state) => {
     summary: state.singlePageGame.singleSummary,
     alike: state.singlePageGame.singleAlike,
     ratedGames: state.ratedGames,
+    error: state.error,
   };
 };
 
@@ -128,6 +129,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionCreators.getSingleGameInfo(val)),
     onGetId: (value) => dispatch(actionCreators.getId(value)),
     onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
+    onCleanError: () => dispatch(actionCreators.cleanError()),
   };
 };
 

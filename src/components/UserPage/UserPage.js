@@ -86,6 +86,7 @@ const mapStateToProps = (state) => {
     games: state.folderGames,
     title: state.folderTitle,
     ratedGames: state.ratedGames,
+    error: state.error,
   };
 };
 
@@ -107,6 +108,7 @@ const mapDispatchToProps = (dispatch) => {
     onGetId: (value) => dispatch(actionCreators.getId(value)),
     onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
     onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
+    onCleanError: () => dispatch(actionCreators.cleanError()),
   };
 };
 
