@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import Modal from "../UI/Modal/Modal";
 import RandomGame from "./RandomGame/RandomGame";
 import PreferenceList from "./PreferenceList/PreferenceList";
 import Loader from "../UI/Loader/Loader";
@@ -13,9 +14,9 @@ class MainPage extends Component {
   };
 
   componentDidMount = () => {
+    console.log(this.props.user);
     this.props.onGetRandomGame(this.getRandomInt);
     this.props.onGetPreferredGames();
-    this.setState({ loading: false });
   };
 
   componentWillUnmount = () => {
@@ -31,7 +32,13 @@ class MainPage extends Component {
   render() {
     return (
       <>
-        {this.state.loading || !this.props.randomGame ? (
+        {this.props.error ? (
+          <Modal cleanError={this.props.onCleanError}>
+            {this.props.error.message}
+          </Modal>
+        ) : null}
+        {this.state.loading ||
+        (!this.props.randomGame && !this.props.preferenceGames) ? (
           <Loader />
         ) : (
           <main className="MainPage">

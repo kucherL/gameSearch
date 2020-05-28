@@ -5,6 +5,7 @@
   background-color: $first-background-color;
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 60rem) {
@@ -14,4 +15,3 @@
     justify-content: center;
   }
 }
-

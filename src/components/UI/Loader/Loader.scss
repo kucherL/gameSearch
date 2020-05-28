@@ -1,36 +1,42 @@
 @import "../../../varibles";
 
+.Loader-container {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: $first-background-color;
+}
+
 .Loader {
   font-size: 10px;
-  margin: 50px auto;
+  margin: auto;
   text-indent: -9999em;
   width: 11em;
   height: 11em;
   border-radius: 50%;
-  background: $second-background-color;
+  background: $first-background-color;
   background: -moz-linear-gradient(
     left,
-    $second-background-color 10%,
+    $first-background-color 10%,
     rgba(255, 255, 255, 0) 42%
   );
   background: -webkit-linear-gradient(
     left,
-    $second-background-color 10%,
+    $first-background-color 10%,
     rgba(255, 255, 255, 0) 42%
   );
   background: -o-linear-gradient(
     left,
-    $second-background-color 10%,
+    $first-background-color 10%,
     rgba(255, 255, 255, 0) 42%
   );
   background: -ms-linear-gradient(
     left,
-    $second-background-color 10%,
+    $first-background-color 10%,
     rgba(255, 255, 255, 0) 42%
   );
   background: linear-gradient(
     to right,
-    $second-background-color 10%,
+    $first-background-color 10%,
     rgba(255, 255, 255, 0) 42%
   );
   position: relative;

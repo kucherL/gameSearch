@@ -18,6 +18,7 @@ export const ADD_GAME_TO_FOLDER = "ADD_GAME_TO_FOLDER";
 export const ADD_USER_RATING = "ADD_USER_RATING";
 export const DELETE_GAME = "DELETE_GAME";
 export const DELETE_FOLDER = "DELETE_FOLDER";
+export const LOGOUT = "LOGOUT";
 
 export const SET_ERROR = "SET_ERROR";
 export const CLEAN_ERROR = "CLEAN_ERROR";

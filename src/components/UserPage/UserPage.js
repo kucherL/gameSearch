@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import "./UserPage.scss";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FoldersSection from "./FoldersSection/FoldersSection";
+import Modal from "../UI/Modal/Modal";
 
 class UserPage extends Component {
   state = {
@@ -16,7 +17,11 @@ class UserPage extends Component {
   };
 
   componentDidMount = () => {
-    this.props.onGetProfileData(this.props.user.uid);
+    if (this.props.user.uid) {
+      this.props.onGetProfileData(this.props.user.uid);
+      this.props.onGetUserFolders(this.props.user.uid);
+      this.props.onFetchUserRating(this.props.user.uid);
+    }
   };
 
   eventHandler = (event) => {
@@ -40,6 +45,11 @@ class UserPage extends Component {
   render() {
     return (
       <>
+        {this.props.error ? (
+          <Modal cleanError={this.props.onCleanError}>
+            {this.props.error.message}
+          </Modal>
+        ) : null}
         {!this.props.user ? (
           <Redirect to="/auth" />
         ) : (

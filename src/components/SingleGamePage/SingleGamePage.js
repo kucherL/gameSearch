@@ -12,6 +12,7 @@ import Trailers from "./Trailers/Trailers";
 import Summary from "./Summary/Summary";
 import SimilarGames from "./SimilarGames/SimilarGames";
 import Loader from "../UI/Loader/Loader";
+import Modal from "../UI/Modal/Modal";
 import * as actionCreators from "../../store/actions/actions";
 import "./SingleGamePage.scss";
 
@@ -25,7 +26,6 @@ class SingleGamePage extends Component {
   };
 
   componentDidUpdate = async (prevProps) => {
-    console.log(this.state.loading);
     if (this.props.id !== prevProps.id) {
       this.setState({ loading: true });
       await this.props.onGetSingleGameInfo(this.props.id);
@@ -40,6 +40,11 @@ class SingleGamePage extends Component {
   render() {
     return (
       <>
+        {this.props.error ? (
+          <Modal cleanError={this.props.onCleanError}>
+            {this.props.error.message}
+          </Modal>
+        ) : null}
         {this.state.loading || !this.props.cover ? (
           <Loader />
         ) : (

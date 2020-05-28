@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./Header.scss";
-import { signOut } from "../../firebase";
+import * as actionCreators from "../../store/actions/actions";
 import SubmitButton from "../UI/SubmitButton/SubmitButton";
 
 class Header extends Component {
@@ -49,7 +49,7 @@ class Header extends Component {
                   <SubmitButton>Войти</SubmitButton>
                 </Link>
               ) : (
-                <SubmitButton click={signOut}>Выход</SubmitButton>
+                <SubmitButton click={this.props.onLogout}>Выход</SubmitButton>
               )}
             </li>
           </ul>
@@ -65,4 +65,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogout: () => dispatch(actionCreators.logout()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -6,6 +6,7 @@ import "./Auth.scss";
 import * as actionCreators from "../../store/actions/actions";
 import SignUp from "./SignUp/SignUp";
 import SignIn from "./SignIn/SignIn";
+import Modal from "../UI/Modal/Modal";
 
 class Auth extends Component {
   state = {
@@ -14,6 +15,12 @@ class Auth extends Component {
     nameSignUp: "",
     emailSignUp: "",
     passwordSignUp: "",
+  };
+
+  componentDidUpdate = () => {
+    if (this.props.user) {
+      this.props.history.push("/userPage");
+    }
   };
 
   handleChange = (event) => {
@@ -27,18 +34,13 @@ class Auth extends Component {
       this.state.passwordSignIn
     );
     await this.props.onCheckAuth();
-    await this.props.onGetUserFolders(this.props.user.uid);
-    await this.props.onFetchUserRating(this.props.user.uid);
     this.setState({ emailSignIn: "", passwordSignIn: "" });
-    await this.props.history.push("/userPage");
   };
 
-  handleSignInWithGoogle = async () => {
+  handleSignInWithGoogle = async (event) => {
+    event.preventDefault();
     signInWithGoogle();
     await this.props.onCheckAuth();
-    await this.props.onGetUserFolders(this.props.user.uid);
-    await this.props.onFetchUserRating(this.props.user.uid);
-    await this.props.history.push("/userPage");
   };
 
   handleSubmitSignUp = async (event) => {
@@ -60,22 +62,29 @@ class Auth extends Component {
 
   render() {
     return (
-      <main className="Auth">
-        <SignIn
-          handleChange={this.handleChange}
-          email={this.state.emailSignIn}
-          password={this.state.passwordSignIn}
-          handleSubmit={this.handleSubmitSignIn}
-          click={this.handleSignInWithGoogle}
-        />
-        <SignUp
-          handleChange={this.handleChange}
-          email={this.state.emailSignUp}
-          password={this.state.passwordSignUp}
-          name={this.state.nameSignUp}
-          handleSubmit={this.handleSubmitSignUp}
-        />
-      </main>
+      <>
+        {this.props.error ? (
+          <Modal cleanError={this.props.onCleanError}>
+            {this.props.error.message}
+          </Modal>
+        ) : null}
+        <main className="Auth">
+          <SignIn
+            handleChange={this.handleChange}
+            email={this.state.emailSignIn}
+            password={this.state.passwordSignIn}
+            handleSubmit={this.handleSubmitSignIn}
+            click={this.handleSignInWithGoogle}
+          />
+          <SignUp
+            handleChange={this.handleChange}
+            email={this.state.emailSignUp}
+            password={this.state.passwordSignUp}
+            name={this.state.nameSignUp}
+            handleSubmit={this.handleSubmitSignUp}
+          />
+        </main>
+      </>
     );
   }
 }
@@ -90,8 +99,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onCheckAuth: () => dispatch(actionCreators.checkAuth()),
-    onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),
-    onFetchUserRating: (user) => dispatch(actionCreators.fetchUserRating(user)),
     onCleanError: () => dispatch(actionCreators.cleanError()),
   };
 };

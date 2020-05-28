@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import { IMAGES_URL } from "../../utility";
 import { instance } from "../../axios";
-import { auth, firestore } from "../../firebase";
+import { auth, firestore, signOut } from "../../firebase";
 
 export const getRandomGame = (getRandomInt) => {
   return async (dispatch) => {
@@ -303,7 +303,7 @@ export const fetchUserRating = (user) => {
 };
 
 export const setNewFolder = (user, title) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       await firestore.collection(`users/${user}/folders`).add({ title });
     } catch (err) {
@@ -316,7 +316,7 @@ export const setNewFolder = (user, title) => {
 };
 
 export const deleteFolder = (userId, folderId) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       await firestore.doc(`users/${userId}/folders/${folderId}`).delete();
     } catch (err) {
@@ -329,7 +329,7 @@ export const deleteFolder = (userId, folderId) => {
 };
 
 export const addGameToFolder = (gameData, user, idFolder) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       await firestore
         .collection(`users/${user}/folders/${idFolder}/games`)
@@ -344,7 +344,7 @@ export const addGameToFolder = (gameData, user, idFolder) => {
 };
 
 export const addUserRating = (user, starValue, idGame) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       await firestore
         .collection(`users/${user}/playedGames`)
@@ -360,7 +360,7 @@ export const addUserRating = (user, starValue, idGame) => {
 };
 
 export const deleteGame = (userId, folderId, gameId) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       await firestore
         .doc(`users/${userId}/folders/${folderId}/games/${gameId}`)
@@ -377,5 +377,12 @@ export const deleteGame = (userId, folderId, gameId) => {
 export const cleanError = () => {
   return {
     type: actionTypes.CLEAN_ERROR,
+  };
+};
+
+export const logout = () => {
+  signOut();
+  return {
+    type: actionTypes.LOGOUT,
   };
 };
