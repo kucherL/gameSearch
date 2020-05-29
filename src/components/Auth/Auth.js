@@ -17,8 +17,8 @@ class Auth extends Component {
     passwordSignUp: "",
   };
 
-  componentDidUpdate = () => {
-    if (this.props.user) {
+  componentDidUpdate = (prevState) => {
+    if (this.props.user !== prevState.user) {
       this.props.history.push("/userPage");
     }
   };

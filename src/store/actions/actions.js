@@ -198,17 +198,18 @@ export const getSingleGameInfo = (id) => {
 export const checkAuth = () => {
   return async (dispatch) => {
     try {
-      auth.onAuthStateChanged(async (userAuth) => {
+      auth.onAuthStateChanged((userAuth) => {
         if (userAuth) {
           dispatch({
             type: actionTypes.CHECK_AUTH,
-            data: { uid: userAuth.id, ...userAuth.data },
+            data: userAuth,
+          });
+        } else {
+          dispatch({
+            type: actionTypes.CHECK_AUTH,
+            data: "",
           });
         }
-        dispatch({
-          type: actionTypes.CHECK_AUTH,
-          data: userAuth,
-        });
       });
     } catch (err) {
       dispatch({

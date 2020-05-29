@@ -92,7 +92,9 @@ const reducer = (state = initialState, action) => {
       });
     case actionTypes.LOGOUT:
       return updateObject(state, {
-        user: "",
+        user: {
+          uid: "",
+        },
       });
     default:
       return state;

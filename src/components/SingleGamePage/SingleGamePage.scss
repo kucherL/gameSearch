@@ -4,7 +4,7 @@
   background-color: $first-background-color;
   width: 100%;
   padding: 5rem 1rem 1rem 1rem;
-  margin-bottom: 2rem;
+  min-height: calc(100vh - 5rem);
 
   .GameInfo {
     display: flex;

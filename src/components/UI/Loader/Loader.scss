@@ -4,6 +4,7 @@
   padding-top: 5rem;
   padding-bottom: 5rem;
   background-color: $first-background-color;
+  min-height: calc(100vh - 5rem);
 }
 
 .Loader {

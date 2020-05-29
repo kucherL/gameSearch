@@ -16,12 +16,10 @@ class UserPage extends Component {
     showFolders: false,
   };
 
-  componentDidMount = () => {
-    if (this.props.user.uid) {
-      this.props.onGetProfileData(this.props.user.uid);
-      this.props.onGetUserFolders(this.props.user.uid);
-      this.props.onFetchUserRating(this.props.user.uid);
-    }
+  componentDidMount = async () => {
+    await this.props.onGetProfileData(this.props.user.uid);
+    await this.props.onGetUserFolders(this.props.user.uid);
+    await this.props.onFetchUserRating(this.props.user.uid);
   };
 
   eventHandler = (event) => {
