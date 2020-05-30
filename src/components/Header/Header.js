@@ -40,7 +40,7 @@ class Header extends Component {
             </li>
             {this.props.user ? (
               <li>
-                <Link to="/userPage">Профиль</Link>
+                <Link to="/userPage">Profile</Link>
               </li>
             ) : null}
             <li>
@@ -49,7 +49,7 @@ class Header extends Component {
                   <SubmitButton>Enter</SubmitButton>
                 </Link>
               ) : (
-                <SubmitButton click={this.props.onLogout}>Выход</SubmitButton>
+                <SubmitButton click={this.props.onLogout}>Exit</SubmitButton>
               )}
             </li>
           </ul>

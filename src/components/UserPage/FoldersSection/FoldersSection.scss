@@ -27,7 +27,6 @@
   }
 
   input {
-    margin-left: 1rem;
     background-color: transparent;
     border: none;
     border-color: $accent-color;
@@ -87,8 +86,25 @@
   }
 
   &__game-item {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    border-color: $accent-color;
+    box-shadow: $border;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
     .GameItem {
-      padding-bottom: 4rem;
+      box-shadow: none;
+
+      &:hover {
+        transform: none;
+      }
     }
   }
 
@@ -98,7 +114,7 @@
     fill: $second-background-color;
     display: inline-block;
     position: relative;
-    bottom: 3.5rem;
+    bottom: 0.5rem;
     left: 0.7rem;
 
     &:hover::after {
