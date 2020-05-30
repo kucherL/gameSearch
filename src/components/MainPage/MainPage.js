@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Transition } from "react-transition-group";
 
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import Modal from "../UI/Modal/Modal";
 import RandomGame from "./RandomGame/RandomGame";
 import PreferenceList from "./PreferenceList/PreferenceList";
@@ -33,6 +34,7 @@ class MainPage extends Component {
   render() {
     return (
       <>
+        <Header />
         {this.props.error ? (
           <Modal cleanError={this.props.onCleanError}>
             {this.props.error.message}
@@ -42,44 +44,29 @@ class MainPage extends Component {
         (!this.props.randomGame && !this.props.preferenceGames) ? (
           <Loader />
         ) : (
-          <Transition
-            in={this.props.randomGame !== []}
-            timeout={1000}
-            classNames="baloon"
-            mountOnEnter
-            unmountOnExit
-          >
-            {(state) => (
-              <main
-                className="MainPage"
-                style={{
-                  transition: "opacity 1s ease-out",
-                  opacity: state === "exiting" ? 0 : 1,
-                }}
-              >
-                <RandomGame
-                  idRandomGame={this.props.randomGame.id}
-                  coverRandomGame={this.props.randomGame.cover}
-                  titleRandomGame={this.props.randomGame.title}
-                  summaryGame={this.props.randomGame.summary}
-                  rating={this.props.randomGame.rating}
-                  sendId={this.props.onGetId}
-                />
-                <PreferenceList
-                  preferenceGames={this.props.preferredGames}
-                  sendId={this.props.onGetId}
-                  folders={this.props.folders}
-                  addGameToFolder={this.props.onAddGameToFolder}
-                  uid={this.props.user.uid}
-                  addUserRating={this.props.onAddUserRating}
-                  getUserFolders={this.props.onGetUserFolders}
-                  ratedGames={this.props.ratedGames}
-                  fetchUserRating={this.props.onFetchUserRating}
-                />
-              </main>
-            )}
-          </Transition>
+          <main className="MainPage">
+            <RandomGame
+              idRandomGame={this.props.randomGame.id}
+              coverRandomGame={this.props.randomGame.cover}
+              titleRandomGame={this.props.randomGame.title}
+              summaryGame={this.props.randomGame.summary}
+              rating={this.props.randomGame.rating}
+              sendId={this.props.onGetId}
+            />
+            <PreferenceList
+              preferenceGames={this.props.preferredGames}
+              sendId={this.props.onGetId}
+              folders={this.props.folders}
+              addGameToFolder={this.props.onAddGameToFolder}
+              uid={this.props.user.uid}
+              addUserRating={this.props.onAddUserRating}
+              getUserFolders={this.props.onGetUserFolders}
+              ratedGames={this.props.ratedGames}
+              fetchUserRating={this.props.onFetchUserRating}
+            />
+          </main>
         )}
+        <Footer />
       </>
     );
   }

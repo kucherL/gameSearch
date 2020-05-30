@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import sprite from "../../assets/sprite.svg";
 import * as actionCreators from "../../store/actions/actions";
 import FilterPanel from "./FilterPanel/FilterPanel";
@@ -69,6 +71,7 @@ class SearchPage extends Component {
   render() {
     return (
       <>
+        <Header />
         {this.props.error ? (
           <Modal cleanError={this.props.onCleanError}>
             {this.props.error.message}
@@ -131,6 +134,7 @@ class SearchPage extends Component {
             </button>
           </div>
         </main>
+        <Footer />
       </>
     );
   }

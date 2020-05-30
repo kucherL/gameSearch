@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import Poster from "../UI/Poster/Poster";
 import Title from "../UI/Title/Title";
 import Description from "../UI/Description/Description";
@@ -40,6 +42,7 @@ class SingleGamePage extends Component {
   render() {
     return (
       <>
+        <Header />
         {this.props.error ? (
           <Modal cleanError={this.props.onCleanError}>
             {this.props.error.message}
@@ -100,6 +103,7 @@ class SingleGamePage extends Component {
             )}
           </>
         )}
+        <Footer />
       </>
     );
   }
