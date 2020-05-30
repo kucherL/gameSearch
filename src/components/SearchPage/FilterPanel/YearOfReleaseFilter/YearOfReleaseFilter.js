@@ -2,7 +2,7 @@ import React from "react";
 
 const YearOfReleaseFilter = (props) => (
   <div className="FilterPanel__item">
-    <label htmlFor="year-input">Год</label>
+    <label htmlFor="year-input">Year</label>
     <input
       type="text"
       onChange={props.yearChanged}

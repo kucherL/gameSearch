@@ -2,7 +2,7 @@ import React from "react";
 
 const RatingFilter = (props) => (
   <div className="FilterPanel__item input-field">
-    <label>Рейтинг</label>
+    <label>Rating</label>
     <input
       type="range"
       min="0"

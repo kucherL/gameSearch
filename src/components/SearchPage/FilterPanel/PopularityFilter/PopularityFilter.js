@@ -2,7 +2,7 @@ import React from "react";
 
 const PopularityFilter = (props) => (
   <div className="FilterPanel__item input-field">
-    <label>Популярность</label>
+    <label>Popularity</label>
     <input
       type="range"
       min="0"

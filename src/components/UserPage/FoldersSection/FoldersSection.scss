@@ -14,7 +14,6 @@
     font-family: inherit;
     padding: 0.2rem 0.5rem;
     margin-bottom: 1rem;
-    margin-left: 1rem;
     width: 10rem;
   }
 
@@ -37,13 +36,6 @@
     font-family: inherit;
     padding: 0.2rem 0.5rem;
     width: 10rem;
-  }
-
-  &__folders-games {
-    padding: 1rem;
-    grid-template-columns: 1fr;
-    display: grid;
-    grid-gap: 0.5rem;
   }
 
   &__title {
@@ -87,7 +79,14 @@
     }
   }
 
-  &__list-of-games {
+  &__folder-game-list {
+    margin-top: 1rem;
+    grid-template-columns: 1fr;
+    display: grid;
+    grid-gap: 0.5rem;
+  }
+
+  &__game-item {
     .GameItem {
       padding-bottom: 4rem;
     }
@@ -99,7 +98,7 @@
     fill: $second-background-color;
     display: inline-block;
     position: relative;
-    bottom: 4rem;
+    bottom: 3.5rem;
     left: 0.7rem;
 
     &:hover::after {
@@ -127,18 +126,18 @@
 
 @media (min-width: 40rem) {
   .FoldersSection {
-    &__folders-games {
+    &__folder-game-list {
       grid-template-columns: 1fr 1fr;
-      grid-gap: 1rem;
+      grid-gap: 1.5rem;
     }
   }
 }
 
 @media (min-width: 60rem) {
   .FoldersSection {
-    &__folders-games {
+    &__folder-game-list {
       grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 1rem;
+      grid-gap: 1.5rem;
     }
   }
 }

@@ -1,15 +1,8 @@
 import React, { Suspense } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { spring, AnimatedSwitch } from "react-router-transition";
 
 import Auth from "./components/Auth/Auth";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import Loader from "./components/UI/Loader/Loader";
 
 const MainPage = React.lazy(() => {

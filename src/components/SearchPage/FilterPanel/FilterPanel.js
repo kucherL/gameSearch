@@ -24,7 +24,7 @@ const FilterPanel = (props) => {
         popularityChanged={props.handleChange}
         popularity={props.popularity}
       />
-      <SubmitButton click={props.filter}>Найти</SubmitButton>
+      <SubmitButton click={props.filter}>Find</SubmitButton>
     </form>
   );
 };

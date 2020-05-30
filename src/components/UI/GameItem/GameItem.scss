@@ -2,18 +2,22 @@
 
 .GameItem {
   padding: 1rem;
-  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border-color: $accent-color;
   box-shadow: $border;
   border-radius: 3px;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 1rem;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 
   figure {
     width: 100%;
     display: flex;
-    margin-bottom: 1rem;
 
     .Poster {
       width: 8rem;
@@ -29,5 +33,11 @@
 
   &__info {
     width: 100%;
+  }
+}
+
+@media (min-width: 40rem) {
+  .GameItem {
+    margin-bottom: 0;
   }
 }

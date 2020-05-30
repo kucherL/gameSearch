@@ -28,43 +28,6 @@ const FoldersSection = (props) => {
     });
   };
 
-  const getListOfGames = () => {
-    return props.games.map((game) => {
-      return (
-        <div
-          key={game[0].gameData.id}
-          className="FoldersSection__list-of-games"
-        >
-          <GameItem
-            game={game[0].gameData.title}
-            genres={game[0].gameData.genres}
-            platforms={game[0].gameData.platforms}
-            cover={game[0].gameData.cover}
-            id={game[0].gameData.id}
-            folders={props.folders}
-            addGameToFolder={props.addGameToFolder}
-            uid={props.user}
-            addUserRating={props.addUserRating}
-            sendId={props.sendId}
-            ratedGames={props.ratedGames}
-            fetchUserRating={props.fetchUserRating}
-          />
-          <button
-            hint="Delete game"
-            className="FoldersSection__delete-game"
-            onClick={() =>
-              props.deleteGame(props.user, props.folderId, game[1])
-            }
-          >
-            <svg>
-              <use href={sprite + "#icon-trashcan"} />
-            </svg>
-          </button>
-        </div>
-      );
-    });
-  };
-
   return (
     <section className="FoldersSection">
       <div>
@@ -89,7 +52,7 @@ const FoldersSection = (props) => {
         </div>
       ) : null}
       {props.showFolders ? (
-        <div className="FoldersSection__folders-games">
+        <>
           <div className="FoldersSection__title">
             <h1>{props.title}</h1>
             <button hint="Delete folder" onClick={deleteFolderHandler}>
@@ -98,8 +61,43 @@ const FoldersSection = (props) => {
               </svg>
             </button>
           </div>
-          {getListOfGames()}
-        </div>
+          <div className="FoldersSection__folder-game-list">
+            {props.games.map((game) => {
+              return (
+                <div
+                  key={game[0].gameData.id}
+                  className="FoldersSection__game-item"
+                >
+                  <GameItem
+                    game={game[0].gameData.title}
+                    genres={game[0].gameData.genres}
+                    platforms={game[0].gameData.platforms}
+                    cover={game[0].gameData.cover}
+                    id={game[0].gameData.id}
+                    folders={props.folders}
+                    addGameToFolder={props.addGameToFolder}
+                    uid={props.user}
+                    addUserRating={props.addUserRating}
+                    sendId={props.sendId}
+                    ratedGames={props.ratedGames}
+                    fetchUserRating={props.fetchUserRating}
+                  />
+                  <button
+                    hint="Delete game"
+                    className="FoldersSection__delete-game"
+                    onClick={() =>
+                      props.deleteGame(props.user, props.folderId, game[1])
+                    }
+                  >
+                    <svg>
+                      <use href={sprite + "#icon-trashcan"} />
+                    </svg>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </>
       ) : null}
     </section>
   );

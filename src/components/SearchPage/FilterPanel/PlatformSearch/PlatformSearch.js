@@ -13,7 +13,7 @@ const PlatformSearch = (props) => {
 
   return (
     <div className="FilterPanel__item">
-      <label htmlFor="selectedPlatforms">Платформа</label>
+      <label htmlFor="selectedPlatforms">Platform</label>
       <select
         name="selectedPlatforms"
         id="platform-select"

@@ -31,7 +31,7 @@ const SimilarGames = (props) => {
         <svg>
           <use href={sprite + "#icon-spaceinvaders"} />
         </svg>
-        <h1>Похожие игры</h1>
+        <h1>Similar games</h1>
       </div>
       <div className="SimilarGames__container">{alikeList}</div>
     </section>

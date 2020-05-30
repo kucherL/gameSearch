@@ -25,7 +25,7 @@ const Trailers = (props) => {
         <svg>
           <use href={sprite + "#icon-film"} />
         </svg>
-        <h1>Трейлеры</h1>
+        <h1>Trailers</h1>
       </div>
       <div className="Trailers__container">{trailersConteiner}</div>
     </section>

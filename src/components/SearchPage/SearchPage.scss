@@ -18,18 +18,20 @@
   }
 
   .Pagination {
-    margin-bottom: 1rem;
     color: $accent-color;
     font-weight: bold;
     font-size: 1.5rem;
     display: flex;
     align-items: center;
+    position: relative;
+    bottom: -25rem;
 
     button {
       background-color: transparent;
       border: none;
       margin-left: 1rem;
       margin-right: 1rem;
+
       svg {
         width: 2rem;
         height: 2rem;
@@ -43,7 +45,7 @@
   .SearchPage {
     &__filtered-games {
       grid-template-columns: 1fr 1fr;
-      grid-gap: 1rem;
+      grid-gap: 1.5rem;
     }
   }
 }
@@ -52,7 +54,7 @@
   .SearchPage {
     &__filtered-games {
       grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 1rem;
+      grid-gap: 1.5rem;
     }
   }
 }

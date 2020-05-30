@@ -9,7 +9,7 @@ const Summary = (props) => (
       <svg>
         <use href={sprite + "#icon-book"} />
       </svg>
-      <h1>Описание игры</h1>
+      <h1>Summary</h1>
     </div>
     <p>{props.summary}</p>
   </section>

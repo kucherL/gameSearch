@@ -37,7 +37,7 @@
   .SimilarGames {
     &__container {
       grid-template-columns: 1fr 1fr;
-      grid-gap: 1rem;
+      grid-gap: 1.5rem;
     }
   }
 }
@@ -46,7 +46,7 @@
   .SimilarGames {
     &__container {
       grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 1rem;
+      grid-gap: 1.5rem;
     }
   }
 }

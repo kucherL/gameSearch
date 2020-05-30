@@ -30,11 +30,11 @@ class Header extends Component {
             <li>
               {window.location.pathname === "/" ? (
                 <Link to="/search" onClick={this.homePageHandler}>
-                  Поиск
+                  Search
                 </Link>
               ) : (
                 <Link to="/" onClick={this.homePageHandler}>
-                  На главную
+                  Main page
                 </Link>
               )}
             </li>
@@ -46,7 +46,7 @@ class Header extends Component {
             <li>
               {!this.props.user ? (
                 <Link to="/auth">
-                  <SubmitButton>Войти</SubmitButton>
+                  <SubmitButton>Enter</SubmitButton>
                 </Link>
               ) : (
                 <SubmitButton click={this.props.onLogout}>Выход</SubmitButton>

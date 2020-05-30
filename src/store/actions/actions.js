@@ -41,7 +41,7 @@ export const getPreferredGames = () => {
     try {
       const preferredGames = await instance(
         "games/",
-        "fields id, name, cover, genres, platforms; where (rating > 80 & popularity > 2); limit 12;"
+        "fields id, name, cover, genres, platforms; where (rating > 80 & popularity > 4); limit 12;"
       );
       let temporaryDataPreference = preferredGames.data
         .sort((a, b) => a.cover - b.cover)
@@ -57,7 +57,7 @@ export const getPreferredGames = () => {
         .join(", ");
       const preferredGamesCovers = await instance(
         "covers",
-        `fields url; where id=(${temporaryData});`
+        `fields url; where id=(${temporaryData}); limit 12;`
       );
       let coversURL = preferredGamesCovers.data.map((cover) => cover.url);
       for (let i = 0; i < coversURL.length; i++) {
@@ -107,7 +107,7 @@ export const filterGamesAndCovers = (apiString, offset) => {
         .join(", ");
       const filteredGamesAndCovers = await instance(
         "covers",
-        `fields url; where id=(${temporaryData});`
+        `fields url; where id=(${temporaryData}); limit 12;`
       );
       let coversURL = filteredGamesAndCovers.data.map((cover) => cover.url);
       for (let i = 0; i < coversURL.length; i++) {
@@ -170,7 +170,7 @@ export const getSingleGameInfo = (id) => {
       let temporaryData = alike.data.map((item) => item.cover).join(", ");
       let alikeCovers = await instance(
         "covers",
-        `fields url; where id=(${temporaryData});`
+        `fields url; where id=(${temporaryData}); limit 6;`
       );
       let coversURL = alikeCovers.data.map((cover) => cover.url);
       for (let i = 0; i < coversURL.length; i++) {

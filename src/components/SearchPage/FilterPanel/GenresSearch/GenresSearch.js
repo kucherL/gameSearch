@@ -11,7 +11,7 @@ const GenresSearch = (props) => {
 
   return (
     <div className="FilterPanel__item">
-      <label htmlFor="selectedGenres">Жанр</label>
+      <label htmlFor="selectedGenres">Genre</label>
       <select
         name="selectedGenres"
         id="genre-select"

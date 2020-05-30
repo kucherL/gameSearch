@@ -27,9 +27,7 @@ const PreferenceList = (props) => {
 
   return (
     <section className="PreferenceList">
-      <h1 className="PreferenceList__title">
-        Вам могут понравиться следующие игры
-      </h1>
+      <h1 className="PreferenceList__title">You might like those games</h1>
       <div className="PreferenceList__container">{list}</div>
     </section>
   );

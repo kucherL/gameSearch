@@ -13,29 +13,33 @@ class Footer extends Component {
         </a>
         <ul className="Footer__contact-links">
           <li>
-            <a href="/">
+            <a
+              href="https://github.com/kucherL/gameSearch"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <svg>
                 <use href={sprite + "#icon-github-square"} />
               </svg>
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="/">
               <img
                 src={portfolioIcon}
                 alt="portfolio-link"
               />
             </a>
-          </li>
+          </li> */}
           <li>
-            <a href="/">
+            <a href="/" target="_blank" rel="noopener noreferrer">
               <svg>
                 <use href={sprite + "#icon-linkedin-square"} />
               </svg>
             </a>
           </li>
         </ul>
-        <p className="Footer__copyright">2020 Елизавета Кучерова</p>
+        <p className="Footer__copyright">2020 | Елизавета Кучерова</p>
       </footer>
     );
   };
