@@ -51,7 +51,7 @@ class UserPage extends Component {
             {this.props.error.message}
           </Modal>
         ) : null}
-        {!this.props.user ? (
+        {!this.props.user || !this.props.profileData ? (
           <Redirect to="/auth" />
         ) : (
           <main className="UserPage">
@@ -104,6 +104,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onCheckAuth: () => dispatch(actionCreators.checkAuth()),
     onDeleteGame: (userId, folderId, gameId) =>
       dispatch(actionCreators.deleteGame(userId, folderId, gameId)),
     onDeleteFolder: (userId, folderId) =>

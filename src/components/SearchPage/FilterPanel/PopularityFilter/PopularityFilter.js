@@ -11,6 +11,7 @@ const PopularityFilter = (props) => (
       value={props.popularity}
       onChange={props.popularityChanged}
       name="selectedPopularity"
+      hint={props.popularity}
     />
   </div>
 );

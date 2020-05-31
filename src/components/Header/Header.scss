@@ -1,4 +1,6 @@
 @import "../../varibles";
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
 .Header {
   background-color: $second-background-color;
@@ -13,7 +15,15 @@
   z-index: 1;
 
   &__logo {
-    width: 2rem;
+    font-family: "VT323", monospace;
+    color: $first-background-color;
+    font-size: 2.5rem;
+
+    span {
+      font-family: "Great Vibes", cursive;
+      color: $text-color;
+      font-size: 1.5rem;
+    }
   }
 
   &__navigation {

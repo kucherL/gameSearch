@@ -20,6 +20,7 @@ class SearchPage extends Component {
     selectedRating: "80",
     selectedPopularity: "4",
     loading: false,
+    pagination: false,
   };
 
   page = 1;
@@ -44,6 +45,7 @@ class SearchPage extends Component {
 
   filterGames = (event) => {
     event.preventDefault();
+    this.setState({ pagination: true });
     this.handleChangePage();
   };
 
@@ -60,9 +62,10 @@ class SearchPage extends Component {
       if (this.state.selectedPlatforms.length !== 0) {
         apiString += ` & platforms=(${this.state.selectedPlatforms})`;
       }
-      if (this.state.selectedYear.length !== 0) {
-        apiString += ` & release_dates=(${this.state.selectedYear})`;
-      }
+      // TODO: delete or change request
+      // if (this.state.selectedYear.length !== 0) {
+      //   apiString += ` & release_dates=(${this.state.selectedYear})`;
+      // }
     }
     this.props.onFilterGamesAndCovers(apiString, this.offset);
     this.setState({ loading: false });
@@ -112,27 +115,29 @@ class SearchPage extends Component {
               })}
             </section>
           )}
-          <div className="Pagination">
-            {this.page === 1 ? (
-              <button disabled>
-                <svg>
-                  <use href={sprite + "#icon-arrow-left"} name="back" />
-                </svg>
-              </button>
-            ) : (
+          {this.state.pagination ? (
+            <div className="Pagination">
+              {this.page === 1 ? (
+                <button disabled>
+                  <svg>
+                    <use href={sprite + "#icon-arrow-left"} name="back" />
+                  </svg>
+                </button>
+              ) : (
+                <button onClick={this.changePage}>
+                  <svg>
+                    <use href={sprite + "#icon-arrow-left"} name="back" />
+                  </svg>
+                </button>
+              )}
+              {this.page}
               <button onClick={this.changePage}>
                 <svg>
-                  <use href={sprite + "#icon-arrow-left"} name="back" />
+                  <use href={sprite + "#icon-arrow-right"} name="forward" />
                 </svg>
               </button>
-            )}
-            {this.page}
-            <button onClick={this.changePage}>
-              <svg>
-                <use href={sprite + "#icon-arrow-right"} name="forward" />
-              </svg>
-            </button>
-          </div>
+            </div>
+          ) : null}
         </main>
         <Footer />
       </>

@@ -11,6 +11,7 @@ const RatingFilter = (props) => (
       value={props.rating}
       onChange={props.ratingChanged}
       name="selectedRating"
+      hint={props.rating}
     />
   </div>
 );

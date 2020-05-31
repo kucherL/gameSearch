@@ -18,7 +18,7 @@ const FilterPanel = (props) => {
         platforms={props.platforms}
         clicked={props.handleChange}
       />
-      <YearOfReleaseFilter yearChanged={props.handleChange} />
+      {/* <YearOfReleaseFilter yearChanged={props.handleChange} /> */}
       <RatingFilter ratingChanged={props.handleChange} rating={props.rating} />
       <PopularityFilter
         popularityChanged={props.handleChange}

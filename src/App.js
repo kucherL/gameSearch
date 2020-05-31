@@ -22,12 +22,12 @@ const UserPage = React.lazy(() => {
 });
 
 const App = () => {
-  function slide(val) {
+  const slide = (val) => {
     return spring(val, {
       stiffness: 125,
       damping: 16,
     });
-  }
+  };
 
   let routes = (
     <AnimatedSwitch

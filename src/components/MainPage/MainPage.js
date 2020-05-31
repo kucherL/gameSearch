@@ -15,10 +15,14 @@ class MainPage extends Component {
     loading: false,
   };
 
-  componentDidMount = () => {
-    this.props.onCheckAuth();
-    this.props.onGetRandomGame(this.getRandomInt);
-    this.props.onGetPreferredGames();
+  componentDidMount = async () => {
+    await this.props.onCheckAuth();
+    await this.props.onGetRandomGame(this.getRandomInt);
+    await this.props.onGetPreferredGames();
+    if (this.props.user) {
+      await this.props.onGetUserFolders(this.props.user.uid);
+      await this.props.onFetchUserRating(this.props.user.uid);
+    }
   };
 
   componentWillUnmount = () => {
@@ -60,7 +64,6 @@ class MainPage extends Component {
               addGameToFolder={this.props.onAddGameToFolder}
               uid={this.props.user.uid}
               addUserRating={this.props.onAddUserRating}
-              getUserFolders={this.props.onGetUserFolders}
               ratedGames={this.props.ratedGames}
               fetchUserRating={this.props.onFetchUserRating}
             />

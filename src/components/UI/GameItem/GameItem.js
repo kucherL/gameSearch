@@ -24,7 +24,6 @@ const GameItem = (props) => (
           folders={props.folders}
           addGameToFolder={props.addGameToFolder}
           uid={props.uid}
-          getUserFolders={props.getUserFolders}
         />
         <AddUsersRating
           idGame={props.id}

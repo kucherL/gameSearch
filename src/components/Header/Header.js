@@ -19,11 +19,14 @@ class Header extends Component {
     return (
       <header className="Header">
         <Link to="/">
-          <img
+          {/* <img
             src={require("../../assets/portfolio-icon.svg")}
             alt="logo"
             className="Header__logo"
-          />
+          /> */}
+          <h1 className="Header__logo">
+            Game<span>Search</span>
+          </h1>
         </Link>
         <nav className="Header__navigation">
           <ul>
