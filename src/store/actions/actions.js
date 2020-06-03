@@ -41,7 +41,7 @@ export const getPreferredGames = () => {
     try {
       const preferredGames = await instance(
         "games/",
-        "fields id, name, cover, genres, platforms; where (rating > 80); limit 12;"
+        "fields id, name, cover, genres, platforms; where (rating > 90); limit 12;"
       );
       let temporaryDataPreference = preferredGames.data
         .sort((a, b) => a.cover - b.cover)

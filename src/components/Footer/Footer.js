@@ -23,18 +23,18 @@ class Footer extends Component {
             </a>
           </li>
           <li>
-            <a
-              href="https://linkedin.com/in/elizaveta-kucherova-4808181ab"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg>
-                <use href={sprite + "#icon-linkedin-square"} />
-              </svg>
-            </a>
+            <p className="Footer__copyright">
+              2020 |{" "}
+              <a
+                href="https://kucherl.github.io/portfolio/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Elizaveta Kucherova
+              </a>
+            </p>
           </li>
         </ul>
-        <p className="Footer__copyright">2020 | Elizaveta Kucherova</p>
       </footer>
     );
   };
