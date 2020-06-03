@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import Modal from "../UI/Modal/Modal";
 import RandomGame from "./RandomGame/RandomGame";
 import PreferenceList from "./PreferenceList/PreferenceList";
@@ -11,10 +9,6 @@ import * as actionCreators from "../../store/actions/actions";
 import "./MainPage.scss";
 
 class MainPage extends Component {
-  state = {
-    loading: false,
-  };
-
   componentDidMount = async () => {
     await this.props.onCheckAuth();
     await this.props.onGetRandomGame(this.getRandomInt);
@@ -23,10 +17,6 @@ class MainPage extends Component {
       await this.props.onGetUserFolders(this.props.user.uid);
       await this.props.onFetchUserRating(this.props.user.uid);
     }
-  };
-
-  componentWillUnmount = () => {
-    this.setState({ loading: true });
   };
 
   getRandomInt = (arr) => {
@@ -38,14 +28,12 @@ class MainPage extends Component {
   render() {
     return (
       <>
-        <Header />
         {this.props.error ? (
           <Modal cleanError={this.props.onCleanError}>
             {this.props.error.message}
           </Modal>
         ) : null}
-        {this.state.loading ||
-        (!this.props.randomGame && !this.props.preferenceGames) ? (
+        {!this.props.randomGame.cover ? (
           <Loader />
         ) : (
           <main className="MainPage">
@@ -69,7 +57,6 @@ class MainPage extends Component {
             />
           </main>
         )}
-        <Footer />
       </>
     );
   }

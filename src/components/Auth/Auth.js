@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signInWithGoogle, auth, createUserProfile } from "../../firebase";
 
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import "./Auth.scss";
 import * as actionCreators from "../../store/actions/actions";
 import SignUp from "./SignUp/SignUp";
@@ -65,7 +63,6 @@ class Auth extends Component {
   render() {
     return (
       <>
-        <Header />
         {this.props.error ? (
           <Modal cleanError={this.props.onCleanError}>
             {this.props.error.message}
@@ -87,7 +84,6 @@ class Auth extends Component {
             handleSubmit={this.handleSubmitSignUp}
           />
         </main>
-        <Footer />
       </>
     );
   }

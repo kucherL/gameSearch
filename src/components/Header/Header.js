@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { signOut } from "../../firebase";
 import "./Header.scss";
-import * as actionCreators from "../../store/actions/actions";
 import SubmitButton from "../UI/SubmitButton/SubmitButton";
 
 class Header extends Component {
@@ -19,11 +19,6 @@ class Header extends Component {
     return (
       <header className="Header">
         <Link to="/">
-          {/* <img
-            src={require("../../assets/portfolio-icon.svg")}
-            alt="logo"
-            className="Header__logo"
-          /> */}
           <h1 className="Header__logo">
             Game<span>Search</span>
           </h1>
@@ -52,7 +47,7 @@ class Header extends Component {
                   <SubmitButton>Enter</SubmitButton>
                 </Link>
               ) : (
-                <SubmitButton click={this.props.onLogout}>Exit</SubmitButton>
+                <SubmitButton click={signOut}>Exit</SubmitButton>
               )}
             </li>
           </ul>
@@ -68,10 +63,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLogout: () => dispatch(actionCreators.logout()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);

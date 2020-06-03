@@ -11,14 +11,11 @@ export const GET_PROFILE_DATA = "GET_PROFILE_DATA";
 export const GET_USER_FOLDERS = "GET_USER_FOLDERS";
 export const FETCH_GAMES_IN_FOLDER = "FETCH_GAMES_IN_FOLDER";
 export const FETCH_USER_RATING = "FETCH_USER_RATING";
-
-// Firebase API without dispatch
 export const SET_NEW_FOLDER = "SET_NEW_FOLDER";
 export const ADD_GAME_TO_FOLDER = "ADD_GAME_TO_FOLDER";
 export const ADD_USER_RATING = "ADD_USER_RATING";
 export const DELETE_GAME = "DELETE_GAME";
 export const DELETE_FOLDER = "DELETE_FOLDER";
-export const LOGOUT = "LOGOUT";
 
 export const SET_ERROR = "SET_ERROR";
 export const CLEAN_ERROR = "CLEAN_ERROR";

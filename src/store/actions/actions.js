@@ -1,14 +1,14 @@
 import * as actionTypes from "./actionTypes";
 import { IMAGES_URL } from "../../utility";
 import { instance } from "../../axios";
-import { auth, firestore, signOut } from "../../firebase";
+import { auth, firestore } from "../../firebase";
 
 export const getRandomGame = (getRandomInt) => {
   return async (dispatch) => {
     try {
       const randomGames = await instance(
         "games/",
-        "fields id, rating, name, summary; where (rating > 70 & popularity > 4); limit 50;"
+        "fields id, rating, name, summary; where (popularity > 4); limit 50;"
       );
       const randomInt = getRandomInt(randomGames.data);
       const randomGameId = randomGames.data[randomInt].id;
@@ -41,7 +41,7 @@ export const getPreferredGames = () => {
     try {
       const preferredGames = await instance(
         "games/",
-        "fields id, name, cover, genres, platforms; where (rating > 80 & popularity > 4); limit 12;"
+        "fields id, name, cover, genres, platforms; where (rating > 80); limit 12;"
       );
       let temporaryDataPreference = preferredGames.data
         .sort((a, b) => a.cover - b.cover)
@@ -378,12 +378,5 @@ export const deleteGame = (userId, folderId, gameId) => {
 export const cleanError = () => {
   return {
     type: actionTypes.CLEAN_ERROR,
-  };
-};
-
-export const logout = () => {
-  signOut();
-  return {
-    type: actionTypes.LOGOUT,
   };
 };

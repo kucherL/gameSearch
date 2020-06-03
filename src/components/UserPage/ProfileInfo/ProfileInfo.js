@@ -83,7 +83,7 @@ class ProfileInfo extends Component {
           {this.state.profileChange ? (
             <form onSubmit={this.handleSubmit} className="UpdateUser">
               <label
-                for="input-change-name"
+                htmlFor="input-change-name"
                 className="CustomInput-change-name"
               >
                 Change name
@@ -97,7 +97,7 @@ class ProfileInfo extends Component {
                 onChange={this.handleChange}
               />
               <label
-                for="input-file-upload"
+                htmlFor="input-file-upload"
                 className="CustomInput-file-upload"
               >
                 Change profile photo
@@ -109,7 +109,7 @@ class ProfileInfo extends Component {
                   this.imageInput = ref;
                 }}
               />
-              <label for="input-submit" className="CustomInput-submit">
+              <label htmlFor="input-submit" className="CustomInput-submit">
                 Submit
               </label>
               <input id="input-submit" type="submit" />

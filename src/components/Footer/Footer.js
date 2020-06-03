@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import "./Footer.scss";
 import sprite from "../../assets/sprite.svg";
-import portfolioIcon from "../../assets/portfolio-icon.svg";
 
 class Footer extends Component {
   render = () => {
@@ -23,23 +22,19 @@ class Footer extends Component {
               </svg>
             </a>
           </li>
-          {/* <li>
-            <a href="/">
-              <img
-                src={portfolioIcon}
-                alt="portfolio-link"
-              />
-            </a>
-          </li> */}
           <li>
-            <a href="/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://linkedin.com/in/elizaveta-kucherova-4808181ab"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <svg>
                 <use href={sprite + "#icon-linkedin-square"} />
               </svg>
             </a>
           </li>
         </ul>
-        <p className="Footer__copyright">2020 | Елизавета Кучерова</p>
+        <p className="Footer__copyright">2020 | Elizaveta Kucherova</p>
       </footer>
     );
   };

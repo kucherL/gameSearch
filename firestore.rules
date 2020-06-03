@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+	match /databases/{database}/documents {  
+    match /users/{userId} {   
+    	allow read;
+      allow update, write, create, delete: if request.auth.uid == userId;
+      
+      match /folders/{folderId} {
+      	allow read, update, write, delete, create: if request.auth.uid != null;
+        
+        match /games/{gameId} {
+      		allow read, update, write, delete, create: if request.auth.uid != null;
+      	}
+      }
+      match /playedGames/{playedGameId} {
+      	allow read, update, write, delete, create: if request.auth.uid != null;
+      }
+    }
+	}
+}

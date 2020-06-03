@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import Poster from "../UI/Poster/Poster";
 import Title from "../UI/Title/Title";
 import Description from "../UI/Description/Description";
@@ -19,41 +17,30 @@ import * as actionCreators from "../../store/actions/actions";
 import "./SingleGamePage.scss";
 
 class SingleGamePage extends Component {
-  state = {
-    loading: false,
-  };
-
   componentDidMount = () => {
     this.props.onGetSingleGameInfo(this.props.id);
   };
 
   componentDidUpdate = async (prevProps) => {
     if (this.props.id !== prevProps.id) {
-      this.setState({ loading: true });
       await this.props.onGetSingleGameInfo(this.props.id);
-      this.setState({ loading: false });
     }
-  };
-
-  componentWillUnmount = () => {
-    this.setState({ loading: true });
   };
 
   render() {
     return (
       <>
-        <Header />
-        {this.props.error ? (
-          <Modal cleanError={this.props.onCleanError}>
-            {this.props.error.message}
-          </Modal>
-        ) : null}
-        {this.state.loading || !this.props.cover ? (
-          <Loader />
+        {!this.props.id ? (
+          <Redirect to="/" />
         ) : (
           <>
-            {!this.props.id ? (
-              <Redirect to="/" />
+            {this.props.error ? (
+              <Modal cleanError={this.props.onCleanError}>
+                {this.props.error.message}
+              </Modal>
+            ) : null}
+            {!this.props.title ? (
+              <Loader />
             ) : (
               <main className="SingleGamePage">
                 <figure className="GameInfo">
@@ -103,7 +90,6 @@ class SingleGamePage extends Component {
             )}
           </>
         )}
-        <Footer />
       </>
     );
   }

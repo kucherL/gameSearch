@@ -90,12 +90,6 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, {
         error: null,
       });
-    case actionTypes.LOGOUT:
-      return updateObject(state, {
-        user: {
-          uid: "",
-        },
-      });
     default:
       return state;
   }

@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions/actions";
 import { Redirect } from "react-router-dom";
 
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import "./UserPage.scss";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import FoldersSection from "./FoldersSection/FoldersSection";
@@ -45,7 +43,6 @@ class UserPage extends Component {
   render() {
     return (
       <>
-        <Header />
         {this.props.error ? (
           <Modal cleanError={this.props.onCleanError}>
             {this.props.error.message}
@@ -84,7 +81,6 @@ class UserPage extends Component {
             />
           </main>
         )}
-        <Footer />
       </>
     );
   }

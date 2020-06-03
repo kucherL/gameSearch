@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import sprite from "../../assets/sprite.svg";
 import * as actionCreators from "../../store/actions/actions";
 import FilterPanel from "./FilterPanel/FilterPanel";
@@ -74,7 +72,6 @@ class SearchPage extends Component {
   render() {
     return (
       <>
-        <Header />
         {this.props.error ? (
           <Modal cleanError={this.props.onCleanError}>
             {this.props.error.message}
@@ -131,15 +128,22 @@ class SearchPage extends Component {
                 </button>
               )}
               {this.page}
-              <button onClick={this.changePage}>
-                <svg>
-                  <use href={sprite + "#icon-arrow-right"} name="forward" />
-                </svg>
-              </button>
+              {this.props.filteredGames.length < 12 ? (
+                <button disabled>
+                  <svg>
+                    <use href={sprite + "#icon-arrow-right"} name="forward" />
+                  </svg>
+                </button>
+              ) : (
+                <button onClick={this.changePage}>
+                  <svg>
+                    <use href={sprite + "#icon-arrow-right"} name="forward" />
+                  </svg>
+                </button>
+              )}
             </div>
           ) : null}
         </main>
-        <Footer />
       </>
     );
   }

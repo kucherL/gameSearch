@@ -1,7 +1,13 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { spring, AnimatedSwitch } from "react-router-transition";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Auth from "./components/Auth/Auth";
 import Loader from "./components/UI/Loader/Loader";
 
@@ -22,27 +28,8 @@ const UserPage = React.lazy(() => {
 });
 
 const App = () => {
-  const slide = (val) => {
-    return spring(val, {
-      stiffness: 125,
-      damping: 16,
-    });
-  };
-
   let routes = (
-    <AnimatedSwitch
-      atEnter={{ offset: 100 }}
-      atLeave={{
-        offset: slide(-150),
-      }}
-      atActive={{
-        offset: slide(0),
-      }}
-      mapStyles={(styles) => ({
-        transform: `translateX(${styles.offset}%)`,
-      })}
-      className="switch-wrapper"
-    >
+    <Switch>
       <Route path="/search" render={(props) => <SearchPage {...props} />} />
       <Route
         path="/game/:id"
@@ -52,13 +39,15 @@ const App = () => {
       <Route path="/userPage" render={(props) => <UserPage {...props} />} />
       <Route path="/" render={(props) => <MainPage {...props} />} />
       <Redirect to="/" />
-    </AnimatedSwitch>
+    </Switch>
   );
 
   return (
     <div className="App">
       <Router>
+        <Header />
         <Suspense fallback={<Loader />}>{routes}</Suspense>
+        <Footer />
       </Router>
     </div>
   );
