@@ -81,6 +81,7 @@ const FoldersSection = (props) => {
                     sendId={props.sendId}
                     ratedGames={props.ratedGames}
                     fetchUserRating={props.fetchUserRating}
+                    usersGame={props.usersGame}
                   />
                   <button
                     hint="Delete game"

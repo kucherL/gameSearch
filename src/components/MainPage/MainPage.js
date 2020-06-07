@@ -19,6 +19,10 @@ class MainPage extends Component {
     }
   };
 
+  componentWillUnmount = () => {
+    this.props.onCleanRandomGame();
+  };
+
   getRandomInt = (arr) => {
     const min = 0;
     const max = arr.length;
@@ -75,6 +79,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onCleanRandomGame: () => dispatch(actionCreators.cleanRandomGame()),
     onCheckAuth: () => dispatch(actionCreators.checkAuth()),
     onAddUserRating: (user, starValue, idGame) =>
       dispatch(actionCreators.addUserRating(user, starValue, idGame)),

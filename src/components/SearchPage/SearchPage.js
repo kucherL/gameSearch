@@ -24,6 +24,10 @@ class SearchPage extends Component {
   page = 1;
   offset = 0;
 
+  componentWillUnmount = () => {
+    this.props.onCleanSearchState();
+  };
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -74,7 +78,7 @@ class SearchPage extends Component {
       <>
         {this.props.error ? (
           <Modal cleanError={this.props.onCleanError}>
-            {this.props.error.message}
+            Sorry, games not found. Try to change request.
           </Modal>
         ) : null}
         <main className="SearchPage">
@@ -163,6 +167,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onCleanSearchState: () => dispatch(actionCreators.cleanSearchState()),
     onAddUserRating: (user, starValue, idGame) =>
       dispatch(actionCreators.addUserRating(user, starValue, idGame)),
     onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),

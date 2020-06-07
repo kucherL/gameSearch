@@ -102,6 +102,14 @@
     .GameItem {
       box-shadow: none;
 
+      &__container {
+        margin-bottom: 1rem;
+      }
+
+      &__interactive-el {
+        justify-content: flex-end;
+      }
+
       &:hover {
         transform: none;
       }
@@ -113,9 +121,9 @@
     border: none;
     fill: $second-background-color;
     display: inline-block;
-    position: relative;
-    bottom: 0.5rem;
-    left: 0.7rem;
+    position: absolute;
+    margin-left: 9rem;
+    margin-top: 1rem;
 
     &:hover::after {
       content: attr(hint);

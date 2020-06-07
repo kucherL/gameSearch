@@ -380,3 +380,21 @@ export const cleanError = () => {
     type: actionTypes.CLEAN_ERROR,
   };
 };
+
+export const cleanSearchState = () => {
+  return {
+    type: actionTypes.CLEAN_SEARCH_STATE,
+  };
+};
+
+export const cleanRandomGame = () => {
+  return {
+    type: actionTypes.CLEAN_RANDOM_GAME,
+  };
+};
+
+export const cleanSingleGameData = () => {
+  return {
+    type: actionTypes.CLEAN_SINGLE_GAME_DATA,
+  };
+};

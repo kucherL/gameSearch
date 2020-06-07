@@ -7,14 +7,6 @@ import "./Header.scss";
 import SubmitButton from "../UI/SubmitButton/SubmitButton";
 
 class Header extends Component {
-  state = {
-    homePage: true,
-  };
-
-  homePageHandler = () => {
-    this.setState({ homePage: !this.state.homePage });
-  };
-
   render = () => {
     return (
       <header className="Header">
@@ -26,15 +18,10 @@ class Header extends Component {
         <nav className="Header__navigation">
           <ul>
             <li>
-              {window.location.pathname === "/" ? (
-                <Link to="/search" onClick={this.homePageHandler}>
-                  Search
-                </Link>
-              ) : (
-                <Link to="/" onClick={this.homePageHandler}>
-                  Main page
-                </Link>
-              )}
+              <Link to="/">Main page</Link>
+            </li>
+            <li>
+              <Link to="/search">Search</Link>
             </li>
             {this.props.user ? (
               <li>
@@ -44,10 +31,10 @@ class Header extends Component {
             <li>
               {!this.props.user ? (
                 <Link to="/auth">
-                  <SubmitButton>Enter</SubmitButton>
+                  <SubmitButton>Sign In</SubmitButton>
                 </Link>
               ) : (
-                <SubmitButton click={signOut}>Exit</SubmitButton>
+                <SubmitButton click={signOut}>Sign Out</SubmitButton>
               )}
             </li>
           </ul>

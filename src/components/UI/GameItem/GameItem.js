@@ -15,16 +15,18 @@ const GameItem = (props) => (
         <PosterGame cover={props.cover} />
       </Link>
       <div className="GameItem__interactive-el">
-        <ToRememberButton
-          idGame={props.id}
-          cover={props.cover}
-          title={props.game}
-          genres={props.genres}
-          platforms={props.platforms}
-          folders={props.folders}
-          addGameToFolder={props.addGameToFolder}
-          uid={props.uid}
-        />
+        {!props.usersGame ? (
+          <ToRememberButton
+            idGame={props.id}
+            cover={props.cover}
+            title={props.game}
+            genres={props.genres}
+            platforms={props.platforms}
+            folders={props.folders}
+            addGameToFolder={props.addGameToFolder}
+            uid={props.uid}
+          />
+        ) : null}
         <AddUsersRating
           idGame={props.id}
           uid={props.uid}

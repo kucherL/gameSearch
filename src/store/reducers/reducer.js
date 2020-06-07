@@ -90,6 +90,18 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, {
         error: null,
       });
+    case actionTypes.CLEAN_SEARCH_STATE:
+      return updateObject(state, {
+        filteredGames: [],
+      });
+    case actionTypes.CLEAN_RANDOM_GAME:
+      return updateObject(state, {
+        randomGame: {},
+      });
+    case actionTypes.CLEAN_SINGLE_GAME_DATA:
+      return updateObject(state, {
+        singlePageGame: {},
+      });
     default:
       return state;
   }

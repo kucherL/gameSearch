@@ -27,6 +27,10 @@ class SingleGamePage extends Component {
     }
   };
 
+  componentWillUnmount = () => {
+    this.props.onCleanSingleGameData();
+  };
+
   render() {
     return (
       <>
@@ -115,6 +119,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onCleanSingleGameData: () => dispatch(actionCreators.cleanSingleGameData()),
     onAddUserRating: (user, starValue, idGame) =>
       dispatch(actionCreators.addUserRating(user, starValue, idGame)),
     onGetUserFolders: (user) => dispatch(actionCreators.getUserFolders(user)),

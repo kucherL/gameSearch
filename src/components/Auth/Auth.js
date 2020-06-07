@@ -15,12 +15,17 @@ class Auth extends Component {
     nameSignUp: "",
     emailSignUp: "",
     passwordSignUp: "",
+    isSignUp: false,
   };
 
   componentDidUpdate = (prevState) => {
     if (this.props.user !== prevState.user) {
       this.props.history.push("/userPage");
     }
+  };
+
+  changeToSignIn = () => {
+    this.setState({ isSignUp: !this.state.isSignUp });
   };
 
   handleChange = (event) => {
@@ -69,20 +74,26 @@ class Auth extends Component {
           </Modal>
         ) : null}
         <main className="Auth">
-          <SignIn
-            handleChange={this.handleChange}
-            email={this.state.emailSignIn}
-            password={this.state.passwordSignIn}
-            handleSubmit={this.handleSubmitSignIn}
-            click={this.handleSignInWithGoogle}
-          />
-          <SignUp
-            handleChange={this.handleChange}
-            email={this.state.emailSignUp}
-            password={this.state.passwordSignUp}
-            name={this.state.nameSignUp}
-            handleSubmit={this.handleSubmitSignUp}
-          />
+          <button onClick={this.changeToSignIn}>
+            {this.state.isSignUp ? "Change to Sign In" : "Change to Sign Up"}
+          </button>
+          {this.state.isSignUp ? (
+            <SignUp
+              handleChange={this.handleChange}
+              email={this.state.emailSignUp}
+              password={this.state.passwordSignUp}
+              name={this.state.nameSignUp}
+              handleSubmit={this.handleSubmitSignUp}
+            />
+          ) : (
+            <SignIn
+              handleChange={this.handleChange}
+              email={this.state.emailSignIn}
+              password={this.state.passwordSignIn}
+              handleSubmit={this.handleSubmitSignIn}
+              click={this.handleSignInWithGoogle}
+            />
+          )}
         </main>
       </>
     );

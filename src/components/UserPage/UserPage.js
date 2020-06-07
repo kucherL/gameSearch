@@ -14,6 +14,7 @@ class UserPage extends Component {
     folderName: "",
     folderId: "",
     showFolders: false,
+    usersGame: true,
   };
 
   componentDidMount = async () => {
@@ -78,6 +79,7 @@ class UserPage extends Component {
               deleteGame={this.props.onDeleteGame}
               ratedGames={this.props.ratedGames}
               addGameToFolder={this.props.onAddGameToFolder}
+              usersGame={this.state.usersGame}
             />
           </main>
         )}

@@ -1,11 +1,10 @@
 @import "../../../varibles";
 
 .SignUp {
-  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 70%;
+  width: 80%;
 
   h2 {
     color: $text-color;
@@ -34,24 +33,6 @@
     border-radius: 5px;
     font-family: inherit;
     font-weight: bold;
-    width: 30%;
-  }
-
-  &__google {
-    margin-bottom: 1rem;
-    border: none;
-    background: $second-background-color;
-    padding: 0.3rem 0.5rem;
-    border-radius: 5px;
-    font-family: inherit;
-    font-weight: bold;
-    width: 50%;
-  }
-}
-
-@media (min-width: 60rem) {
-  .SignUp {
-    margin-top: -0.4rem;
-    margin-left: 2rem;
+    width: 10rem;
   }
 }

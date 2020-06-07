@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 70%;
+  width: 80%;
 
   h2 {
     color: $text-color;
@@ -32,7 +32,7 @@
     border-radius: 5px;
     font-family: inherit;
     font-weight: bold;
-    width: 30%;
+    width: 10rem;
   }
 
   &__google {
@@ -43,6 +43,6 @@
     border-radius: 5px;
     font-family: inherit;
     font-weight: bold;
-    width: 50%;
+    width: 10rem;
   }
 }
