@@ -40,7 +40,7 @@ export const getPreferredGames = () => {
   return async (dispatch) => {
     try {
       const preferredGames = await instance(
-        "games/",
+        "games",
         "fields id, name, cover, genres, platforms; where (rating > 90); limit 12;"
       );
       let temporaryDataPreference = preferredGames.data

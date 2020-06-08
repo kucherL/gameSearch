@@ -208,4 +208,5 @@ export const platforms = {
   169: { popularity: 15, id: 169, name: "Xbox Series X" },
   240: { popularity: 164, id: 240, name: "Zeebo" },
   26: { popularity: 165, id: 26, name: "ZX Spectrum" },
+  306: "",
 };

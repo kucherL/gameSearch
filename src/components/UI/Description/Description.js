@@ -4,13 +4,12 @@ import { genres, platforms } from "../../../utility";
 import "./Description.scss";
 
 const Description = (props) => {
-  let namedGenres = "";
-  let namedPlatforms = "";
-
-  if (props.genres && props.platforms) {
-    namedGenres = props.genres.map((gen) => `${genres[gen].name}/ `);
-    namedPlatforms = props.platforms.map((p) => `${platforms[p].name}/ `);
-  }
+  const namedGenres = props.genres
+    ? props.genres.map((gen) => `${genres[gen].name}/ `)
+    : null;
+  const namedPlatforms = props.platforms
+    ? props.platforms.map((p) => `${platforms[p].name}/ `)
+    : null;
 
   return (
     <div className="Description">
