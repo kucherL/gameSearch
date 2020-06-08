@@ -1,4 +1,4 @@
-The project still in work.
+This project still in work.
 
 This app was made with [IGDB API](https://www.igdb.com/api).
 
