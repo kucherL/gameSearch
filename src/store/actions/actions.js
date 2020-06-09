@@ -8,7 +8,7 @@ export const getRandomGame = (getRandomInt) => {
     try {
       const randomGames = await instance(
         "games/",
-        "fields id, rating, name, summary; where (popularity > 4); limit 50;"
+        "fields id, rating, name, summary; where (popularity > 4 & rating > 80); limit 100;"
       );
       const randomInt = getRandomInt(randomGames.data);
       const randomGameId = randomGames.data[randomInt].id;
