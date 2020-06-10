@@ -289,7 +289,10 @@ export const fetchUserRating = (user) => {
       const docRef = await firestore
         .doc(`users/${user}/playedGames/games`)
         .get();
-      const ratedGames = docRef.data();
+      let ratedGames = docRef.data();
+      if (!ratedGames) {
+        ratedGames = {};
+      }
       dispatch({
         type: actionTypes.FETCH_USER_RATING,
         data: ratedGames,
